@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bijzondere Breintjes</title>
+<meta name="description" content="Liedjes, filmpjes en tekeningen voor kinderen van 3 tot 8 jaar. Rustig, zonder reclame.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/grandstander.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/andika-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/stijl.css">
+<script>
+  // Onthoud de knop Rustig al vóór de pagina getekend wordt.
+  try {
+    if (localStorage.getItem("bb-rustig") === "aan") document.documentElement.setAttribute("data-rustig", "aan");
+  } catch (e) {}
+</script>
+</head>
+<body>
+
+<svg class="verstopt" aria-hidden="true" focusable="false">
+  <symbol id="i-noot" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="18" r="3" fill="currentColor"/><circle cx="17" cy="16" r="3" fill="currentColor"/></symbol>
+  <symbol id="i-speel" viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l11-6.5a1 1 0 0 0 0-1.72l-11-6.5A1 1 0 0 0 8 5.5z" fill="currentColor"/></symbol>
+  <symbol id="i-pauze" viewBox="0 0 24 24"><rect x="6" y="5" width="4.5" height="14" rx="1.5" fill="currentColor"/><rect x="13.5" y="5" width="4.5" height="14" rx="1.5" fill="currentColor"/></symbol>
+  <symbol id="i-potlood" viewBox="0 0 24 24"><path d="M4 20l1-5L16 4l4 4L9 19z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M13.5 6.5l4 4" fill="none" stroke="currentColor" stroke-width="2.5"/></symbol>
+  <symbol id="i-lamp" viewBox="0 0 24 24"><path d="M9.5 18h5M10.5 21h3M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.3 1 2.1h5c0-.8.4-1.6 1-2.1A6 6 0 0 0 12 3z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-hart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.3a4.2 4.2 0 0 1 7.5 2.5C19.500 15.400 12 20 12 20z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"/></symbol>
+  <symbol id="i-geluid" viewBox="0 0 24 24"><path d="M4 9.5v5h3.5L13 19V5L7.500 9.500z" fill="currentColor"/><path d="M16.500 8.500a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+</svg>
+
+<a class="spring" href="#inhoud">Ga naar de inhoud</a>
+
+<header class="kop" id="top">
+  <div class="binnen kop-rij">
+    <a class="logo" href="#top" aria-label="Bijzondere Breintjes, naar het begin">
+      <span class="logo-beeld" data-breintje="10"></span>
+      <span class="logo-naam">Bijzondere<br>Breintjes</span>
+    </a>
+    <div class="kop-knoppen">
+      <a class="kop-link" href="#grote-mensen">Voor grote mensen</a>
+      <button class="rustig" id="rustig-knop" type="button" aria-pressed="false" title="Minder kleur en geen beweging">
+        <span class="schuif" aria-hidden="true"></span>Rustig
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="inhoud">
+
+  <section class="held">
+    <div class="binnen held-rij">
+      <div class="held-tekst">
+        <h1>Elk breintje is <span class="kronkel">bijzonder</span>.</h1>
+        <p class="intro" id="intro-tekst">Hier vind je liedjes, filmpjes en tekeningen. Voor kinderen van 3 tot 8 jaar. En voor hun grote mensen.</p>
+        <button class="leesvoor" type="button" data-leesvoor="intro-tekst" hidden><svg aria-hidden="true"><use href="#i-geluid"/></svg><span>Lees voor</span></button>
+      </div>
+      <div class="podium">
+        <div class="podium-vlak"><div class="podium-breintje" id="podium-breintje"></div></div>
+        <p class="podium-tekst" id="podium-tekst" aria-live="polite"></p>
+        <button class="knop" id="nog-een" type="button">Nog een breintje</button>
+        <p class="klein">Geen twee breintjes zijn hetzelfde.</p>
+      </div>
+    </div>
+  </section>
+
+  <nav class="binnen wegwijzer" aria-label="Kies wat je wilt doen">
+    <a class="wijzer is-zon" href="#liedjes"><span class="rondje"><svg aria-hidden="true"><use href="#i-noot"/></svg></span>Liedjes</a>
+    <a class="wijzer is-zee" href="#filmpjes"><span class="rondje"><svg aria-hidden="true"><use href="#i-speel"/></svg></span>Filmpjes</a>
+    <a class="wijzer is-gras" href="#tekeningen"><span class="rondje"><svg aria-hidden="true"><use href="#i-potlood"/></svg></span>Tekeningen</a>
+  </nav>
+
+  <section class="blok is-zon" id="liedjes" aria-labelledby="liedjes-kop">
+    <div class="binnen">
+      <div class="blok-kop">
+        <span class="rondje"><svg aria-hidden="true"><use href="#i-noot"/></svg></span>
+        <div><h2 id="liedjes-kop">Liedjes</h2><p>Luister en zing mee.</p></div>
+      </div>
+      <div class="liedjes" id="liedjes-lijst"></div>
+    </div>
+  </section>
+
+  <section class="blok is-zee" id="filmpjes" aria-labelledby="filmpjes-kop">
+    <div class="binnen">
+      <div class="blok-kop">
+        <span class="rondje"><svg aria-hidden="true"><use href="#i-speel"/></svg></span>
+        <div><h2 id="filmpjes-kop">Filmpjes</h2><p>Kijk maar. Je mag zo vaak kijken als je wilt.</p></div>
+      </div>
+      <div class="filmpjes" id="filmpjes-lijst"></div>
+    </div>
+  </section>
+
+  <section class="blok is-gras" id="tekeningen" aria-labelledby="tekeningen-kop">
+    <div class="binnen">
+      <div class="blok-kop">
+        <span class="rondje"><svg aria-hidden="true"><use href="#i-potlood"/></svg></span>
+        <div><h2 id="tekeningen-kop">Tekeningen</h2><p>Print een kleurplaat. Kleur het breintje zoals jij wilt.</p></div>
+      </div>
+      <div class="tekeningen" id="tekeningen-lijst"></div>
+    </div>
+  </section>
+
+  <section class="blok is-koraal" id="idee" aria-labelledby="idee-kop">
+    <div class="binnen">
+      <div class="idee-vlak">
+        <span class="idee-beeld" data-breintje="14"></span>
+        <div class="idee-tekst">
+          <h2 id="idee-kop">Heb jij een idee?</h2>
+          <p>Waar moet het volgende liedje over gaan? Vertel het aan een groot mens. Die mailt het naar ons.</p>
+          <div id="idee-contact"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="groot is-druif" id="grote-mensen" aria-labelledby="groot-kop">
+    <div class="binnen groot-rij">
+      <div class="groot-tekst">
+        <div class="blok-kop">
+          <span class="rondje"><svg aria-hidden="true"><use href="#i-hart"/></svg></span>
+          <h2 id="groot-kop">Voor grote mensen</h2>
+        </div>
+        <p>Bijzondere Breintjes maakt liedjes, filmpjes en tekeningen voor kinderen van 3 tot 8 jaar. Voor ieder kind, en zeker ook voor kinderen bij wie het in hun hoofd net even anders gaat.</p>
+        <p>Sommige kinderen horen en zien snel te veel. Andere willen graag weten wat er komt, of luisteren het liefst tien keer naar hetzelfde liedje. Dat mag hier allemaal.</p>
+      </div>
+      <div class="groot-lijst">
+        <h3>Zo is deze website gemaakt</h3>
+        <dl>
+          <dt>Niets begint vanzelf</dt>
+          <dd>Muziek en filmpjes starten pas als je kind zelf op de knop drukt.</dd>
+          <dt>De knop Rustig</dt>
+          <dd>Staat bovenaan. Zet beweging uit en maakt de kleuren zachter. Dit apparaat onthoudt de keuze.</dd>
+          <dt>Alles op een vaste plek</dt>
+          <dd>Liedjes zijn geel, filmpjes blauw, tekeningen groen. Altijd in dezelfde volgorde.</dd>
+          <dt>Leesletters van school</dt>
+          <dd>De a en de g zien eruit zoals kinderen ze leren schrijven.</dd>
+          <dt>Geen reclame, geen cookies</dt>
+          <dd>We volgen niemand en we verkopen niets.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="voet">
+  <div class="binnen voet-rij">
+    <span>© <span id="jaar">2026</span> Bijzondere Breintjes</span>
+    <a href="#top">Naar boven</a>
+  </div>
+</footer>
+
+<noscript><p class="binnen">Zet JavaScript aan om de liedjes, filmpjes en tekeningen te zien.</p></noscript>
+
+<script src="js/breintje.js"></script>
+<script src="inhoud.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>
