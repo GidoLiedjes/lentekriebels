@@ -1,0 +1,8 @@
+Deze map heb je alleen nodig voor een eigen filmpje (mp4).
+Staat het filmpje op YouTube? Dan hoef je hier niets neer te zetten:
+plak de link in inhoud.js bij  youtube: "..."
+
+Zet je hier wel een filmpje neer, bijvoorbeeld dans.mp4, zet dan in inhoud.js:
+  bestand: "filmpjes/dans.mp4"
+
+Naam van het bestand: alleen kleine letters, cijfers en streepjes.

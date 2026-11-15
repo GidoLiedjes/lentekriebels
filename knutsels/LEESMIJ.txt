@@ -1,0 +1,6 @@
+In deze map komen de foto's bij de knutsels: jpg- of png-bestanden.
+
+Zet hier bijvoorbeeld: wolkje.jpg
+Zet daarna in inhoud.js bij dat knutsel:   plaatje: "knutsels/wolkje.jpg"
+
+Naam van het bestand: alleen kleine letters, cijfers en streepjes.

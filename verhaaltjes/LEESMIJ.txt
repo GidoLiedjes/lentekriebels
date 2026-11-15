@@ -1,0 +1,7 @@
+In deze map komen de verhaaltjes: mp3-bestanden.
+
+Zet hier bijvoorbeeld: pief-en-de-trein.mp3
+Zet daarna in inhoud.js bij dat verhaaltje:   audio: "verhaaltjes/pief-en-de-trein.mp3"
+
+Naam van het bestand: alleen kleine letters, cijfers en streepjes.
+Dus wel  mijn-liedje.mp3   en niet  Mijn Liedje (1).mp3
