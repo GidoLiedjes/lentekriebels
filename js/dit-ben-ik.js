@@ -279,7 +279,7 @@ function teken(){
   breintje(196,1668,.62);
   g.fillStyle=KLEUR.paars;font(700,44,"'Amatic SC', 'Comic Sans MS', cursive");
   g.fillText('Bijzondere Breintjes',246,1683);
-  g.textAlign='right';g.fillStyle=KLEUR.paarsDiep;font(500,24);g.fillText('bijzonderebreintjes.nl',W-150,1680);g.textAlign='left';
+  g.textAlign='right';g.fillStyle=KLEUR.paarsDiep;font(500,24);g.fillText('www.bijzonderebreintjes.nl',W-150,1680);g.textAlign='left';
 }
 var timer=null;
 function ververs(){teken();try{$('kaartbeeld').src=cv.toDataURL('image/jpeg',.9);}catch(e){}}
