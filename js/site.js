@@ -32,10 +32,10 @@
   }
 
   function voorbeeldLabel(ding) {
-    return ding.voorbeeld ? el("span", { class: "label-voorbeeld", tekst: "Voorbeeld" }) : null;
+    return ding && ding.voorbeeld ? el("span", { class: "label-voorbeeld", tekst: "Voorbeeld" }) : null;
   }
 
-  // Een vast getal bij een tekst, zodat elk filmpje zijn eigen breintje krijgt.
+  // Een vast getal bij een tekst, zodat elk ding zijn eigen breintje krijgt.
   function getalVan(tekst) {
     var h = 7;
     for (var i = 0; i < tekst.length; i++) h = (h * 31 + tekst.charCodeAt(i)) >>> 0;
@@ -46,6 +46,25 @@
     var beeld = el("span", { class: "leeg-beeld" });
     beeld.innerHTML = Breintje.teken(4, { sier: true });
     return el("div", { class: "leeg" }, [beeld, el("p", { tekst: tekst })]);
+  }
+
+  // Tekst met lege regels wordt een rijtje alinea's.
+  function alineas(tekst) {
+    return String(tekst || "").trim().split(/\n\s*\n/).map(function (stuk) {
+      var p = el("p");
+      stuk.trim().split("\n").forEach(function (regel, i) {
+        if (i) p.appendChild(el("br"));
+        p.appendChild(document.createTextNode(regel.trim()));
+      });
+      return p;
+    });
+  }
+
+  var teller = 0;
+  function voorleesKnop(doelId) {
+    return el("button", { class: "leesvoor", type: "button", "data-leesvoor": doelId, hidden: "" }, [
+      icoon("geluid"), el("span", { tekst: "Lees voor" })
+    ]);
   }
 
   /* ---------- Vaste breintjes (logo en zo) ---------- */
@@ -107,22 +126,22 @@
     spelers.forEach(function (s) { if (s !== behalve && !s.paused) s.pause(); });
   }
 
-  /* ---------- Liedjes ---------- */
+  /* ---------- Geluidsspeler (liedjes en voorgelezen verhalen) ---------- */
 
-  function speler(lied) {
+  function speler(bron, naam) {
     var audio = new Audio();
     audio.preload = "none";
-    audio.src = lied.audio;
+    audio.src = bron;
     spelers.push(audio);
 
-    var knop = el("button", { class: "speel", type: "button", "aria-label": "Speel " + lied.titel });
+    var knop = el("button", { class: "speel", type: "button", "aria-label": "Speel " + naam });
     knop.appendChild(icoon("speel"));
     var vul = el("div", { class: "balk-vul" });
     var balk = el("div", { class: "balk" }, vul);
 
     function zet(speelt) {
       knop.replaceChild(icoon(speelt ? "pauze" : "speel"), knop.firstChild);
-      knop.setAttribute("aria-label", (speelt ? "Pauze " : "Speel ") + lied.titel);
+      knop.setAttribute("aria-label", (speelt ? "Pauze " : "Speel ") + naam);
     }
 
     knop.addEventListener("click", function () {
@@ -136,17 +155,19 @@
       if (audio.duration) vul.style.width = (audio.currentTime / audio.duration) * 100 + "%";
     });
     audio.addEventListener("error", function () {
-      balk.replaceWith(el("p", { class: "nog-niet", tekst: "Dit liedje doet het even niet." }));
+      balk.replaceWith(el("p", { class: "nog-niet", tekst: "Dit geluid doet het even niet." }));
     });
 
     return { knop: knop, balk: balk };
   }
 
-  function liedKaart(lied, nummer) {
+  /* ---------- Liedjes ---------- */
+
+  function liedKaart(lied) {
     var titel = el("h3", {}, [lied.titel, voorbeeldLabel(lied)]);
     var links, onderTitel;
     if (lied.audio) {
-      var s = speler(lied);
+      var s = speler(lied.audio, lied.titel);
       links = s.knop;
       onderTitel = s.balk;
     } else {
@@ -155,26 +176,79 @@
     }
     var kaart = el("article", { class: "lied" }, [links, el("div", { class: "lied-midden" }, [titel, onderTitel])]);
 
-    var tekst = (lied.tekst || "").trim();
-    if (tekst) {
-      var id = "liedtekst-" + nummer;
-      var coupletten = tekst.split(/\n\s*\n/).map(function (couplet) {
-        var p = el("p");
-        couplet.trim().split("\n").forEach(function (regel, i) {
-          if (i) p.appendChild(el("br"));
-          p.appendChild(document.createTextNode(regel.trim()));
-        });
-        return p;
-      });
-      var voorlees = el("button", { class: "leesvoor", type: "button", "data-leesvoor": id, hidden: "" }, [icoon("geluid"), el("span", { tekst: "Lees voor" })]);
+    if (String(lied.tekst || "").trim()) {
+      var id = "liedtekst-" + ++teller;
       kaart.appendChild(
         el("details", { class: "zingmee" }, [
           el("summary", { tekst: "Zing mee" }),
-          el("div", { class: "liedtekst", id: id }, coupletten),
-          voorlees
+          el("div", { class: "liedtekst", id: id }, alineas(lied.tekst)),
+          voorleesKnop(id)
         ])
       );
     }
+    return kaart;
+  }
+
+  /* ---------- Verhaaltjes ---------- */
+
+  function verhaalKaart(verhaal) {
+    var id = "verhaal-" + ++teller;
+    var kop = el("div", { class: "verhaal-kop" }, [el("h3", {}, [verhaal.titel, voorbeeldLabel(verhaal)])]);
+    var rij = el("div", { class: "verhaal-rij" }, voorleesKnop(id));
+    if (verhaal.audio) {
+      var s = speler(verhaal.audio, verhaal.titel);
+      kop.appendChild(s.knop);
+    }
+    return el("article", { class: "verhaal" }, [
+      kop,
+      el("div", { class: "verhaal-tekst", id: id }, alineas(verhaal.tekst)),
+      rij
+    ]);
+  }
+
+  /* ---------- Rustmoment, oefeningen en knutselen ---------- */
+
+  function stappenKaart(ding) {
+    var id = "stappen-" + ++teller;
+    var kop = el("div", { class: "stappen-kop" }, [
+      el("h3", {}, [ding.titel, voorbeeldLabel(ding)]),
+      ding.duur ? el("span", { class: "duur", tekst: ding.duur }) : null
+    ]);
+
+    var kaart = el("article", { class: "stappen-kaart" }, kop);
+
+    if (ding.ademhaling) {
+      kaart.appendChild(
+        el("div", { class: "adem" },
+          el("div", { class: "adem-cirkel" },
+            el("span", { class: "adem-woord" }, [
+              el("span", { class: "in", tekst: "adem in" }),
+              el("span", { class: "uit", tekst: "adem uit" })
+            ])
+          )
+        )
+      );
+    }
+
+    if (ding.plaatje) kaart.appendChild(el("img", { class: "knutsel-foto", src: ding.plaatje, alt: "", loading: "lazy" }));
+
+    if (ding.nodig && ding.nodig.length) {
+      kaart.appendChild(
+        el("div", { class: "nodig" }, [
+          el("h4", { tekst: "Dit heb je nodig" }),
+          el("ul", {}, ding.nodig.map(function (n) { return el("li", { tekst: n }); }))
+        ])
+      );
+    }
+
+    var stappen = (ding.stappen || []).map(function (stap) { return el("li", { tekst: stap }); });
+    if (stappen.length) kaart.appendChild(el("ol", { id: id }, stappen));
+
+    if (ding.grootMens) {
+      kaart.appendChild(el("p", { class: "let-op" }, [icoon("hart"), el("span", { tekst: "Doe dit samen met een groot mens." })]));
+    }
+
+    if (stappen.length) kaart.appendChild(voorleesKnop(id));
     return kaart;
   }
 
@@ -233,13 +307,39 @@
 
   function vul(id, lijst, maak, leegTekst) {
     var plek = document.getElementById(id);
+    if (!plek) return;
     if (!lijst || !lijst.length) { plek.appendChild(leeg(leegTekst)); return; }
-    lijst.forEach(function (ding, i) { plek.appendChild(maak(ding, i)); });
+    lijst.forEach(function (ding) { plek.appendChild(maak(ding)); });
   }
 
   vul("liedjes-lijst", inhoud.liedjes, liedKaart, "Hier komen de liedjes. Nog even wachten!");
+  vul("verhaaltjes-lijst", inhoud.verhaaltjes, verhaalKaart, "Hier komen de verhaaltjes. Nog even wachten!");
+  vul("rustmoment-lijst", inhoud.rustmomenten, stappenKaart, "Hier komen de rustmomenten. Nog even wachten!");
+  vul("oefeningen-lijst", inhoud.oefeningen, stappenKaart, "Hier komen de oefeningen. Nog even wachten!");
+  vul("knutselen-lijst", inhoud.knutsels, stappenKaart, "Hier komen de knutsels. Nog even wachten!");
   vul("filmpjes-lijst", inhoud.filmpjes, filmKaart, "Hier komen de filmpjes. Nog even wachten!");
   vul("tekeningen-lijst", inhoud.tekeningen, tekeningKaart, "Hier komen de tekeningen. Nog even wachten!");
+
+  /* ---------- Wie zijn wij ---------- */
+
+  var wie = inhoud.wieZijnWij || {};
+  var wieTekst = document.getElementById("wie-tekst");
+  (wie.alineas || []).forEach(function (stuk, i) {
+    var p = el("p", { tekst: stuk });
+    if (i === 0 && wie.voorbeeld) p.appendChild(voorbeeldLabel(wie));
+    wieTekst.appendChild(p);
+  });
+  if (!wieTekst.children.length) wieTekst.appendChild(leeg("Hier vertellen we straks wie we zijn."));
+
+  var mensen = document.getElementById("wie-mensen");
+  (wie.mensen || []).forEach(function (mens) {
+    mensen.appendChild(el("article", { class: "mens" }, [
+      el("h3", { tekst: mens.naam }),
+      el("p", { tekst: mens.doet })
+    ]));
+  });
+
+  /* ---------- Mailadres ---------- */
 
   var contact = document.getElementById("idee-contact");
   var email = inhoud.contact && inhoud.contact.email;
@@ -253,6 +353,58 @@
   }
 
   document.getElementById("jaar").textContent = new Date().getFullYear();
+
+  /* ---------- Tabbladen ---------- */
+
+  var paginas = [].slice.call(document.querySelectorAll(".pagina"));
+  var tabs = [].slice.call(document.querySelectorAll(".tab"));
+  var basisTitel = document.title;
+
+  function toonPagina(naam, metSprong) {
+    var gekozen = document.getElementById(naam);
+    if (!gekozen || !gekozen.classList.contains("pagina")) {
+      // Een link naar iets anders (zoals "ga naar de inhoud") laat het
+      // tabblad staan dat al openstaat.
+      var open = paginas.filter(function (p) { return !p.hidden; })[0];
+      if (open && metSprong) return;
+      gekozen = document.getElementById("thuis");
+      naam = "thuis";
+    }
+    paginas.forEach(function (p) { p.hidden = p !== gekozen; });
+    tabs.forEach(function (t) {
+      if (t.getAttribute("href") === "#" + naam) t.setAttribute("aria-current", "page");
+      else t.removeAttribute("aria-current");
+    });
+
+    // Stop geluid en voorlezen als je naar een ander tabblad gaat.
+    stopAnderen(null);
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+
+    var kop = gekozen.querySelector("h1, h2");
+    document.title = naam === "thuis" || !kop ? basisTitel : kop.textContent.trim() + " – " + basisTitel;
+
+    // De browser springt bij een adres met # naar dat stuk van de pagina.
+    // Dat hoeft hier niet: een tabblad begint altijd bovenaan.
+    window.scrollTo({ top: 0, behavior: "auto" });
+
+    if (metSprong) {
+      gekozen.focus({ preventScroll: true });
+      // Schuif het gekozen tabblad in beeld, maar alleen zijwaarts:
+      // de pagina zelf blijft bovenaan staan.
+      var actieveTab = document.querySelector('.tab[aria-current="page"]');
+      var rij = document.querySelector(".tabs-rij");
+      if (actieveTab && rij && rij.scrollWidth > rij.clientWidth) {
+        rij.scrollLeft = actieveTab.offsetLeft - (rij.clientWidth - actieveTab.offsetWidth) / 2;
+      }
+    }
+  }
+
+  function naamUitAdres() {
+    return (location.hash || "").replace(/^#/, "") || "thuis";
+  }
+
+  window.addEventListener("hashchange", function () { toonPagina(naamUitAdres(), true); });
+  toonPagina(naamUitAdres(), false);
 
   /* ---------- Lees voor ---------- */
 
