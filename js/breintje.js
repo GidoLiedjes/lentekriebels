@@ -11,13 +11,14 @@
 })(typeof self !== "undefined" ? self : this, function () {
   "use strict";
 
+  // De kleuren van de huisstijl. Roze is de kleur van het vaste breintje.
   var KLEUREN = [
-    { naam: "koraal", vul: "#F58E7E", donker: "#C2584B" },
-    { naam: "zon", vul: "#F7C548", donker: "#B98A1E" },
-    { naam: "zee", vul: "#6BBBD2", donker: "#2E7C93" },
-    { naam: "gras", vul: "#82C893", donker: "#44895A" },
-    { naam: "druif", vul: "#AC92D6", donker: "#6F54A0" },
-    { naam: "roos", vul: "#F3A6C4", donker: "#BF6389" }
+    { naam: "roze", vul: "#F4A6C3", donker: "#C2588C" },
+    { naam: "geel", vul: "#F6CF5A", donker: "#A67F12" },
+    { naam: "blauw", vul: "#8DBBE6", donker: "#2A5A8C" },
+    { naam: "groen", vul: "#8FD391", donker: "#2B6E30" },
+    { naam: "lila", vul: "#B995DE", donker: "#5A3591" },
+    { naam: "oranje", vul: "#F29A73", donker: "#A8401A" }
   ];
 
   var NAMEN = [
@@ -34,7 +35,7 @@
     "regenplassen", "kleuren", "verstoppen", "de maan"
   ];
 
-  var INKT = "#232B45";
+  var INKT = "#1E2A5A";
 
   // Kleine, vaste toevalsmachine: hetzelfde zaadje geeft dezelfde reeks.
   function toeval(zaadje) {
@@ -187,8 +188,8 @@
       s.push('<path d="M98 ' + hy + "L120 " + n(top - 36) + "L142 " + hy + 'z" fill="' + extraVul + '"' + er + "/>");
       s.push('<circle cx="120" cy="' + n(top - 38) + '" r="7" fill="' + (lijn ? wit : "#fff") + '"' + er + "/>");
     } else if (b.extra === "sprietje") {
-      s.push('<path d="M120 ' + n(top + 4) + "V" + n(top - 22) + '" fill="none" stroke="' + (lijn ? "#111" : "#44895A") + '" stroke-width="4" stroke-linecap="round"/>');
-      s.push('<path d="M120 ' + n(top - 20) + "q-16 -14 -24 0q12 10 24 0zM120 " + n(top - 20) + 'q16 -14 24 0q-12 10 -24 0z" fill="' + (lijn ? wit : "#82C893") + '" stroke="' + (lijn ? "#111" : "#44895A") + '" stroke-width="3" stroke-linejoin="round"/>');
+      s.push('<path d="M120 ' + n(top + 4) + "V" + n(top - 22) + '" fill="none" stroke="' + (lijn ? "#111" : "#2B6E30") + '" stroke-width="4" stroke-linecap="round"/>');
+      s.push('<path d="M120 ' + n(top - 20) + "q-16 -14 -24 0q12 10 24 0zM120 " + n(top - 20) + 'q16 -14 24 0q-12 10 -24 0z" fill="' + (lijn ? wit : "#8FD391") + '" stroke="' + (lijn ? "#111" : "#2B6E30") + '" stroke-width="3" stroke-linejoin="round"/>');
     } else if (b.extra === "krul") {
       s.push('<path d="M118 ' + n(top + 4) + "c-8 -18 14 -30 20 -16c4 10 -10 14 -12 6" + '" fill="none" stroke="' + detail + '" stroke-width="5" stroke-linecap="round"/>');
     }

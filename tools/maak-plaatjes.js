@@ -1,5 +1,5 @@
 /*
- * Maakt de kleurplaten en het icoontje van de website.
+ * Maakt de kleurplaten van de website.
  * Gebruik:  node tools/maak-plaatjes.js
  *
  * Een ander breintje als kleurplaat? Zet het getal en de naam in de lijst hieronder.
@@ -28,11 +28,3 @@ for (const zaadje of kleurplaten) {
   fs.writeFileSync(bestand, svg);
   console.log("gemaakt:", path.relative(basis, bestand));
 }
-
-// Icoontje voor het tabblad: het gezicht van Pief.
-const icoon =
-  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="18 14 204 204">' +
-  '<g color="#232B45">' + Breintje.vormen(10, {}) + "</g>" +
-  "</svg>\n";
-fs.writeFileSync(path.join(basis, "favicon.svg"), icoon);
-console.log("gemaakt: favicon.svg");

@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bijzondere Breintjes</title>
-<meta name="description" content="Liedjes, verhaaltjes, rustmomenten, oefeningen, knutsels, filmpjes en tekeningen voor kinderen van 3 tot 8 jaar. Rustig, zonder reclame.">
+<meta name="description" content="Liedjes, verhaaltjes, rustmomenten, oefeningen en knutsels voor kinderen van 3 tot 8 jaar met een bijzonder breintje, en voor hun ouders.">
+<meta name="theme-color" content="#7c3fc0">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="preload" href="fonts/grandstander.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/andika-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/fredoka.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/stijl.css">
 <script>
   // Onthoud de knop Rustig al vóór de pagina getekend wordt.
@@ -30,6 +30,16 @@
   <symbol id="i-ster" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.2-5.4-2.9-5.4 2.9 1-6.2L3.2 9.5l6.1-.9z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"/></symbol>
   <symbol id="i-hart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.3a4.2 4.2 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"/></symbol>
   <symbol id="i-geluid" viewBox="0 0 24 24"><path d="M4 9.5v5h3.5L13 19V5L7.5 9.5z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="i-kaart" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="2.3"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M8 17c.6-2.2 2.200-3.3 4-3.300s3.4 1.1 4 3.3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.3"/><path d="M12 7.5v9M7.5 12h9" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+  <symbol id="vast-breintje" viewBox="0 0 200 175">
+    <path d="M40,110 C20,110 15,80 35,70 C25,50 45,35 60,45 C65,25 95,20 105,38 C120,22 150,30 150,52 C170,55 178,80 162,92 C178,105 165,130 145,125 C140,145 110,150 100,135 C85,150 55,148 52,130 C35,135 25,120 40,110 Z" fill="#f4a6c3" stroke="#3b2570" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M60,70 C70,60 80,75 90,65 M110,55 C120,65 130,50 140,62 M55,100 C65,95 70,105 80,100 M120,110 C130,100 140,112 150,104" fill="none" stroke="#e07aa8" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M80,136 L78,158 M120,136 L122,158" stroke="#3b2570" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <ellipse cx="74" cy="161" rx="13" ry="6" fill="#f6cf5a" stroke="#3b2570" stroke-width="3"/><ellipse cx="126" cy="161" rx="13" ry="6" fill="#f6cf5a" stroke="#3b2570" stroke-width="3"/>
+    <circle cx="70" cy="98" r="7" fill="#f2a7c8"/><circle cx="130" cy="98" r="7" fill="#f2a7c8"/>
+    <path d="M78,88 Q85,80 92,88 M108,88 Q115,80 122,88 M86,104 Q100,118 114,104" stroke="#3b2570" stroke-width="4" stroke-linecap="round" fill="none"/>
+  </symbol>
   <symbol id="i-thuis" viewBox="0 0 24 24"><path d="M4 11L12 4l8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"/></symbol>
 </svg>
 
@@ -38,7 +48,7 @@
 <header class="kop" id="top">
   <div class="binnen kop-rij">
     <a class="logo" href="#thuis" aria-label="Bijzondere Breintjes, naar het begin">
-      <span class="logo-beeld" data-breintje="10"></span>
+      <span class="logo-beeld"><svg class="vast-breintje" viewBox="0 0 200 175" aria-hidden="true" focusable="false"><use href="#vast-breintje"/></svg></span>
       <span class="logo-naam">Bijzondere<br>Breintjes</span>
     </a>
     <div class="kop-knoppen">
@@ -53,13 +63,16 @@
 <nav class="tabs" id="tabs" aria-label="Kies wat je wilt doen">
   <div class="binnen tabs-rij">
     <a class="tab is-neutraal" href="#thuis"><svg aria-hidden="true"><use href="#i-thuis"/></svg>Thuis</a>
-    <a class="tab is-zon" href="#liedjes"><svg aria-hidden="true"><use href="#i-noot"/></svg>Liedjes</a>
-    <a class="tab is-koraal" href="#verhaaltjes"><svg aria-hidden="true"><use href="#i-boek"/></svg>Verhaaltjes</a>
-    <a class="tab is-druif" href="#rustmoment"><svg aria-hidden="true"><use href="#i-maan"/></svg>Rustmoment</a>
-    <a class="tab is-mango" href="#oefeningen"><svg aria-hidden="true"><use href="#i-sprong"/></svg>Oefeningen</a>
-    <a class="tab is-roos" href="#knutselen"><svg aria-hidden="true"><use href="#i-schaar"/></svg>Knutselen</a>
-    <a class="tab is-zee" href="#filmpjes"><svg aria-hidden="true"><use href="#i-speel"/></svg>Filmpjes</a>
-    <a class="tab is-gras" href="#tekeningen"><svg aria-hidden="true"><use href="#i-potlood"/></svg>Tekeningen</a>
+    <a class="tab is-geel" href="#liedjes"><svg aria-hidden="true"><use href="#i-noot"/></svg>Liedjes</a>
+    <a class="tab is-oranje" href="#verhaaltjes"><svg aria-hidden="true"><use href="#i-boek"/></svg>Verhaaltjes</a>
+    <a class="tab is-lila" href="#rustmoment"><svg aria-hidden="true"><use href="#i-maan"/></svg>Rustmoment</a>
+    <a class="tab is-groen" href="#oefeningen"><svg aria-hidden="true"><use href="#i-sprong"/></svg>Oefeningen</a>
+    <a class="tab is-roze" href="#knutselen"><svg aria-hidden="true"><use href="#i-schaar"/></svg>Knutselen</a>
+    <a class="tab is-blauw" href="#filmpjes"><svg aria-hidden="true"><use href="#i-speel"/></svg>Filmpjes</a>
+    <a class="tab is-paars" href="#tekeningen"><svg aria-hidden="true"><use href="#i-potlood"/></svg>Tekeningen</a>
+    <span class="tabs-streep" aria-hidden="true"></span>
+    <a class="tab is-neutraal" href="#dit-ben-ik"><svg aria-hidden="true"><use href="#i-kaart"/></svg>Dit ben ik</a>
+    <a class="tab is-neutraal" href="#club-plus"><svg aria-hidden="true"><use href="#i-plus"/></svg>Club Plus</a>
     <a class="tab is-neutraal" href="#wie-zijn-wij"><svg aria-hidden="true"><use href="#i-ster"/></svg>Wie zijn wij</a>
   </div>
 </nav>
@@ -71,8 +84,9 @@
     <div class="binnen">
       <div class="held-rij">
         <div class="held-tekst">
+          <p class="soort">VOOR KINDEREN VAN 3 TOT 8 JAAR</p>
           <h1 id="thuis-kop">Elk breintje is <span class="kronkel">bijzonder</span>.</h1>
-          <p class="intro" id="intro-tekst">Hier vind je liedjes, verhaaltjes, rustmomenten, oefeningen, knutsels, filmpjes en tekeningen. Voor kinderen van 3 tot 8 jaar. En voor hun grote mensen.</p>
+          <p class="intro" id="intro-tekst">Hier vind je liedjes, verhaaltjes, rustmomenten, oefeningen en knutsels. Voor kinderen met een bijzonder breintje. En voor hun grote mensen.</p>
           <button class="leesvoor" type="button" data-leesvoor="intro-tekst" hidden><svg aria-hidden="true"><use href="#i-geluid"/></svg><span>Lees voor</span></button>
         </div>
         <div class="podium">
@@ -85,19 +99,29 @@
 
       <h2 class="kies-kop">Wat wil je doen?</h2>
       <div class="wegwijzer">
-        <a class="wijzer is-zon" href="#liedjes"><span class="rondje"><svg aria-hidden="true"><use href="#i-noot"/></svg></span>Liedjes</a>
-        <a class="wijzer is-koraal" href="#verhaaltjes"><span class="rondje"><svg aria-hidden="true"><use href="#i-boek"/></svg></span>Verhaaltjes</a>
-        <a class="wijzer is-druif" href="#rustmoment"><span class="rondje"><svg aria-hidden="true"><use href="#i-maan"/></svg></span>Rustmoment</a>
-        <a class="wijzer is-mango" href="#oefeningen"><span class="rondje"><svg aria-hidden="true"><use href="#i-sprong"/></svg></span>Oefeningen</a>
-        <a class="wijzer is-roos" href="#knutselen"><span class="rondje"><svg aria-hidden="true"><use href="#i-schaar"/></svg></span>Knutselen</a>
-        <a class="wijzer is-zee" href="#filmpjes"><span class="rondje"><svg aria-hidden="true"><use href="#i-speel"/></svg></span>Filmpjes</a>
-        <a class="wijzer is-gras" href="#tekeningen"><span class="rondje"><svg aria-hidden="true"><use href="#i-potlood"/></svg></span>Tekeningen</a>
+        <a class="wijzer is-geel" href="#liedjes"><span class="rondje"><svg aria-hidden="true"><use href="#i-noot"/></svg></span>Liedjes</a>
+        <a class="wijzer is-oranje" href="#verhaaltjes"><span class="rondje"><svg aria-hidden="true"><use href="#i-boek"/></svg></span>Verhaaltjes</a>
+        <a class="wijzer is-lila" href="#rustmoment"><span class="rondje"><svg aria-hidden="true"><use href="#i-maan"/></svg></span>Rustmoment</a>
+        <a class="wijzer is-groen" href="#oefeningen"><span class="rondje"><svg aria-hidden="true"><use href="#i-sprong"/></svg></span>Oefeningen</a>
+        <a class="wijzer is-roze" href="#knutselen"><span class="rondje"><svg aria-hidden="true"><use href="#i-schaar"/></svg></span>Knutselen</a>
+        <a class="wijzer is-blauw" href="#filmpjes"><span class="rondje"><svg aria-hidden="true"><use href="#i-speel"/></svg></span>Filmpjes</a>
+        <a class="wijzer is-paars" href="#tekeningen"><span class="rondje"><svg aria-hidden="true"><use href="#i-potlood"/></svg></span>Tekeningen</a>
+        <a class="wijzer is-neutraal" href="#dit-ben-ik"><span class="rondje"><svg aria-hidden="true"><use href="#i-kaart"/></svg></span>Dit ben ik-kaart</a>
+      </div>
+
+      <div class="club-strook">
+        <div>
+          <p class="soort">BREINTJES-CLUB PLUS</p>
+          <h2>Elke maand iets nieuws om samen te voelen</h2>
+          <p>Een liedje, een voorleesverhaaltje, een rustmoment, een printblad en een tip voor ouders.</p>
+        </div>
+        <a class="knop" href="#club-plus">Bekijk de club</a>
       </div>
     </div>
   </section>
 
   <!-- ===== Liedjes ===== -->
-  <section class="pagina is-zon" id="liedjes" aria-labelledby="liedjes-kop" tabindex="-1" hidden>
+  <section class="pagina is-geel" id="liedjes" aria-labelledby="liedjes-kop" tabindex="-1" hidden>
     <div class="binnen">
       <div class="blok-kop">
         <span class="rondje"><svg aria-hidden="true"><use href="#i-noot"/></svg></span>
@@ -108,7 +132,7 @@
   </section>
 
   <!-- ===== Verhaaltjes ===== -->
-  <section class="pagina is-koraal" id="verhaaltjes" aria-labelledby="verhaaltjes-kop" tabindex="-1" hidden>
+  <section class="pagina is-oranje" id="verhaaltjes" aria-labelledby="verhaaltjes-kop" tabindex="-1" hidden>
     <div class="binnen">
       <div class="blok-kop">
         <span class="rondje"><svg aria-hidden="true"><use href="#i-boek"/></svg></span>
@@ -119,7 +143,7 @@
   </section>
 
   <!-- ===== Rustmoment ===== -->
-  <section class="pagina is-druif" id="rustmoment" aria-labelledby="rust-kop" tabindex="-1" hidden>
+  <section class="pagina is-lila" id="rustmoment" aria-labelledby="rust-kop" tabindex="-1" hidden>
     <div class="binnen">
       <div class="blok-kop">
         <span class="rondje"><svg aria-hidden="true"><use href="#i-maan"/></svg></span>
@@ -130,7 +154,7 @@
   </section>
 
   <!-- ===== Oefeningen ===== -->
-  <section class="pagina is-mango" id="oefeningen" aria-labelledby="oefen-kop" tabindex="-1" hidden>
+  <section class="pagina is-groen" id="oefeningen" aria-labelledby="oefen-kop" tabindex="-1" hidden>
     <div class="binnen">
       <div class="blok-kop">
         <span class="rondje"><svg aria-hidden="true"><use href="#i-sprong"/></svg></span>
@@ -141,7 +165,7 @@
   </section>
 
   <!-- ===== Knutselen ===== -->
-  <section class="pagina is-roos" id="knutselen" aria-labelledby="knutsel-kop" tabindex="-1" hidden>
+  <section class="pagina is-roze" id="knutselen" aria-labelledby="knutsel-kop" tabindex="-1" hidden>
     <div class="binnen">
       <div class="blok-kop">
         <span class="rondje"><svg aria-hidden="true"><use href="#i-schaar"/></svg></span>
@@ -152,7 +176,7 @@
   </section>
 
   <!-- ===== Filmpjes ===== -->
-  <section class="pagina is-zee" id="filmpjes" aria-labelledby="filmpjes-kop" tabindex="-1" hidden>
+  <section class="pagina is-blauw" id="filmpjes" aria-labelledby="filmpjes-kop" tabindex="-1" hidden>
     <div class="binnen">
       <div class="blok-kop">
         <span class="rondje"><svg aria-hidden="true"><use href="#i-speel"/></svg></span>
@@ -163,7 +187,7 @@
   </section>
 
   <!-- ===== Tekeningen ===== -->
-  <section class="pagina is-gras" id="tekeningen" aria-labelledby="tekeningen-kop" tabindex="-1" hidden>
+  <section class="pagina is-paars" id="tekeningen" aria-labelledby="tekeningen-kop" tabindex="-1" hidden>
     <div class="binnen">
       <div class="blok-kop">
         <span class="rondje"><svg aria-hidden="true"><use href="#i-potlood"/></svg></span>
@@ -173,8 +197,129 @@
     </div>
   </section>
 
+  <!-- ===== Dit ben ik-kaart ===== -->
+  <section class="pagina is-neutraal" id="dit-ben-ik" aria-labelledby="dbi-kop" tabindex="-1" hidden>
+    <div class="binnen">
+      <div class="blok-kop">
+        <span class="rondje"><svg aria-hidden="true"><use href="#i-kaart"/></svg></span>
+        <div><h2 id="dbi-kop">Dit ben ik</h2><p>Maak samen een kaart voor de juf, de opvang of opa en oma.</p></div>
+      </div>
+<div class="dbi-tabs" role="tablist" aria-label="Invullen of kaart bekijken">
+  <button id="tab-invullen" role="tab" aria-selected="true" aria-controls="paneel-invullen">Invullen</button>
+  <button id="tab-kaart" role="tab" aria-selected="false" aria-controls="paneel-kaart">Bekijk de kaart</button>
+</div>
+<div class="werk">
+  <section class="paneel" id="paneel-invullen" role="tabpanel" aria-labelledby="tab-invullen">
+    <div class="dbi-voorbeeld" id="voorbeeld" hidden>
+      <p>Dit is een voorbeeld met Sam. Vul hem samen met je kind in, dan wordt het jullie eigen kaart.</p>
+      <button class="knop" id="begin-leeg" type="button">Begin met een lege kaart</button>
+    </div>
+
+    <div class="blok">
+      <h2>Wie ben jij?</h2>
+      <div class="rij">
+        <div><label class="veld" for="naam">Mijn naam</label><input type="text" id="naam" maxlength="24" autocomplete="off"></div>
+        <div><label class="veld" for="over">Over mij</label><input type="text" id="over" maxlength="40" placeholder="5 jaar, groep 2" autocomplete="off"></div>
+      </div>
+      <span class="veld" id="kleur-label" style="display:block;font-weight:600;margin:12px 0 4px">Mijn lievelingskleur</span>
+      <div class="kleuren" id="kleuren" role="group" aria-labelledby="kleur-label"></div>
+      <span class="veld" style="display:block;font-weight:600;margin:14px 0 4px">Mijn foto</span>
+      <div class="foto">
+        <input type="file" id="foto" accept="image/*">
+        <label class="knop licht" for="foto" id="foto-knop">Kies een foto</label>
+        <button class="knop licht" type="button" id="foto-weg" hidden>Haal foto weg</button>
+      </div>
+      <p class="tip" id="foto-tip">Geen foto? Dan blijft er een rondje leeg waarin je kind zichzelf kan tekenen.</p>
+    </div>
+
+    <div id="blokken"></div>
+
+    <button class="knop" type="button" id="naar-kaart" style="width:calc(100% - 8px)">Bekijk de kaart</button>
+  </section>
+
+  <section class="paneel" id="paneel-kaart" role="tabpanel" aria-labelledby="tab-kaart" hidden>
+    <div class="kaartwrap"><img id="kaartbeeld" alt="Voorbeeld van de Dit ben ik-kaart op A4"></div>
+    <div class="acties">
+      <button class="knop" type="button" id="bewaar-pdf" hidden>Bewaar als PDF om te printen</button>
+      <button class="knop licht" type="button" id="bewaar-png" hidden>Bewaar als plaatje</button>
+    </div>
+    <p class="melding" id="melding" role="status"></p>
+    <p class="tip" id="bewaar-tip">Je kunt de kaart ook ingedrukt houden (of rechts aanklikken) en als plaatje bewaren.</p>
+    <p class="tip">Print hem op A4 en geef hem aan de juf, de opvang of opa en oma. Wat je invult blijft alleen op dit apparaat staan.</p>
+    <button class="wis" type="button" id="wis">Alles wissen en opnieuw beginnen</button>
+  </section>
+</div>
+    </div>
+  </section>
+
+  <!-- ===== Breintjes-club Plus ===== -->
+  <section class="pagina is-neutraal" id="club-plus" aria-labelledby="club-kop" tabindex="-1" hidden>
+    <div class="binnen">
+      <div class="club">
+        <header class="club-kop">
+          <svg class="vast-breintje" viewBox="0 0 200 175" aria-hidden="true" focusable="false"><use href="#vast-breintje"/></svg>
+          <p class="soort">BREINTJES-CLUB PLUS</p>
+          <h2 id="club-kop">Elke maand iets nieuws om samen te voelen</h2>
+          <p class="club-helpt">Voor kinderen van 3 tot 8 jaar met een bijzonder breintje, en voor hun ouders.</p>
+        </header>
+
+        <section class="club-kaart is-paars" aria-labelledby="k-krijg">
+          <h3 id="k-krijg">Dit krijg je elke maand</h3>
+          <p>Eén gevoel per maand, met alles wat je nodig hebt om er samen mee bezig te zijn.</p>
+          <ul class="club-lijst">
+            <li><svg aria-hidden="true"><use href="#i-noot"/></svg><div><b>Een liedje</b><span>Kort, om samen te zingen en te herhalen.</span></div></li>
+            <li><svg aria-hidden="true"><use href="#i-boek"/></svg><div><b>Een voorleesverhaaltje</b><span>Drie minuten, met vragen om over te praten.</span></div></li>
+            <li><svg aria-hidden="true"><use href="#i-maan"/></svg><div><b>Een rustmoment</b><span>Een meditatie om te landen, overdag of voor het slapen.</span></div></li>
+            <li><svg aria-hidden="true"><use href="#i-ster"/></svg><div><b>Een printblad</b><span>Om te kleuren, in te vullen en op te hangen.</span></div></li>
+            <li><svg aria-hidden="true"><use href="#i-hart"/></svg><div><b>Een tip voor ouders</b><span>Eén ding dat je deze maand kunt proberen.</span></div></li>
+          </ul>
+        </section>
+
+        <section class="club-kaart is-geel" id="club-maand" aria-labelledby="k-maand" hidden>
+          <span class="club-label" id="club-maand-label"></span>
+          <h3 id="k-maand"></h3>
+          <p id="club-maand-tekst"></p>
+        </section>
+
+        <section class="club-kaart" aria-labelledby="k-werkt">
+          <h3 id="k-werkt">Zo werkt het</h3>
+          <ol class="club-stappen">
+            <li><p>Je meldt je aan en krijgt de link naar de Breintjes-club Plus.</p></li>
+            <li><p>Je zet de club op het beginscherm van je telefoon of tablet.</p></li>
+            <li><p>Elke maand staat er een nieuw pakket klaar. Alles van eerder blijft erin staan.</p></li>
+          </ol>
+        </section>
+
+        <section class="club-kaart" aria-labelledby="k-beloof">
+          <h3 id="k-beloof">Wat we beloven</h3>
+          <ul class="club-beloftes">
+            <li>Geen punten, geen reeksen en geen meldingen.</li>
+            <li>Niets speelt automatisch door. Rust gaat voor schermtijd.</li>
+            <li>Nooit reclame, en we verzamelen niets over je kind.</li>
+          </ul>
+        </section>
+
+        <section class="club-kaart club-prijs is-paars" aria-labelledby="k-prijs">
+          <h3 id="k-prijs">Doe je mee?</h3>
+          <p class="club-bedrag" id="club-bedrag" hidden></p>
+          <a class="knop" id="club-aanmeld" role="link" aria-disabled="true">Aanmelden kan binnenkort</a>
+          <p id="club-uitleg">We zetten de laatste puntjes op de i.</p>
+          <p id="club-leden" hidden><a id="club-ledenlink" href="#">Ben je al lid? Ga naar de club</a></p>
+        </section>
+
+        <section class="club-kaart" aria-labelledby="k-vragen">
+          <h3 id="k-vragen">Vragen</h3>
+          <details><summary>Voor welke leeftijd is het?</summary><p>Voor kinderen van 3 tot 8 jaar. Jonge kinderen doen het samen met jou, oudere kinderen kiezen vaak zelf.</p></details>
+          <details><summary>Heeft mijn kind een diagnose nodig?</summary><p>Nee. De club is er voor elk kind dat veel voelt, snel vol zit of zijn gevoel nog moeilijk kan zeggen.</p></details>
+          <details><summary>Waarop werkt het?</summary><p>Op een telefoon, tablet en computer, in de browser. Je hoeft niets te installeren.</p></details>
+          <details><summary>Wie maken het?</summary><p>Nicky en Gert van Bijzondere Breintjes. We schrijven, zingen en tekenen alles zelf.</p></details>
+        </section>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== Wie zijn wij ===== -->
-  <section class="pagina is-ster" id="wie-zijn-wij" aria-labelledby="wie-kop" tabindex="-1" hidden>
+  <section class="pagina is-paars" id="wie-zijn-wij" aria-labelledby="wie-kop" tabindex="-1" hidden>
     <div class="binnen">
       <div class="blok-kop">
         <span class="rondje"><svg aria-hidden="true"><use href="#i-ster"/></svg></span>
@@ -214,10 +359,10 @@
             <dd>Staat bovenaan. Zet beweging uit en maakt de kleuren zachter. Dit apparaat onthoudt de keuze.</dd>
             <dt>Eén ding tegelijk</dt>
             <dd>Elk onderdeel heeft een eigen tabblad, een vaste kleur en een vast plaatje. Er staat nooit meer op het scherm dan nodig.</dd>
-            <dt>Leesletters van school</dt>
-            <dd>De a en de g zien eruit zoals kinderen ze leren schrijven.</dd>
+            <dt>Geen punten, geen reeksen, geen meldingen</dt>
+            <dd>Niets speelt automatisch door. Rust gaat voor schermtijd.</dd>
             <dt>Geen reclame, geen cookies</dt>
-            <dd>We volgen niemand en we verkopen niets. Een filmpje van YouTube laadt pas na een druk op de knop.</dd>
+            <dd>We volgen niemand en verzamelen niets over je kind. Een filmpje van YouTube laadt pas na een druk op de knop.</dd>
           </dl>
         </div>
       </div>
@@ -237,6 +382,7 @@
 
 <footer class="voet">
   <div class="binnen voet-rij">
+    <span class="voet-groet">Liefs, Nicky en Gert</span>
     <span>© <span id="jaar">2026</span> Bijzondere Breintjes</span>
     <span class="voet-links">
       <a href="#wie-zijn-wij">Wie zijn wij</a>
@@ -251,5 +397,6 @@
 <script src="js/breintje.js"></script>
 <script src="inhoud.js"></script>
 <script src="js/site.js"></script>
+<script src="js/dit-ben-ik.js"></script>
 </body>
 </html>

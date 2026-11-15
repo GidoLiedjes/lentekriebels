@@ -19,21 +19,40 @@ window.INHOUD = {
   },
 
   /* ------------------------------------------------------------------
+   * BREINTJES-CLUB PLUS
+   *  prijs       : bijvoorbeeld "€ 4,95". Leeg = aanmelden kan nog niet.
+   *  aanmeldlink : de betaallink van je betaaldienst (begint met https://).
+   *                Pas als prijs én link zijn ingevuld, werkt de knop "Meld je aan".
+   *  ledenlink   : (mag leeg) de link naar de club zelf. LET OP: wie deze link
+   *                heeft, kan erin. Vul hem alleen in als dat de bedoeling is.
+   *  maand       : het pakket van deze maand. Haal "maand" leeg ("") om het vak te verbergen.
+   * ------------------------------------------------------------------ */
+  club: {
+    prijs: "",
+    aanmeldlink: "",
+    ledenlink: "",
+    maand: "november",
+    thema: "Trots",
+    uitleg: "Trots zijn op wat je kunt, en op wie je bent.",
+    liedje: "Trots",
+    verhaaltje: "Gijs en de hoge tak",
+    rustmoment: "Wakker met een glimlach",
+    printblad: "Mijn trots-ster"
+  },
+
+  /* ------------------------------------------------------------------
    * WIE ZIJN WIJ
    * De alinea's komen onder elkaar op de pagina te staan.
    * ------------------------------------------------------------------ */
   wieZijnWij: {
-    voorbeeld: true,
     alineas: [
-      "Hier vertel je wie jullie zijn. Bijvoorbeeld: met hoeveel mensen jullie dit maken, en hoe jullie zijn begonnen.",
-      "Vertel ook waarom jullie dit maken. Wat merkten jullie dat er nog niet was?",
-      "En wat kinderen en hun grote mensen van jullie kunnen verwachten."
+      "Wij zijn Nicky en Gert van Bijzondere Breintjes. We schrijven, zingen en tekenen alles zelf.",
+      "We maken dit voor elk kind dat veel voelt, snel vol zit of zijn gevoel nog moeilijk kan zeggen. Een diagnose is niet nodig."
     ],
-    /* Mensen die meewerken. Laat de lijst leeg als je dit nog niet wilt. */
-    mensen: [
-      { naam: "Naam", doet: "Vertel hier wat deze persoon doet." },
-      { naam: "Naam", doet: "Vertel hier wat deze persoon doet." }
-    ]
+    groet: "Liefs, Nicky en Gert",
+    /* Wil je per persoon iets vertellen? Zet het hier, bijvoorbeeld:
+       { naam: "Nicky", doet: "Schrijft de verhaaltjes." }                */
+    mensen: []
   },
 
   /* ------------------------------------------------------------------

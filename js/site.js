@@ -331,6 +331,8 @@
   });
   if (!wieTekst.children.length) wieTekst.appendChild(leeg("Hier vertellen we straks wie we zijn."));
 
+  if (wie.groet) wieTekst.appendChild(el("p", { class: "wie-groet", tekst: wie.groet }));
+
   var mensen = document.getElementById("wie-mensen");
   (wie.mensen || []).forEach(function (mens) {
     mensen.appendChild(el("article", { class: "mens" }, [
@@ -338,6 +340,44 @@
       el("p", { tekst: mens.doet })
     ]));
   });
+
+  /* ---------- Breintjes-club Plus ---------- */
+
+  var club = inhoud.club || {};
+  if (club.maand && club.thema) {
+    document.getElementById("club-maand").hidden = false;
+    document.getElementById("club-maand-label").textContent = "Deze maand: " + club.maand;
+    document.getElementById("k-maand").textContent = club.thema;
+    var zin = document.getElementById("club-maand-tekst");
+    zin.appendChild(document.createTextNode((club.uitleg || "") + " Met "));
+    var delen = [
+      ["het liedje ", club.liedje], ["het voorleesverhaaltje ", club.verhaaltje],
+      ["het rustmoment ", club.rustmoment], ["het printblad ", club.printblad]
+    ].filter(function (d) { return d[1]; });
+    delen.forEach(function (d, i) {
+      if (i) zin.appendChild(document.createTextNode(i === delen.length - 1 ? " en " : ", "));
+      zin.appendChild(document.createTextNode(d[0]));
+      zin.appendChild(el("b", { tekst: d[1] }));
+    });
+    zin.appendChild(document.createTextNode("."));
+  }
+  if (club.prijs && /^https:\/\//.test(club.aanmeldlink || "")) {
+    var bedrag = document.getElementById("club-bedrag");
+    bedrag.hidden = false;
+    bedrag.appendChild(document.createTextNode(club.prijs + " "));
+    bedrag.appendChild(el("small", { tekst: "per maand" }));
+    var aanmeld = document.getElementById("club-aanmeld");
+    aanmeld.textContent = "Meld je aan";
+    aanmeld.href = club.aanmeldlink;
+    aanmeld.removeAttribute("aria-disabled");
+    aanmeld.removeAttribute("role");
+    aanmeld.rel = "noopener";
+    document.getElementById("club-uitleg").textContent = "Je betaalt veilig via onze betaalpagina. Daarna krijg je de link naar de club.";
+  }
+  if (/^https:\/\//.test(club.ledenlink || "")) {
+    document.getElementById("club-leden").hidden = false;
+    document.getElementById("club-ledenlink").href = club.ledenlink;
+  }
 
   /* ---------- Mailadres ---------- */
 
@@ -387,8 +427,8 @@
     // Dat hoeft hier niet: een tabblad begint altijd bovenaan.
     window.scrollTo({ top: 0, behavior: "auto" });
 
-    if (metSprong) {
-      gekozen.focus({ preventScroll: true });
+    if (metSprong) gekozen.focus({ preventScroll: true });
+    {
       // Schuif het gekozen tabblad in beeld, maar alleen zijwaarts:
       // de pagina zelf blijft bovenaan staan.
       var actieveTab = document.querySelector('.tab[aria-current="page"]');
