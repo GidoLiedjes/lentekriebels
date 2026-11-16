@@ -56,6 +56,75 @@ window.INHOUD = {
   },
 
   /* ------------------------------------------------------------------
+   * WEERBERICHT
+   * Hoe is het weer in je hoofd? Bij elk weer hoort een gevoel, iets wat
+   * kan helpen en een liedje.
+   *  meten     : het liedje vooraf.   afsluiter : het liedje aan het eind.
+   *  weer      : de soorten weer, in de volgorde van de knoppen.
+   *    soort   : het plaatje. Kies uit: zon, wolk, regen, storm, onweer, vuurwerk.
+   *    kleur   : geel, lila, blauw, groen, oranje of roze.
+   *    naam    : het woord op de knop.      kop   : de titel als je het kiest.
+   *    gevoel  : zo voelt het.              helpt : dit kan helpen.
+   *    liedje  : de naam van het liedje.    audio : het mp3-bestand in de map "liedjes".
+   * ------------------------------------------------------------------ */
+  weerbericht: {
+    meten: {
+      titel: "Thermometer",
+      uitleg: "Luister en voel hoe het vanbinnen is.",
+      audio: "liedjes/thermometer.mp3"
+    },
+    weer: [
+      {
+        soort: "zon", kleur: "geel", naam: "Zonnetje",
+        kop: "Bij mij schijnt de zon",
+        gevoel: "Ik voel me fijn. Ik heb er zin in!",
+        helpt: "Deel je zon. Geef iemand een lach of een high five.",
+        liedje: "Schijn", audio: "liedjes/schijn.mp3"
+      },
+      {
+        soort: "wolk", kleur: "lila", naam: "Wolkjes",
+        kop: "Er hangen wolkjes",
+        gevoel: "Het gaat wel. Maar er zit iets in de weg.",
+        helpt: "Vertel of teken wat er zit. Je hoeft niet altijd blij te zijn.",
+        liedje: "Ik hoef niet altijd blij te zijn", audio: "liedjes/ik-hoef-niet-altijd-blij-te-zijn.mp3"
+      },
+      {
+        soort: "regen", kleur: "blauw", naam: "Regen",
+        kop: "Het regent vanbinnen",
+        gevoel: "Ik ben verdrietig of moe. Het drupt in mijn hoofd.",
+        helpt: "Zoek een knuffel of een rustig plekje. Huilen mag.",
+        liedje: "Druppel", audio: "liedjes/druppel.mp3"
+      },
+      {
+        soort: "storm", kleur: "groen", naam: "Storm",
+        kop: "Het stormt in mijn hoofd",
+        gevoel: "Alles waait door elkaar. Het is druk en veel.",
+        helpt: "Adem langzaam in. Blaas zacht uit, alsof je de wind tot rust blaast.",
+        liedje: "Kalmeer mijn storm", audio: "liedjes/kalmeer-mijn-storm.mp3"
+      },
+      {
+        soort: "onweer", kleur: "oranje", naam: "Onweer",
+        kop: "Het onweert",
+        gevoel: "Ik ben boos. Het knettert en het dondert.",
+        helpt: "Stamp met je voeten of knijp in een kussen. Tel daarna tot tien.",
+        liedje: "Boos", audio: "liedjes/boos.mp3"
+      },
+      {
+        soort: "vuurwerk", kleur: "roze", naam: "Vuurwerk",
+        kop: "Vuurwerk in mijn hoofd",
+        gevoel: "Het knalt en het flitst. Alles komt te hard binnen.",
+        helpt: "Handen op je oren, ogen even dicht. Zoek een stil hoekje.",
+        liedje: "Overprikkeling", audio: "liedjes/overprikkeling.mp3"
+      }
+    ],
+    afsluiter: {
+      titel: "Ik ben ik en jij bent jij",
+      uitleg: "Bij jou regent het, bij mij schijnt de zon. Dat mag allebei. Kijk straks nog eens: is jouw weer veranderd?",
+      audio: "liedjes/ik-ben-ik-en-jij-bent-jij.mp3"
+    }
+  },
+
+  /* ------------------------------------------------------------------
    * LIEDJES
    *  titel : de naam van het liedje
    *  audio : het geluidsbestand, bijvoorbeeld "liedjes/lentekriebels.mp3"

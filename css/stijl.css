@@ -286,6 +286,48 @@ h1 { font-size: clamp(2.3rem, 6vw, 4rem); }
 .zingmee[open] summary::after { transform: translateY(2px) rotate(-135deg); }
 .liedtekst { display: grid; gap: 1.1rem; padding-block: 1.1rem; font-size: 1.3rem; line-height: 1.6; }
 
+/* ---------- Weerbericht ---------- */
+
+.weer { display: grid; gap: 2.25rem; max-width: 56rem; }
+.weer-stap { display: grid; gap: 1.1rem; }
+.weer-stap > h3 { font-size: 1.6rem; }
+.weer-stap > .lied { max-width: 44rem; }
+.weer-keuzes { display: grid; grid-template-columns: repeat(auto-fit, minmax(8.2rem, 1fr)); gap: 1.1rem .8rem; }
+.weer-keuze {
+  display: grid; justify-items: center; gap: .2rem;
+  padding: .8rem .4rem .75rem; margin-right: 6px;
+  background: var(--wit); color: var(--navy);
+  border: 5px solid var(--kleur); border-radius: var(--r-md);
+  box-shadow: 6px 6px 0 0 var(--kleur);
+  font: 600 1.3rem/1.1 var(--font-titel); cursor: pointer;
+  transition: transform .12s ease;
+}
+.weer-keuze:hover { transform: translateY(-3px); }
+.weer-keuze[aria-pressed="true"] { background: var(--licht); color: var(--donker); box-shadow: none; transform: translate(4px, 4px); }
+.weer-beeld { display: block; width: 5.5rem; height: 5.5rem; }
+.weer-toon { display: grid; }
+.weer-hint { padding: 1.25rem 1.5rem; border: 4px dashed var(--hoofd-licht); border-radius: var(--r-md); font-size: 1.2rem; color: var(--paars-diep); }
+.weer-kaart {
+  display: grid; grid-template-columns: auto 1fr; gap: 1.25rem 1.75rem; align-items: start;
+  padding: 1.5rem 1.6rem; margin-right: 8px;
+  background: var(--wit); border: 5px solid var(--kleur); border-radius: var(--r-md);
+  box-shadow: 8px 8px 0 0 var(--kleur);
+}
+.weer-kaart > .weer-beeld { width: 9rem; height: 9rem; }
+.weer-tekst { display: grid; gap: 1.1rem; justify-items: start; min-width: 0; }
+.weer-woorden { display: grid; gap: .8rem; justify-items: start; }
+.weer-woorden h3 { font-size: clamp(1.6rem, 4vw, 2rem); }
+.weer-gevoel { font-size: 1.35rem; line-height: 1.4; max-width: 30ch; }
+.weer-helpt { padding: .8rem 1.1rem; border-radius: 16px; background: var(--licht); font-size: 1.15rem; max-width: 38ch; }
+.weer-helpt b { display: block; font-weight: 600; color: var(--donker); }
+.weer-kaart .lied { width: 100%; max-width: 34rem; margin-right: 0; border-width: 3px; box-shadow: none; }
+:root[data-rustig="aan"] .weer-beeld { filter: saturate(.45); }
+@media (max-width: 40rem) {
+  .weer-keuzes { grid-template-columns: repeat(2, 1fr); }
+  .weer-kaart { grid-template-columns: 1fr; padding: 1.25rem 1.2rem; }
+  .weer-kaart > .weer-beeld { width: 6.5rem; height: 6.500rem; }
+}
+
 /* ---------- Verhaaltjes ---------- */
 
 .verhalen { display: grid; gap: 1.75rem; max-width: 38rem; }

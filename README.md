@@ -17,6 +17,7 @@ Alles wat op de site staat, zet je in één bestand: **`inhoud.js`**. Daarin sta
 | Knutselen | `knutsels` | map `knutsels/` (foto's) |
 | Filmpjes | `filmpjes` | YouTube-link, of map `filmpjes/` (mp4) |
 | Tekeningen | `tekeningen` | map `tekeningen/` |
+| Weerbericht (het weer in je hoofd, met een liedje per weer) | `weerbericht` | map `liedjes/` (mp3) |
 | Wie zijn wij | `wieZijnWij` | – |
 | Club Plus (prijs, betaallink, pakket van de maand) | `club` | – |
 | Mailadres voor ideeën | `contact.email` | – |

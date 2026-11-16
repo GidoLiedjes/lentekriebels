@@ -394,6 +394,96 @@
 
   document.getElementById("jaar").textContent = new Date().getFullYear();
 
+  /* ---------- Weerbericht ---------- */
+
+  (function () {
+    var weer = inhoud.weerbericht;
+    var plek = document.getElementById("weer-plek");
+    if (!plek || !weer) return;
+
+    function weerBeeld(soort) {
+      var ns = "http://www.w3.org/2000/svg";
+      var svg = document.createElementNS(ns, "svg");
+      svg.setAttribute("class", "weer-beeld");
+      svg.setAttribute("viewBox", "0 0 100 100");
+      svg.setAttribute("aria-hidden", "true");
+      var use = document.createElementNS(ns, "use");
+      use.setAttribute("href", "#w-" + soort);
+      svg.appendChild(use);
+      return svg;
+    }
+
+    // Een liedje met speelknop, zoals op het tabblad Liedjes.
+    function weerLied(titel, audio, boven, uitleg) {
+      if (!titel) return null;
+      var links, onder;
+      if (audio) {
+        var s = speler(audio, titel);
+        links = s.knop;
+        onder = s.balk;
+      } else {
+        links = el("span", { class: "rondje" }, icoon("noot"));
+        onder = el("p", { class: "nog-niet", tekst: "De muziek komt nog." });
+      }
+      return el("article", { class: "lied" }, [links, el("div", { class: "lied-midden" }, [
+        boven ? el("p", { class: "klein", tekst: boven }) : null,
+        el("h3", { tekst: titel }),
+        onder,
+        uitleg ? el("p", { tekst: uitleg }) : null
+      ])]);
+    }
+
+    function stap(kop, kinderen) {
+      return el("div", { class: "weer-stap" }, [el("h3", { tekst: kop })].concat(kinderen));
+    }
+
+    var soorten = weer.weer || [];
+    var keuzes = el("div", { class: "weer-keuzes" });
+    var hint = el("p", { class: "weer-hint", tekst: "Tik op het weer dat bij jou past. Het weer van nu trekt ook weer voorbij." });
+    var toon = el("div", { class: "weer-toon" }, hint);
+    var knoppen = [], kaarten = [];
+
+    function kies(nummer) {
+      knoppen.forEach(function (k, i) { k.setAttribute("aria-pressed", i === nummer ? "true" : "false"); });
+      kaarten.forEach(function (k, i) { k.hidden = i !== nummer; });
+      hint.hidden = true;
+      stopAnderen(null);
+      if (window.speechSynthesis) window.speechSynthesis.cancel();
+    }
+
+    soorten.forEach(function (w, i) {
+      var knop = el("button", { class: "weer-keuze is-" + w.kleur, type: "button", "aria-pressed": "false" }, [
+        weerBeeld(w.soort), el("span", { tekst: w.naam })
+      ]);
+      knop.addEventListener("click", function () { kies(i); });
+      knoppen.push(knop);
+      keuzes.appendChild(knop);
+
+      var id = "weertekst-" + i;
+      var kaart = el("article", { class: "weer-kaart is-" + w.kleur, hidden: "" }, [
+        weerBeeld(w.soort),
+        el("div", { class: "weer-tekst" }, [
+          el("div", { class: "weer-woorden", id: id }, [
+            el("h3", { tekst: w.kop }),
+            el("p", { class: "weer-gevoel", tekst: w.gevoel }),
+            w.helpt ? el("p", { class: "weer-helpt" }, [el("b", { tekst: "Dit kan helpen. " }), w.helpt]) : null
+          ]),
+          voorleesKnop(id),
+          weerLied(w.liedje, w.audio, "Het liedje bij dit weer")
+        ])
+      ]);
+      kaarten.push(kaart);
+      toon.appendChild(kaart);
+    });
+
+    var meten = weer.meten || {}, slot = weer.afsluiter || {};
+    [
+      meten.titel ? stap("1. Eerst even meten", [weerLied(meten.titel, meten.audio, "", meten.uitleg)]) : null,
+      stap((meten.titel ? "2. " : "") + "Kies jouw weer", [keuzes, toon]),
+      slot.titel ? stap((meten.titel ? "3. " : "") + "Tot slot", [weerLied(slot.titel, slot.audio, "", slot.uitleg)]) : null
+    ].forEach(function (deel) { if (deel) plek.appendChild(deel); });
+  })();
+
   /* ---------- Tabbladen ---------- */
 
   var paginas = [].slice.call(document.querySelectorAll(".pagina"));
