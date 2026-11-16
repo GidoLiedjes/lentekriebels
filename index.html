@@ -72,6 +72,18 @@
   <symbol id="w-onweer" viewBox="0 0 100 100"><path d="M28 58h46a14 14 0 0 0 3-27.700 20 20 0 0 0-38-6A17 17 0 0 0 28 58z" fill="#c9b7eb" stroke="#3b2570" stroke-width="4" stroke-linejoin="round"/><path d="M42 36l8 4M66 36l-8 4M48 50q6-5 12 0" fill="none" stroke="#3b2570" stroke-width="3.500" stroke-linecap="round"/><path d="M56 62L42 80h10l-5 15 19-22H56l7-11z" fill="#f6cf5a" stroke="#3b2570" stroke-width="3.500" stroke-linejoin="round"/></symbol>
   <symbol id="w-vuurwerk" viewBox="0 0 100 100"><path d="M36 38V18M36 38l14-14M36 38h20M36 38l14 14M36 38v20M36 38L22 52M36 38H16M36 38L22 24" fill="none" stroke="#d63384" stroke-width="5" stroke-linecap="round"/><path d="M70 68V54M70 68l10-10M70 68h14M70 68l10 10M70 68v14M70 68L60 78M70 68H56M70 68L60 58" fill="none" stroke="#e9622a" stroke-width="5" stroke-linecap="round"/><circle cx="36" cy="38" r="5" fill="#f6cf5a" stroke="#3b2570" stroke-width="3"/><circle cx="70" cy="68" r="4.500" fill="#f6cf5a" stroke="#3b2570" stroke-width="3"/><circle cx="76" cy="24" r="4" fill="#5b9bd5" stroke="#3b2570" stroke-width="3"/><circle cx="24" cy="78" r="4" fill="#5bb85d" stroke="#3b2570" stroke-width="3"/></symbol>
   <symbol id="i-bliksem" viewBox="0 0 24 24"><path d="M13.5 2.5L5 13.5h6l-1.5 8 8.5-11h-6z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"/></symbol>
+  <symbol id="i-kompas" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.3"/><path d="M15.5 8.500l-2 5-5 2 2-5z" fill="none" stroke="currentColor" stroke-width="2.200" stroke-linejoin="round"/></symbol>
+  <symbol id="lijf-figuur" viewBox="0 0 200 320">
+    <path d="M66 122L30 186M134 122l36 64M84 214l-6 78M116 214l6 78" fill="none" stroke="#3b2570" stroke-width="5" stroke-linecap="round"/>
+    <ellipse cx="70" cy="298" rx="17" ry="9" fill="#f6cf5a" stroke="#3b2570" stroke-width="4"/>
+    <ellipse cx="130" cy="298" rx="17" ry="9" fill="#f6cf5a" stroke="#3b2570" stroke-width="4"/>
+    <circle cx="28" cy="190" r="8" fill="#fbe3ee" stroke="#3b2570" stroke-width="4"/>
+    <circle cx="172" cy="190" r="8" fill="#fbe3ee" stroke="#3b2570" stroke-width="4"/>
+    <path d="M100 92v16" fill="none" stroke="#3b2570" stroke-width="5" stroke-linecap="round"/>
+    <path d="M74 106h52a14 14 0 0 1 14 14v84a14 14 0 0 1-14 14H74a14 14 0 0 1-14-14v-84a14 14 0 0 1 14-14z" fill="#dcebf8" stroke="#3b2570" stroke-width="5" stroke-linejoin="round"/>
+    <circle cx="100" cy="54" r="40" fill="#fbe3ee" stroke="#3b2570" stroke-width="5"/>
+    <path d="M82 50q4-5 8 0M110 50q4-5 8 0M88 68q12 10 24 0" fill="none" stroke="#3b2570" stroke-width="4" stroke-linecap="round"/>
+  </symbol>
   <symbol id="i-thuis" viewBox="0 0 24 24"><path d="M4 11L12 4l8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"/></symbol>
 </svg>
 
@@ -104,6 +116,7 @@
     <span class="tabs-streep" aria-hidden="true"></span>
     <a class="tab is-neutraal" href="#dit-ben-ik"><svg aria-hidden="true"><use href="#i-kaart"/></svg>Dit ben ik</a>
     <a class="tab is-neutraal" href="#superkrachten"><svg aria-hidden="true"><use href="#i-bliksem"/></svg>Superkrachten</a>
+    <a class="tab is-neutraal" href="#lijfkompas"><svg aria-hidden="true"><use href="#i-kompas"/></svg>Lijfkompas</a>
     <a class="tab is-neutraal" href="#weerbericht"><svg aria-hidden="true"><use href="#i-zon"/></svg>Weerbericht</a>
     <a class="tab is-neutraal" href="#club-plus"><svg aria-hidden="true"><use href="#i-plus"/></svg>Club Plus</a>
     <a class="tab is-neutraal" href="#wie-zijn-wij"><svg aria-hidden="true"><use href="#i-ster"/></svg>Wie zijn wij</a>
@@ -250,6 +263,17 @@
         <div><h2 id="sk-kop">Superkrachten</h2><p>Leer je eigen breintje kennen. Wat kun jij heel goed, en wat vind je lastig?</p></div>
       </div>
       <div class="weer" id="superkrachten-plek"></div>
+    </div>
+  </section>
+
+  <!-- ===== Lijfkompas ===== -->
+  <section class="pagina is-neutraal" id="lijfkompas" aria-labelledby="lk-kop" tabindex="-1" hidden>
+    <div class="binnen">
+      <div class="blok-kop">
+        <span class="rondje"><svg aria-hidden="true"><use href="#i-kompas"/></svg></span>
+        <div><h2 id="lk-kop">Lijfkompas</h2><p>Een gevoel zit ook in je lijf. Waar voel jij het?</p></div>
+      </div>
+      <div class="weer" id="lijfkompas-plek"></div>
     </div>
   </section>
 

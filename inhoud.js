@@ -202,6 +202,87 @@ window.INHOUD = {
   },
 
   /* ------------------------------------------------------------------
+   * LIJFKOMPAS
+   * Een gevoel zit ook in je lijf. Tik op een plek en lees wat het kan
+   * betekenen en wat kan helpen.
+   *  meten    : het liedje vooraf.
+   *  plekken  : de plekken op het lijf, in de volgorde van de knoppen.
+   *    plek   : waar het stipje komt. Kies uit: hoofd, wangen, keel, hart, buik, handen.
+   *    kleur  : geel, lila, blauw, groen, oranje of roze.
+   *    naam   : het woord op de knop.       beeld : een breintje uit de map "beeld".
+   *    kop    : de titel als je de plek kiest.
+   *    voelt  : zo kan het voelen.          betekent : dat kan het betekenen.
+   *    helpt  : dit kan helpen.
+   *    groteMensen : een tip voor ouders en juffen (staat achter een knopje).
+   *    liedje, audio : (mag leeg) een liedje dat erbij past.
+   *  slot     : de tekst aan het eind.
+   *  groteMensen : het stukje voor ouders onderaan de pagina.
+   * ------------------------------------------------------------------ */
+  lijfkompas: {
+    meten: {
+      titel: "Thermometer",
+      uitleg: "Sta even stil. Voel van je hoofd tot je tenen. Waar merk je iets?",
+      audio: "liedjes/thermometer.mp3"
+    },
+    plekken: [
+      {
+        plek: "hoofd", kleur: "lila", naam: "Hoofd", beeld: "breintje-overprikkeld",
+        kop: "Ik voel het in mijn hoofd",
+        voelt: "Mijn hoofd is vol. Het bonkt, het zoemt of het is er heel druk.",
+        betekent: "Er is te veel binnengekomen. Te veel geluid, te veel gedachten of een te lange dag.",
+        helpt: "Zoek een stil plekje. Doe je ogen even dicht. Je hoofd mag leeglopen.",
+        groteMensen: "Een vol hoofd zie je vaak pas aan het gedrag: prikkelbaar, huilerig of juist heel druk. Bied rust aan zonder veel woorden. Praten komt later wel.",
+        liedje: "Overprikkeling", audio: "liedjes/overprikkeling.mp3"
+      },
+      {
+        plek: "wangen", kleur: "roze", naam: "Wangen", beeld: "breintje-verlegen",
+        kop: "Ik voel het in mijn wangen",
+        voelt: "Mijn wangen worden warm en rood. Mijn hele gezicht gloeit.",
+        betekent: "Misschien ben je boos. Of je vindt iets spannend, of je schaamt je een beetje.",
+        helpt: "Een slokje koud water. Even naar buiten of naar een ander plekje. Het zakt vanzelf weer.",
+        groteMensen: "Boosheid en schaamte lijken van buiten op elkaar. Vraag niet \"waarom doe je zo?\", maar benoem wat je ziet: \"Ik zie rode wangen. Is er iets gebeurd?\"",
+        liedje: "Boos", audio: "liedjes/boos.mp3"
+      },
+      {
+        plek: "keel", kleur: "blauw", naam: "Keel", beeld: "breintje-verdrietig",
+        kop: "Ik voel het in mijn keel",
+        voelt: "Er zit een brok in mijn keel. Praten lukt even niet.",
+        betekent: "Misschien ben je verdrietig. Of je wilt iets zeggen, maar de woorden komen niet.",
+        helpt: "Huilen mag. Je kunt het ook tekenen of aanwijzen. Woorden hoeven niet meteen.",
+        groteMensen: "Als praten niet lukt, is dat geen koppigheid. Geef tijd, ga ernaast zitten en bied een andere manier aan: tekenen, aanwijzen of duim omhoog en omlaag.",
+        liedje: "Druppel", audio: "liedjes/druppel.mp3"
+      },
+      {
+        plek: "hart", kleur: "oranje", naam: "Hart", beeld: "breintje-bang",
+        kop: "Ik voel het bij mijn hart",
+        voelt: "Mijn hart bonkt. Boem, boem, boem. Mijn adem gaat snel.",
+        betekent: "Misschien ben je bang, of is iets heel spannend. Het kan ook als je heel blij bent!",
+        helpt: "Leg je hand op je hart. Adem langzaam in door je neus, en blaas zacht uit.",
+        groteMensen: "Een bonkend hart hoort bij schrik en spanning, maar ook bij blijdschap. Adem samen: jouw rustige adem helpt je kind meer dan \"rustig maar\".",
+        liedje: "Kalmeer mijn storm", audio: "liedjes/kalmeer-mijn-storm.mp3"
+      },
+      {
+        plek: "buik", kleur: "geel", naam: "Buik", beeld: "breintje-nerveus",
+        kop: "Ik voel het in mijn buik",
+        voelt: "Er zitten kriebels in mijn buik. Of een knoop. Soms doet het een beetje pijn.",
+        betekent: "Misschien ben je zenuwachtig voor iets nieuws. Kriebels kunnen ook betekenen: ik heb er zin in!",
+        helpt: "Leg je handen op je buik. Adem je buik bol als een ballon, en laat hem langzaam leeglopen.",
+        groteMensen: "Buikpijn is bij jonge kinderen vaak de eerste plek waar spanning zich laat voelen. Neem het serieus en vraag wat er die dag gaat gebeuren. Blijft de pijn of komt hij vaak terug? Ga dan langs de huisarts."
+      },
+      {
+        plek: "handen", kleur: "groen", naam: "Handen en benen", beeld: "breintje-vol-energie",
+        kop: "Ik voel het in mijn handen en benen",
+        voelt: "Mijn benen willen wiebelen. Mijn handen willen friemelen. Stilzitten lukt niet.",
+        betekent: "Er zit energie in je lijf die eruit wil. Of je vindt iets spannend.",
+        helpt: "Stamp als een olifant. Schud de kriebels eruit. Of knijp hard in een balletje.",
+        groteMensen: "Wiebelen en friemelen is vaak een manier om spanning kwijt te raken of juist op te letten. Geef het een plek: een beweegpauze, een friemeldingetje of een klusje waarbij je kind mag lopen."
+      }
+    ],
+    slot: "Jouw lijf vertelt je iets, net als een kompas. Het weet het niet altijd precies. Alleen jij voelt hoe het echt is. Wil je kijken welk weer erbij hoort?",
+    groteMensen: "Veel kinderen voelen een gevoel eerst in hun lijf, lang voordat ze er woorden voor hebben. Wie de seintjes van zijn lijf leert kennen, merkt eerder dat het te veel wordt en kan eerder om hulp vragen. Doe het lijfkompas op een rustig moment samen, niet midden in een bui. Wat hier staat is bedoeld om samen te praten, niet om iets vast te stellen."
+  },
+
+  /* ------------------------------------------------------------------
    * LIEDJES
    *  titel : de naam van het liedje
    *  audio : het geluidsbestand, bijvoorbeeld "liedjes/lentekriebels.mp3"

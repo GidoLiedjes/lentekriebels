@@ -615,6 +615,125 @@
     ].forEach(function (deel) { if (deel) plek.appendChild(deel); });
   })();
 
+  /* ---------- Lijfkompas ---------- */
+
+  (function () {
+    var lk = inhoud.lijfkompas;
+    var plek = document.getElementById("lijfkompas-plek");
+    if (!plek || !lk) return;
+
+    // Waar de stipjes op het figuurtje staan (in procenten van links en van boven).
+    var STIPPEN = {
+      hoofd: [[50, 6]], wangen: [[66, 21]], keel: [[50, 31]], hart: [[58, 42]],
+      buik: [[50, 57]], handen: [[14, 59], [39, 91]]
+    };
+
+    function lied(titel, audio, boven, uitleg) {
+      if (!titel) return null;
+      var links, onder;
+      if (audio) {
+        var s = speler(audio, titel);
+        links = s.knop;
+        onder = s.balk;
+      } else {
+        links = el("span", { class: "rondje" }, icoon("noot"));
+        onder = el("p", { class: "nog-niet", tekst: "De muziek komt nog." });
+      }
+      return el("article", { class: "lied" }, [links, el("div", { class: "lied-midden" }, [
+        boven ? el("p", { class: "klein", tekst: boven }) : null,
+        el("h3", { tekst: titel }),
+        onder,
+        uitleg ? el("p", { tekst: uitleg }) : null
+      ])]);
+    }
+
+    function stap(kop, kinderen) {
+      return el("div", { class: "weer-stap" }, [el("h3", { tekst: kop })].concat(kinderen));
+    }
+
+    var ns = "http://www.w3.org/2000/svg";
+    var svg = document.createElementNS(ns, "svg");
+    svg.setAttribute("viewBox", "0 0 200 320");
+    svg.setAttribute("aria-hidden", "true");
+    var use = document.createElementNS(ns, "use");
+    use.setAttribute("href", "#lijf-figuur");
+    svg.appendChild(use);
+    var figuur = el("div", { class: "lijf-figuur" }, svg);
+
+    var plekken = lk.plekken || [];
+    var keuzes = el("div", { class: "lijf-keuzes" });
+    var hint = el("p", { class: "weer-hint", tekst: "Tik op een stipje, of op een knop. Waar voel jij iets?" });
+    var toon = el("div", { class: "weer-toon" }, hint);
+    var knoppen = [], stippen = [], kaarten = [];
+
+    function kies(nummer) {
+      knoppen.forEach(function (k, i) { k.setAttribute("aria-pressed", i === nummer ? "true" : "false"); });
+      stippen.forEach(function (s) { s.knop.setAttribute("aria-pressed", s.nummer === nummer ? "true" : "false"); });
+      kaarten.forEach(function (k, i) { k.hidden = i !== nummer; });
+      hint.hidden = true;
+      stopAnderen(null);
+      if (window.speechSynthesis) window.speechSynthesis.cancel();
+    }
+
+    plekken.forEach(function (p, i) {
+      (STIPPEN[p.plek] || []).forEach(function (xy, n) {
+        var stip = el("button", { class: "lijf-stip is-" + p.kleur, type: "button", "aria-pressed": "false",
+          "aria-label": p.naam, style: "left:" + xy[0] + "%;top:" + xy[1] + "%" });
+        if (n) { stip.setAttribute("aria-hidden", "true"); stip.setAttribute("tabindex", "-1"); }
+        stip.addEventListener("click", function () { kies(i); });
+        stippen.push({ knop: stip, nummer: i });
+        figuur.appendChild(stip);
+      });
+
+      var knop = el("button", { class: "lijf-keuze is-" + p.kleur, type: "button", "aria-pressed": "false" }, [
+        el("span", { class: "lijf-bolletje" }), el("span", { tekst: p.naam })
+      ]);
+      knop.addEventListener("click", function () { kies(i); kaarten[i].scrollIntoView({ block: "nearest", behavior: "auto" }); });
+      knoppen.push(knop);
+      keuzes.appendChild(knop);
+
+      var id = "lijftekst-" + i;
+      var groot = p.beeld ? plaatje(p.beeld) : null;
+      if (groot) groot.setAttribute("class", "weer-beeld weer-breintje");
+      var kaart = el("article", { class: "weer-kaart is-" + p.kleur, hidden: "" }, [
+        groot,
+        el("div", { class: "weer-tekst" }, [
+          el("div", { class: "weer-woorden", id: id }, [
+            el("h3", { tekst: p.kop }),
+            el("p", { class: "weer-gevoel", tekst: p.voelt }),
+            p.betekent ? el("p", { class: "sk-andere" }, [el("b", { tekst: "Dat kan betekenen. " }), p.betekent]) : null,
+            p.helpt ? el("p", { class: "weer-helpt" }, [el("b", { tekst: "Dit kan helpen. " }), p.helpt]) : null
+          ]),
+          voorleesKnop(id),
+          lied(p.liedje, p.audio, "Het liedje hierbij"),
+          p.groteMensen ? el("details", { class: "sk-groot" }, [
+            el("summary", { tekst: "Voor grote mensen" }),
+            el("p", { tekst: p.groteMensen })
+          ]) : null
+        ])
+      ]);
+      kaarten.push(kaart);
+      toon.appendChild(kaart);
+    });
+
+    var meten = lk.meten || {};
+    var slot = lk.slot ? el("div", { class: "sk-kaart-tip" }, [
+      el("p", { tekst: lk.slot }),
+      el("a", { class: "knop", href: "#weerbericht", tekst: "Naar het weerbericht" })
+    ]) : null;
+    var groot = lk.groteMensen ? el("div", { class: "sk-voor-groot" }, [
+      el("h3", { tekst: "Voor grote mensen" }),
+      el("p", { tekst: lk.groteMensen })
+    ]) : null;
+
+    [
+      meten.titel ? stap("1. Eerst even voelen", [lied(meten.titel, meten.audio, "", meten.uitleg)]) : null,
+      stap((meten.titel ? "2. " : "") + "Waar voel jij het?", [el("div", { class: "lijf-kies" }, [figuur, keuzes]), toon]),
+      slot ? stap((meten.titel ? "3. " : "") + "Tot slot", [slot]) : null,
+      groot
+    ].forEach(function (deel) { if (deel) plek.appendChild(deel); });
+  })();
+
   /* ---------- Tabbladen ---------- */
 
   var paginas = [].slice.call(document.querySelectorAll(".pagina"));

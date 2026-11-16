@@ -377,6 +377,30 @@ h1 { font-size: clamp(2.3rem, 6vw, 4rem); }
 .sk-kaart-tip { display: grid; gap: 1rem; justify-items: start; max-width: 44rem; font-size: 1.2rem; }
 .sk-voor-groot { display: grid; gap: .7rem; padding: 1.25rem 1.5rem; max-width: 44rem; border-radius: var(--r-md); background: var(--paars-zacht); font-size: 1.1rem; line-height: 1.5; }
 .sk-voor-groot h3 { font-size: 1.4rem; }
+/* ---------- Lijfkompas ---------- */
+.lijf-kies { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem 2.5rem; align-items: center; max-width: 44rem; }
+.lijf-figuur { position: relative; width: 15rem; aspect-ratio: 200 / 320; }
+.lijf-figuur svg { display: block; width: 100%; height: 100%; filter: url(#krijt-fijn); }
+.lijf-stip {
+  position: absolute; width: 2.5rem; height: 2.5rem; margin: -1.25rem 0 0 -1.25rem; padding: 0;
+  border: 4px solid var(--wit); border-radius: 50%; background: var(--kleur); cursor: pointer;
+  box-shadow: 0 0 0 3px var(--kleur); transition: transform .12s ease;
+}
+.lijf-stip:hover { transform: scale(1.12); }
+.lijf-stip[aria-pressed="true"] { transform: scale(1.25); box-shadow: 0 0 0 3px var(--donker); }
+.lijf-keuzes { display: grid; gap: .7rem; justify-items: start; }
+.lijf-keuze {
+  display: flex; align-items: center; gap: .7rem; padding: .55rem 1.1rem .55rem .7rem;
+  border: 4px solid var(--kleur); border-radius: 999px; background: var(--wit); color: var(--navy);
+  font: 600 1.25rem/1.1 var(--font-titel); cursor: pointer;
+}
+.lijf-keuze[aria-pressed="true"] { background: var(--licht); color: var(--donker); }
+.lijf-bolletje { width: 1.3rem; height: 1.3rem; border-radius: 50%; background: var(--kleur); flex: none; }
+:root[data-rustig="aan"] .lijf-figuur svg { filter: url(#krijt-fijn) saturate(.45); }
+@media (max-width: 40rem) {
+  .lijf-kies { grid-template-columns: 1fr; justify-items: center; }
+  .lijf-keuzes { grid-template-columns: repeat(2, auto); justify-content: center; }
+}
 @media (max-width: 40rem) {
   .weer-keuzes { grid-template-columns: repeat(2, 1fr); }
   .weer-kaart { grid-template-columns: 1fr; padding: 1.25rem 1.2rem; }

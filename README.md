@@ -19,6 +19,7 @@ Alles wat op de site staat, zet je in één bestand: **`inhoud.js`**. Daarin sta
 | Tekeningen | `tekeningen` | map `tekeningen/` |
 | Weerbericht (het weer in je hoofd, met een liedje per weer) | `weerbericht` | map `liedjes/` (mp3) |
 | Superkrachten (jezelf leren kennen: wat je goed kunt, de andere kant en wat helpt) | `superkrachten` | map `liedjes/` (mp3) |
+| Lijfkompas (waar voel je een gevoel in je lijf, wat kan het betekenen en wat helpt) | `lijfkompas` | map `liedjes/` (mp3) |
 | Wie zijn wij | `wieZijnWij` | – |
 | Club Plus (prijs, betaallink, pakket van de maand) | `club` | – |
 | Mailadres voor ideeën | `contact.email` | – |
