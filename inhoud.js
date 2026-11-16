@@ -208,7 +208,6 @@ window.INHOUD = {
    *  meten    : het liedje vooraf.
    *  plekken  : de plekken op het lijf, in de volgorde van de knoppen.
    *    plek   : waar het stipje komt. Kies uit: hoofd, wangen, keel, hart, buik, handen.
-   *    stip   : (mag weg) eigen plek voor het stipje: [links, boven] in procenten.
    *    kleur  : geel, lila, blauw, groen, oranje of roze.
    *    naam   : het woord op de knop.       beeld : een breintje uit de map "beeld".
    *    kop    : de titel als je de plek kiest.
@@ -225,14 +224,25 @@ window.INHOUD = {
       uitleg: "Zing mee. En voel daarna van je hoofd tot je tenen: waar merk je iets?",
       audio: "liedjes/wat-voel-jij-vandaag.mp3"
     },
-    /* figuur : (mag leeg) een plaatje van het poppetje, bijvoorbeeld
-                "beeld/lijf-poppetje.webp". Leeg = het getekende poppetje.
-       Past een stipje niet op het nieuwe poppetje? Zet dan bij die plek
-       stip: [links, boven] in procenten, bijvoorbeeld stip: [50, 8].     */
-    figuur: "beeld/lijf-poppetje.webp",
+    /* figuren : de poppetjes om uit te kiezen. Staat er meer dan één met een
+                 plaatje, dan kiest het kind zelf. Zonder plaatje telt een
+                 poppetje niet mee (dan staat er een getekend poppetje).
+         naam    : het woord op de knop.     beeld : het plaatje.
+         stippen : waar de stipjes staan, per plek [links, boven] in procenten.
+                   Bij "handen" mogen er twee: een hand en een voet.          */
+    figuren: [
+      {
+        naam: "Jongen", beeld: "beeld/lijf-jongen.webp",
+        stippen: { hoofd: [[49, 14]], wangen: [[61, 30]], keel: [[49, 39]], hart: [[60, 50]], buik: [[45, 61]], handen: [[22, 58], [42, 91]] }
+      },
+      {
+        naam: "Meisje", beeld: "",
+        stippen: {}
+      }
+    ],
     plekken: [
       {
-        plek: "hoofd", stip: [49, 14], kleur: "lila", naam: "Hoofd", beeld: "breintje-overprikkeld",
+        plek: "hoofd", kleur: "lila", naam: "Hoofd", beeld: "breintje-overprikkeld",
         kop: "Ik voel het in mijn hoofd",
         voelt: "Mijn hoofd is vol. Het bonkt, het zoemt of het is er heel druk.",
         betekent: "Er is te veel binnengekomen. Te veel geluid, te veel gedachten of een te lange dag.",
@@ -241,7 +251,7 @@ window.INHOUD = {
         liedje: "Overprikkeling", audio: "liedjes/overprikkeling.mp3"
       },
       {
-        plek: "wangen", stip: [61, 30], kleur: "roze", naam: "Wangen", beeld: "breintje-verlegen",
+        plek: "wangen", kleur: "roze", naam: "Wangen", beeld: "breintje-verlegen",
         kop: "Ik voel het in mijn wangen",
         voelt: "Mijn wangen worden warm en rood. Mijn hele gezicht gloeit.",
         betekent: "Misschien ben je boos. Of je vindt iets spannend, of je schaamt je een beetje.",
@@ -250,7 +260,7 @@ window.INHOUD = {
         liedje: "Boos", audio: "liedjes/boos.mp3"
       },
       {
-        plek: "keel", stip: [49, 39], kleur: "blauw", naam: "Keel", beeld: "breintje-verdrietig",
+        plek: "keel", kleur: "blauw", naam: "Keel", beeld: "breintje-verdrietig",
         kop: "Ik voel het in mijn keel",
         voelt: "Er zit een brok in mijn keel. Praten lukt even niet.",
         betekent: "Misschien ben je verdrietig. Of je wilt iets zeggen, maar de woorden komen niet.",
@@ -259,7 +269,7 @@ window.INHOUD = {
         liedje: "Druppel", audio: "liedjes/druppel.mp3"
       },
       {
-        plek: "hart", stip: [60, 50], kleur: "oranje", naam: "Hart", beeld: "breintje-bang",
+        plek: "hart", kleur: "oranje", naam: "Hart", beeld: "breintje-bang",
         kop: "Ik voel het bij mijn hart",
         voelt: "Mijn hart bonkt. Boem, boem, boem. Mijn adem gaat snel.",
         betekent: "Misschien ben je bang, of is iets heel spannend. Het kan ook als je heel blij bent!",
@@ -268,7 +278,7 @@ window.INHOUD = {
         liedje: "Kalmeer mijn storm", audio: "liedjes/kalmeer-mijn-storm.mp3"
       },
       {
-        plek: "buik", stip: [45, 61], kleur: "geel", naam: "Buik", beeld: "breintje-nerveus",
+        plek: "buik", kleur: "geel", naam: "Buik", beeld: "breintje-nerveus",
         kop: "Ik voel het in mijn buik",
         voelt: "Er zitten kriebels in mijn buik. Of een knoop. Soms doet het een beetje pijn.",
         betekent: "Misschien ben je zenuwachtig voor iets nieuws. Kriebels kunnen ook betekenen: ik heb er zin in!",

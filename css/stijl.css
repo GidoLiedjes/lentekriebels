@@ -401,6 +401,14 @@ h1 { font-size: clamp(2.3rem, 6vw, 4rem); }
 .lijf-keuze[aria-pressed="true"] { background: var(--licht); color: var(--donker); }
 .lijf-bolletje { width: 1.3rem; height: 1.3rem; border-radius: 50%; background: var(--kleur); flex: none; }
 :root[data-rustig="aan"] .lijf-figuur svg { filter: url(#krijt-fijn) saturate(.45); }
+.lijf-wie { display: flex; flex-wrap: wrap; gap: .8rem; }
+.lijf-wie-knop {
+  display: grid; justify-items: center; gap: .2rem; padding: .5rem .9rem .6rem;
+  border: 4px solid var(--hoofd-licht); border-radius: var(--r-md); background: var(--wit); color: var(--navy);
+  font: 600 1.15rem/1.1 var(--font-titel); cursor: pointer;
+}
+.lijf-wie-knop img { width: 3.5rem; height: 5.25rem; object-fit: contain; mix-blend-mode: multiply; }
+.lijf-wie-knop[aria-pressed="true"] { border-color: var(--hoofd); background: var(--paars-zacht); color: var(--paars-diep); }
 @media (max-width: 40rem) {
   .lijf-kies { grid-template-columns: 1fr; justify-items: center; }
   .lijf-keuzes { grid-template-columns: repeat(2, auto); justify-content: center; }

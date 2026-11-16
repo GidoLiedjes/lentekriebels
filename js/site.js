@@ -627,10 +627,6 @@
       hoofd: [[50, 6]], wangen: [[66, 21]], keel: [[50, 31]], hart: [[58, 42]],
       buik: [[50, 57]], handen: [[14, 59], [39, 91]]
     };
-    // Plekken op het plaatje van het poppetje (als dat er is).
-    var STIPPEN_PLAATJE = {
-      handen: [[22, 58], [42, 91]]
-    };
 
     function lied(titel, audio, boven, uitleg) {
       if (!titel) return null;
@@ -655,19 +651,32 @@
       return el("div", { class: "weer-stap" }, [el("h3", { tekst: kop })].concat(kinderen));
     }
 
-    var beeldFiguur;
-    if (lk.figuur) {
-      beeldFiguur = el("img", { src: lk.figuur, alt: "" });
+    // De poppetjes om uit te kiezen (alleen die met een plaatje).
+    var figuren = (lk.figuren || []).filter(function (f) { return f && f.beeld; });
+    var figuurKeuze = 0;
+    try { figuurKeuze = Math.min(figuren.length - 1, Math.max(0, parseInt(localStorage.getItem("lijfkompas-figuur"), 10) || 0)); } catch (e) {}
+
+    var figuur = el("div", { class: "lijf-figuur" + (figuren.length ? " is-plaatje" : "") });
+    var figuurPlaatje = null;
+    if (figuren.length) {
+      figuurPlaatje = el("img", { src: figuren[figuurKeuze].beeld, alt: "" });
+      figuur.appendChild(figuurPlaatje);
     } else {
       var ns = "http://www.w3.org/2000/svg";
-      beeldFiguur = document.createElementNS(ns, "svg");
-      beeldFiguur.setAttribute("viewBox", "0 0 200 320");
-      beeldFiguur.setAttribute("aria-hidden", "true");
+      var svg = document.createElementNS(ns, "svg");
+      svg.setAttribute("viewBox", "0 0 200 320");
+      svg.setAttribute("aria-hidden", "true");
       var use = document.createElementNS(ns, "use");
       use.setAttribute("href", "#lijf-figuur");
-      beeldFiguur.appendChild(use);
+      svg.appendChild(use);
+      figuur.appendChild(svg);
     }
-    var figuur = el("div", { class: "lijf-figuur" + (lk.figuur ? " is-plaatje" : "") }, beeldFiguur);
+
+    function stipPlekken(plek) {
+      // Heeft dit poppetje geen eigen plek voor een stipje, neem dan die van het eerste.
+      var f = figuren[figuurKeuze], eerste = figuren[0];
+      return (f && f.stippen && f.stippen[plek]) || (eerste && eerste.stippen && eerste.stippen[plek]) || STIPPEN[plek] || [];
+    }
 
     var plekken = lk.plekken || [];
     var keuzes = el("div", { class: "lijf-keuzes" });
@@ -685,12 +694,12 @@
     }
 
     plekken.forEach(function (p, i) {
-      (p.stip ? [p.stip] : ((lk.figuur && STIPPEN_PLAATJE[p.plek]) || STIPPEN[p.plek] || [])).forEach(function (xy, n) {
-        var stip = el("button", { class: "lijf-stip is-" + p.kleur, type: "button", "aria-pressed": "false",
-          "aria-label": p.naam, style: "left:" + xy[0] + "%;top:" + xy[1] + "%" });
+      // Twee stipjes per plek is genoeg (bijvoorbeeld een hand en een voet).
+      [0, 1].forEach(function (n) {
+        var stip = el("button", { class: "lijf-stip is-" + p.kleur, type: "button", "aria-pressed": "false", "aria-label": p.naam });
         if (n) { stip.setAttribute("aria-hidden", "true"); stip.setAttribute("tabindex", "-1"); }
         stip.addEventListener("click", function () { kies(i); });
-        stippen.push({ knop: stip, nummer: i });
+        stippen.push({ knop: stip, nummer: i, plek: p.plek, n: n });
         figuur.appendChild(stip);
       });
 
@@ -725,6 +734,34 @@
       toon.appendChild(kaart);
     });
 
+    function zetStippen() {
+      stippen.forEach(function (s) {
+        var xy = stipPlekken(s.plek)[s.n];
+        s.knop.hidden = !xy;
+        if (xy) { s.knop.style.left = xy[0] + "%"; s.knop.style.top = xy[1] + "%"; }
+      });
+    }
+    zetStippen();
+
+    // Kies je poppetje (alleen als er meer dan één is).
+    var figuurKnoppen = null;
+    if (figuren.length > 1) {
+      figuurKnoppen = el("div", { class: "lijf-wie", role: "group", "aria-label": "Kies je poppetje" });
+      figuren.forEach(function (f, i) {
+        var k = el("button", { class: "lijf-wie-knop", type: "button", "aria-pressed": i === figuurKeuze ? "true" : "false" }, [
+          el("img", { src: f.beeld, alt: "" }), el("span", { tekst: f.naam })
+        ]);
+        k.addEventListener("click", function () {
+          figuurKeuze = i;
+          try { localStorage.setItem("lijfkompas-figuur", String(i)); } catch (e) {}
+          figuurPlaatje.src = f.beeld;
+          [].forEach.call(figuurKnoppen.children, function (b, j) { b.setAttribute("aria-pressed", j === i ? "true" : "false"); });
+          zetStippen();
+        });
+        figuurKnoppen.appendChild(k);
+      });
+    }
+
     var meten = lk.meten || {};
     var slot = lk.slot ? el("div", { class: "sk-kaart-tip" }, [
       el("p", { tekst: lk.slot }),
@@ -737,7 +774,7 @@
 
     [
       meten.titel ? stap("1. Eerst even voelen", [lied(meten.titel, meten.audio, "", meten.uitleg)]) : null,
-      stap((meten.titel ? "2. " : "") + "Waar voel jij het?", [el("div", { class: "lijf-kies" }, [figuur, keuzes]), toon]),
+      stap((meten.titel ? "2. " : "") + "Waar voel jij het?", [figuurKnoppen, el("div", { class: "lijf-kies" }, [figuur, keuzes]), toon]),
       slot ? stap((meten.titel ? "3. " : "") + "Tot slot", [slot]) : null,
       groot
     ].forEach(function (deel) { if (deel) plek.appendChild(deel); });
