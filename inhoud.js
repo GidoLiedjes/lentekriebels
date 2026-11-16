@@ -350,9 +350,9 @@ En dat was genoeg.
    *  kleurplaat : true = er staat "Open en print" bij
    * ------------------------------------------------------------------ */
   tekeningen: [
-    { titel: "Pief met oorkappen", bestand: "tekeningen/kleurplaat-pief.svg", kleurplaat: true },
-    { titel: "Zoef met een strik", bestand: "tekeningen/kleurplaat-zoef.svg", kleurplaat: true },
-    { titel: "Pluk viert feest", bestand: "tekeningen/kleurplaat-pluk.svg", kleurplaat: true },
-    { titel: "Kwik met een sprietje", bestand: "tekeningen/kleurplaat-kwik.svg", kleurplaat: true }
+    { titel: "Billie", bestand: "tekeningen/kleurplaat-billie.png", kleurplaat: true },
+    { titel: "Lisa met een boekje", bestand: "tekeningen/kleurplaat-lisa.png", kleurplaat: true },
+    { titel: "Hetty met een koptelefoon", bestand: "tekeningen/kleurplaat-hetty.png", kleurplaat: true },
+    { titel: "Suus springt", bestand: "tekeningen/kleurplaat-suus.png", kleurplaat: true }
   ]
 };
