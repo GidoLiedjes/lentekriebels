@@ -46,7 +46,7 @@ window.INHOUD = {
    * ------------------------------------------------------------------ */
   wieZijnWij: {
     alineas: [
-      "Wij zijn Nicky en Gert van Bijzondere Breintjes. We schrijven, zingen en tekenen alles zelf.",
+      "Wij zijn Nicky en Gert van Bijzondere Breintjes. We schrijven, zingen en bedenken alles zelf.",
       "We maken dit voor elk kind dat veel voelt, snel vol zit of zijn gevoel nog moeilijk kan zeggen. Een diagnose is niet nodig."
     ],
     groet: "Liefs, Nicky en Gert",
