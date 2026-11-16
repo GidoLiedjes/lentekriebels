@@ -233,11 +233,11 @@ window.INHOUD = {
     figuren: [
       {
         naam: "Jongen", beeld: "beeld/lijf-jongen.webp",
-        stippen: { hoofd: [[49, 14]], wangen: [[61, 30]], keel: [[49, 39]], hart: [[60, 50]], buik: [[45, 61]], handen: [[22, 58], [42, 91]] }
+        stippen: { hoofd: [[49, 17]], wangen: [[62, 30]], keel: [[50, 39]], hart: [[56, 47]], buik: [[49, 57]], handen: [[20, 60], [41, 91]] }
       },
       {
-        naam: "Meisje", beeld: "",
-        stippen: {}
+        naam: "Meisje", beeld: "beeld/lijf-meisje.webp",
+        stippen: { hoofd: [[51, 20]], wangen: [[59, 30]], keel: [[51, 38]], hart: [[56, 46]], buik: [[50, 57]], handen: [[27, 57], [42, 90]] }
       }
     ],
     plekken: [
