@@ -353,6 +353,12 @@ En dat was genoeg.
     { titel: "Billie", bestand: "tekeningen/kleurplaat-billie.png", kleurplaat: true },
     { titel: "Lisa met een boekje", bestand: "tekeningen/kleurplaat-lisa.png", kleurplaat: true },
     { titel: "Hetty met een koptelefoon", bestand: "tekeningen/kleurplaat-hetty.png", kleurplaat: true },
-    { titel: "Suus springt", bestand: "tekeningen/kleurplaat-suus.png", kleurplaat: true }
+    { titel: "Suus springt", bestand: "tekeningen/kleurplaat-suus.png", kleurplaat: true },
+    { titel: "Nicky zwaait", bestand: "tekeningen/kleurplaat-nicky.png", kleurplaat: true },
+    { titel: "Gido met een bal", bestand: "tekeningen/kleurplaat-gido.png", kleurplaat: true },
+    { titel: "Juul is zenuwachtig", bestand: "tekeningen/kleurplaat-juul.png", kleurplaat: true },
+    { titel: "Jelte in de rolstoel", bestand: "tekeningen/kleurplaat-jelte.png", kleurplaat: true },
+    { titel: "Loesje achter een hart", bestand: "tekeningen/kleurplaat-loesje.png", kleurplaat: true },
+    { titel: "Lari is slaperig", bestand: "tekeningen/kleurplaat-lari.png", kleurplaat: true }
   ]
 };
