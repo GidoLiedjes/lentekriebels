@@ -42,9 +42,14 @@
     return h;
   }
 
+  // Alle breintjes op de site zijn de vaste krijtbreintjes uit de huisstijl (map beeld/).
+  function plaatje(naam, alt) {
+    return el("img", { class: "breintje", src: "beeld/" + naam + ".webp", alt: alt || "", loading: "lazy" });
+  }
+
   function leeg(tekst) {
     var beeld = el("span", { class: "leeg-beeld" });
-    beeld.innerHTML = Breintje.teken(4, { sier: true });
+    beeld.appendChild(plaatje("breintje-verlegen"));
     return el("div", { class: "leeg" }, [beeld, el("p", { tekst: tekst })]);
   }
 
@@ -69,18 +74,31 @@
 
   /* ---------- Vaste breintjes (logo en zo) ---------- */
 
-  [].forEach.call(document.querySelectorAll("[data-breintje]"), function (plek) {
-    plek.innerHTML = Breintje.teken(Number(plek.getAttribute("data-breintje")), { sier: true });
-  });
+  // De tien vaste breintjes, met hun naam en waar ze van houden.
+  var BREINTJES = [
+    { naam: "Billie", beeld: "hoofdbreintje", houdtVan: "knuffels" },
+    { naam: "Lisa", beeld: "breintje-bril", houdtVan: "heel veel vragen" },
+    { naam: "Nicky", beeld: "breintje-lang", houdtVan: "torens bouwen" },
+    { naam: "Gido", beeld: "breintje-sportief", houdtVan: "springen" },
+    { naam: "Juul", beeld: "breintje-nerveus", houdtVan: "alles op een rij zetten" },
+    { naam: "Hetty", beeld: "breintje-koptelefoon", houdtVan: "stilte" },
+    { naam: "Jelte", beeld: "breintje-rolstoel", houdtVan: "rondjes draaien" },
+    { naam: "Suus", beeld: "breintje-vol-energie", houdtVan: "hard lachen" },
+    { naam: "Loesje", beeld: "breintje-verlegen", houdtVan: "verstoppen" },
+    { naam: "Lari", beeld: "breintje-slaperig", houdtVan: "zachte dekens" }
+  ];
 
   /* ---------- Het breintje op het podium ---------- */
 
   var podium = document.getElementById("podium-breintje");
   var podiumTekst = document.getElementById("podium-tekst");
 
-  function toonBreintje(zaadje, metPlop) {
-    var b = Breintje.beschrijf(zaadje);
-    podium.innerHTML = Breintje.teken(zaadje);
+  var nuBreintje = 0;
+  function toonBreintje(nummer, metPlop) {
+    nuBreintje = nummer % BREINTJES.length;
+    var b = BREINTJES[nuBreintje];
+    podium.textContent = "";
+    podium.appendChild(plaatje(b.beeld, b.naam + ", een breintje"));
     podiumTekst.textContent = "";
     podiumTekst.appendChild(document.createTextNode("Dit is "));
     podiumTekst.appendChild(el("strong", { tekst: b.naam }));
@@ -93,7 +111,7 @@
   }
 
   function nieuwBreintje() {
-    toonBreintje(Math.floor(Math.random() * 4294967295), true);
+    toonBreintje(nuBreintje + 1, true);
   }
 
   podium.addEventListener("animationend", function () { podium.classList.remove("nieuw"); });
@@ -265,7 +283,7 @@
     var beeld = el("div", { class: "film-beeld" });
     var knop = el("button", { class: "film-knop", type: "button", "aria-label": "Speel het filmpje " + film.titel });
     if (film.plaatje) knop.appendChild(el("img", { src: film.plaatje, alt: "", loading: "lazy" }));
-    else knop.innerHTML = Breintje.teken(getalVan(film.titel), { sier: true });
+    else knop.appendChild(plaatje(BREINTJES[getalVan(film.titel) % BREINTJES.length].beeld));
     knop.appendChild(el("span", { class: "speel-merk" }, icoon("speel")));
     beeld.appendChild(knop);
 
@@ -460,8 +478,12 @@
       keuzes.appendChild(knop);
 
       var id = "weertekst-" + i;
+      // In de kaart staat het breintje dat zich zo voelt.
+      var gevoelBreintje = { zon: "breintje-blij", wolk: "breintje-rustig", regen: "breintje-verdrietig", storm: "breintje-overprikkeld", onweer: "breintje-boos", vuurwerk: "breintje-vol-energie" }[w.soort];
+      var groot = gevoelBreintje ? plaatje(gevoelBreintje) : weerBeeld(w.soort);
+      if (gevoelBreintje) groot.setAttribute("class", "weer-beeld weer-breintje");
       var kaart = el("article", { class: "weer-kaart is-" + w.kleur, hidden: "" }, [
-        weerBeeld(w.soort),
+        groot,
         el("div", { class: "weer-tekst" }, [
           el("div", { class: "weer-woorden", id: id }, [
             el("h3", { tekst: w.kop }),

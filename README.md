@@ -49,7 +49,8 @@ De site werkt op elke webruimte: zet alle bestanden erop en klaar. Met GitHub Pa
 - `index.html`: de pagina, de tabbladen en de vaste teksten
 - `inhoud.js`: alles wat op de tabbladen komt te staan
 - `css/stijl.css`: de opmaak in huisstijl 3 (krijt), met een rustige stand
-- `js/breintje.js`: tekent de breintjes. Elk getal geeft een ander breintje.
+- `beeld/`: de vaste breintjes uit de huisstijl (Midjourney, krijtstijl) en het logo. De namen van de tien breintjes staan bovenaan in `js/site.js`.
+- `js/breintje.js`: tekent alleen nog de kleurplaten (via `tools/maak-plaatjes.js`); de site zelf gebruikt het niet meer.
 - `js/site.js`: zet de inhoud op de pagina en laat de tabbladen en knoppen werken
 - `js/dit-ben-ik.js`: de Dit ben ik-kaart (invullen, A4-kaart tekenen, bewaren als PDF of plaatje)
 - `js/vendor/jspdf.umd.min.js`: maakt de PDF; wordt pas geladen als iemand op "Bewaar als PDF" drukt

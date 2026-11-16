@@ -93,7 +93,10 @@ a { color: inherit; }
 img, svg { max-width: 100%; }
 button, input, textarea { font: inherit; color: inherit; }
 svg.breintje { display: block; width: 100%; height: auto; color: var(--navy); }
-.vast-breintje { display: block; width: 100%; height: auto; }
+.vast-breintje, img.breintje { display: block; width: 100%; height: auto; }
+.film-knop img.breintje { position: absolute; inset: 4%; width: 92%; height: 92%; object-fit: contain; }
+.weer-beeld.weer-breintje, .weer-kaart > .weer-beeld.weer-breintje { filter: none; object-fit: contain; width: 11rem; height: 11rem; }
+:root[data-rustig="aan"] .weer-beeld.weer-breintje { filter: saturate(.45); }
 .wie-breintje img, .idee-beeld img { display: block; width: 100%; height: auto; }
 
 .soort { font-family: var(--font-soort); font-weight: 700; letter-spacing: .04em; color: var(--hoofd); font-size: 2rem; line-height: 1; }
@@ -277,8 +280,8 @@ h1 { font-size: clamp(2.3rem, 6vw, 4rem); }
   display: grid; place-items: center;
 }
 .podium-breintje { width: 100%; cursor: pointer; }
-.podium-breintje svg { transform-origin: 50% 92%; animation: wiebel 5s ease-in-out infinite; }
-.podium-breintje.nieuw svg { animation: plop .28s ease-out; }
+.podium-breintje .breintje { transform-origin: 50% 92%; animation: wiebel 5s ease-in-out infinite; }
+.podium-breintje.nieuw .breintje { animation: plop .28s ease-out; }
 .podium-tekst { font-size: 1.25rem; line-height: 1.35; min-height: 2.7em; max-width: 20ch; margin-top: .4rem; }
 .podium-tekst strong { font-weight: 700; color: var(--paars-diep); }
 
