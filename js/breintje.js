@@ -14,12 +14,12 @@
 
   // De kleuren van de huisstijl. Roze is de kleur van het vaste breintje.
   var KLEUREN = [
-    { naam: "roze", vul: "#F4A6C3", donker: "#C2588C" },
-    { naam: "geel", vul: "#F6CF5A", donker: "#A67F12" },
-    { naam: "blauw", vul: "#8DBBE6", donker: "#2A5A8C" },
-    { naam: "groen", vul: "#8FD391", donker: "#2B6E30" },
-    { naam: "lila", vul: "#B995DE", donker: "#5A3591" },
-    { naam: "oranje", vul: "#F29A73", donker: "#A8401A" }
+    { naam: "roze", vul: "#F4A6C3", donker: "#C2588C", krijt: "#E4617F", licht: "#F9C9D3" },
+    { naam: "geel", vul: "#F6CF5A", donker: "#A67F12", krijt: "#F2C230", licht: "#FBE68F" },
+    { naam: "blauw", vul: "#8DBBE6", donker: "#2A5A8C", krijt: "#5FA3DA", licht: "#BBDCF3" },
+    { naam: "groen", vul: "#8FD391", donker: "#2B6E30", krijt: "#63BE8F", licht: "#C2EBD3" },
+    { naam: "lila", vul: "#B995DE", donker: "#5A3591", krijt: "#8A62C8", licht: "#CDB8EC" },
+    { naam: "oranje", vul: "#F29A73", donker: "#A8401A", krijt: "#EE6A2C", licht: "#F9B58E" }
   ];
 
   var NAMEN = [
@@ -38,14 +38,14 @@
 
   var INKT = "#1E2A5A";
   var SOK = "#F6CF5A";   // gele sokjes: die heeft elk breintje
-  var WANG = "#E8556B";  // rode krijtwangetjes
+  var WANG = "#E5484F";  // rode krijtwangetjes
 
   // Krijt-filter: maakt de lijnen wiebelig en laat het papier door de kleur schijnen.
   var KRIJT = '<filter id="bk-krijt" x="-8%" y="-8%" width="116%" height="116%">' +
-    '<feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="4" result="w"/>' +
-    '<feDisplacementMap in="SourceGraphic" in2="w" scale="5" xChannelSelector="R" yChannelSelector="G" result="d"/>' +
+    '<feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="w"/>' +
+    '<feDisplacementMap in="SourceGraphic" in2="w" scale="3.5" xChannelSelector="R" yChannelSelector="G" result="d"/>' +
     '<feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="9" result="k"/>' +
-    '<feColorMatrix in="k" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -11 7.7" result="g"/>' +
+    '<feColorMatrix in="k" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -9 6.9" result="g"/>' +
     '<feComposite in="d" in2="g" operator="in"/></filter>';
 
   // Kleine, vaste toevalsmachine: hetzelfde zaadje geeft dezelfde reeks.
@@ -111,11 +111,19 @@
     var extraDonker = lijn ? "#111" : ek.donker;
     var wit = "#fff";
 
-    // Lijf: een ovaal met zachte bobbels.
+    // Lijf. Kleurplaat: een ovaal met zachte bobbels. In kleur: een wolkje met lobben,
+    // zoals de vaste breintjes, met een deukje bovenin waar de twee helften samenkomen.
     var punten = [];
-    for (var i = 0; i < 120; i++) {
-      var h = (i / 120) * Math.PI * 2;
-      var f = 1 + 0.055 * Math.sin(b.bobbels * h + b.bobbelFase) + 0.03 * Math.sin(2 * h + b.scheefFase);
+    for (var i = 0; i < 180; i++) {
+      var h = (i / 180) * Math.PI * 2;
+      var f;
+      if (lijn) {
+        f = 1 + 0.055 * Math.sin(b.bobbels * h + b.bobbelFase) + 0.03 * Math.sin(2 * h + b.scheefFase);
+      } else {
+        var lob = Math.abs(Math.sin((b.bobbels + 1) * h / 2 + b.bobbelFase / 2));
+        var deuk = Math.exp(-Math.pow((h - Math.PI * 1.5) / 0.16, 2));
+        f = 0.9 + 0.13 * Math.pow(lob, 0.6) + 0.02 * Math.sin(2 * h + b.scheefFase) - 0.1 * deuk;
+      }
       punten.push(n(cx + Math.cos(h) * b.breedte * f) + " " + n(cy + Math.sin(h) * b.hoogte * f));
     }
     var lijf = "M" + punten.join("L") + "Z";
@@ -126,8 +134,8 @@
     // Armen, benen en schoenen nemen de tekstkleur van de pagina over,
     // zodat je ze ook op een donkere achtergrond ziet.
     var lid = lijn ? "#111" : "currentColor";
-    var streep = ' fill="none" stroke="' + inkt + '" stroke-width="' + (lijn ? 5 : 4) + '" stroke-linecap="round" stroke-linejoin="round"';
-    var lidStreep = ' fill="none" stroke="' + lid + '" stroke-width="' + (lijn ? 5 : 3.5) + '" stroke-linecap="round" stroke-linejoin="round"';
+    var streep = ' fill="none" stroke="' + inkt + '" stroke-width="' + (lijn ? 5 : 2.8) + '" stroke-linecap="round" stroke-linejoin="round"';
+    var lidStreep = ' fill="none" stroke="' + lid + '" stroke-width="' + (lijn ? 5 : 2.2) + '" stroke-linecap="round" stroke-linejoin="round"';
 
     if (!lijn) {
       s.push("<defs>" + KRIJT + '<clipPath id="bk-l' + zaadje + '"><path d="' + lijf + '"/></clipPath></defs>');
@@ -137,7 +145,7 @@
     }
 
     // Benen en gele sokjes.
-    var sokRand = ' stroke="' + lid + '" stroke-width="3" stroke-linejoin="round"';
+    var sokRand = ' stroke="' + lid + '" stroke-width="1.8" stroke-linejoin="round"';
     s.push('<path d="M100 ' + n(onder - 6) + 'V224M140 ' + n(onder - 6) + 'V224"' + lidStreep + "/>");
     s.push('<ellipse cx="93" cy="226" rx="13" ry="7" fill="' + (lijn ? wit : SOK) + '"' + (lijn ? rand : sokRand) + "/>");
     s.push('<ellipse cx="147" cy="226" rx="13" ry="7" fill="' + (lijn ? wit : SOK) + '"' + (lijn ? rand : sokRand) + "/>");
@@ -156,39 +164,47 @@
     if (lijn) {
       s.push('<path d="' + lijf + '" fill="' + vul + '"' + rand + "/>");
     } else {
-      s.push('<path d="' + lijf + '" fill="' + vul + '"/>');
-      // Arcering: schuine krijtstreken waar het papier doorheen komt.
-      var a = toeval(zaadje + 77), strepen = [];
-      for (var sx = -40; sx < 260; sx += 9) {
-        var j = (a() - 0.5) * 5;
-        strepen.push("M" + n(sx + j) + " 30L" + n(sx + j - 62 + (a() - 0.5) * 8) + " 215");
+      // Kleurpotlood: een licht vlak met dichte, schuine streken in de volle kleur eroverheen.
+      s.push('<path d="' + lijf + '" fill="' + b.kleur.licht + '"/>');
+      var a = toeval(zaadje + 77), strepen = [], dwars = [];
+      for (var sx = -30; sx < 270; sx += 3.8) {
+        var j = (a() - 0.5) * 4;
+        strepen.push("M" + n(sx + j) + " 34L" + n(sx + j - 58 + (a() - 0.5) * 10) + " 210");
       }
-      s.push('<path d="' + strepen.join("") + '" clip-path="url(#bk-l' + zaadje + ')" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" opacity=".34"/>');
-      s.push('<path d="' + lijf + '" fill="none" stroke="' + inkt + '" stroke-width="3.5" stroke-linejoin="round"/>');
+      for (var dx = -60; dx < 240; dx += 13) {
+        dwars.push("M" + n(dx + (a() - 0.5) * 6) + " 40L" + n(dx + 70 + (a() - 0.5) * 10) + " 205");
+      }
+      s.push('<g clip-path="url(#bk-l' + zaadje + ')" fill="none" stroke="' + b.kleur.krijt + '" stroke-linecap="round">' +
+        '<path d="' + strepen.join("") + '" stroke-width="2.4" opacity=".72"/>' +
+        '<path d="' + dwars.join("") + '" stroke-width="1.8" opacity=".28"/></g>');
+      // Een dunne, donkere potloodlijn eromheen, twee keer gezet zoals bij een schets.
+      s.push('<path d="' + lijf + '" fill="none" stroke="#2A2540" stroke-width="1.9" stroke-linejoin="round"/>');
+      s.push('<path d="' + lijf + '" fill="none" stroke="#2A2540" stroke-width="1" stroke-linejoin="round" opacity=".5" transform="translate(1.6 -1.2) rotate(.7 120 120)"/>');
     }
 
     // Kronkels: het groefje in het midden en een paar krullen.
-    var kr = ' fill="none" stroke="' + detail + '" stroke-width="' + (lijn ? 3 : 3.2) + '" stroke-linecap="round"';
-    s.push('<path d="M120 ' + n(top + 5) + "q-7 9 0 18t0 18" + '"' + kr + "/>");
+    var kr = ' fill="none" stroke="' + (lijn ? detail : "#2A2540") + '" stroke-width="' + (lijn ? 3 : 1.7) + '" stroke-linecap="round"';
+    s.push('<path d="M120 ' + n(top + (lijn ? 5 : 9)) + "q-7 9 0 18t0 18" + '"' + kr + "/>");
     s.push('<path d="M' + n(cx - 46) + " " + n(top + 26) + "q10 -13 22 -2M" + n(cx + 24) + " " + n(top + 24) + "q12 -11 22 2M" + n(cx - 62) + " " + n(cy + 26) + "q4 12 16 10M" + n(cx + 46) + " " + n(cy + 36) + 'q12 2 16 -10"' + kr + "/>");
 
     // Wangen.
     if (!lijn) {
-      s.push('<ellipse cx="78" cy="143" rx="10" ry="8" fill="' + WANG + '" opacity=".8"/><ellipse cx="162" cy="143" rx="10" ry="8" fill="' + WANG + '" opacity=".8"/>');
+      s.push('<ellipse cx="76" cy="144" rx="12" ry="10" fill="' + WANG + '" opacity=".78"/><ellipse cx="164" cy="144" rx="12" ry="10" fill="' + WANG + '" opacity=".78"/>');
     }
 
     // Ogen.
     var k = b.kijk;
     if (b.ogen === "stip") {
-      s.push('<circle cx="99" cy="124" r="6.5" fill="' + inkt + '"/><circle cx="141" cy="124" r="6.5" fill="' + inkt + '"/>');
+      var os = lijn ? 6.5 : 4.6;
+      s.push('<circle cx="99" cy="124" r="' + os + '" fill="' + inkt + '"/><circle cx="141" cy="124" r="' + os + '" fill="' + inkt + '"/>');
     } else if (b.ogen === "blij") {
       s.push('<path d="M90 127q9 -11 18 0M132 127q9 -11 18 0"' + streep + "/>");
     } else {
-      var oogRand = ' stroke="' + inkt + '" stroke-width="3"';
+      var oogRand = ' stroke="' + inkt + '" stroke-width="' + (lijn ? 3 : 1.8) + '"';
       s.push('<circle cx="99" cy="123" r="12" fill="' + wit + '"' + oogRand + '/><circle cx="141" cy="123" r="12" fill="' + wit + '"' + oogRand + "/>");
       s.push('<circle cx="' + (99 + k) + '" cy="124" r="5.5" fill="' + inkt + '"/><circle cx="' + (141 + k) + '" cy="124" r="5.5" fill="' + inkt + '"/>');
       if (b.ogen === "bril") {
-        s.push('<path d="M82 123a17 17 0 1 0 34 0a17 17 0 1 0 -34 0M124 123a17 17 0 1 0 34 0a17 17 0 1 0 -34 0M116 121q4 -4 8 0" fill="none" stroke="' + inkt + '" stroke-width="4"/>');
+        s.push('<path d="M82 123a17 17 0 1 0 34 0a17 17 0 1 0 -34 0M124 123a17 17 0 1 0 34 0a17 17 0 1 0 -34 0M116 121q4 -4 8 0" fill="none" stroke="' + inkt + '" stroke-width="' + (lijn ? 4 : 2.6) + '"/>');
       }
     }
 
