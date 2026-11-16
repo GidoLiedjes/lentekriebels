@@ -381,8 +381,9 @@ h1 { font-size: clamp(2.3rem, 6vw, 4rem); }
 .lijf-kies { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem 2.5rem; align-items: center; max-width: 44rem; }
 .lijf-figuur { position: relative; width: 15rem; aspect-ratio: 200 / 320; }
 .lijf-figuur svg { display: block; width: 100%; height: 100%; filter: url(#krijt-fijn); }
-.lijf-figuur.is-plaatje { aspect-ratio: auto; }
-.lijf-figuur img { display: block; width: 100%; height: auto; }
+.lijf-figuur.is-plaatje { aspect-ratio: auto; width: 17rem; }
+.lijf-figuur.is-plaatje .lijf-stip { width: 2rem; height: 2rem; margin: -1rem 0 0 -1rem; border-width: 3px; }
+.lijf-figuur img { display: block; width: 100%; height: auto; mix-blend-mode: multiply; }
 :root[data-rustig="aan"] .lijf-figuur img { filter: saturate(.45); }
 .lijf-stip {
   position: absolute; width: 2.5rem; height: 2.5rem; margin: -1.25rem 0 0 -1.25rem; padding: 0;

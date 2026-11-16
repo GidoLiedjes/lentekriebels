@@ -627,6 +627,10 @@
       hoofd: [[50, 6]], wangen: [[66, 21]], keel: [[50, 31]], hart: [[58, 42]],
       buik: [[50, 57]], handen: [[14, 59], [39, 91]]
     };
+    // Plekken op het plaatje van het poppetje (als dat er is).
+    var STIPPEN_PLAATJE = {
+      handen: [[22, 58], [42, 91]]
+    };
 
     function lied(titel, audio, boven, uitleg) {
       if (!titel) return null;
@@ -681,7 +685,7 @@
     }
 
     plekken.forEach(function (p, i) {
-      (p.stip ? [p.stip] : (STIPPEN[p.plek] || [])).forEach(function (xy, n) {
+      (p.stip ? [p.stip] : ((lk.figuur && STIPPEN_PLAATJE[p.plek]) || STIPPEN[p.plek] || [])).forEach(function (xy, n) {
         var stip = el("button", { class: "lijf-stip is-" + p.kleur, type: "button", "aria-pressed": "false",
           "aria-label": p.naam, style: "left:" + xy[0] + "%;top:" + xy[1] + "%" });
         if (n) { stip.setAttribute("aria-hidden", "true"); stip.setAttribute("tabindex", "-1"); }
