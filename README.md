@@ -48,7 +48,7 @@ De site werkt op elke webruimte: zet alle bestanden erop en klaar. Met GitHub Pa
 
 - `index.html`: de pagina, de tabbladen en de vaste teksten
 - `inhoud.js`: alles wat op de tabbladen komt te staan
-- `css/stijl.css`: de opmaak in huisstijl 2, met een rustige stand
+- `css/stijl.css`: de opmaak in huisstijl 3 (krijt), met een rustige stand
 - `js/breintje.js`: tekent de breintjes. Elk getal geeft een ander breintje.
 - `js/site.js`: zet de inhoud op de pagina en laat de tabbladen en knoppen werken
 - `js/dit-ben-ik.js`: de Dit ben ik-kaart (invullen, A4-kaart tekenen, bewaren als PDF of plaatje)
@@ -65,7 +65,7 @@ Elk tabblad heeft een eigen adres, bijvoorbeeld `.../#liedjes`. Zo kun je rechts
 - De knop **Rustig** zet beweging uit en maakt de kleuren zachter. De keuze wordt op het apparaat onthouden.
 - Eén ding tegelijk: elk onderdeel heeft een eigen tabblad, een vaste kleur en een vast plaatje.
 - Ga je naar een ander tabblad, dan stoppen het geluid en het voorlezen.
-- De site volgt huisstijl 2: paars, zes accentkleuren, witte kaarten met dikke rand, en het vaste roze breintje als logo.
+- De site volgt huisstijl 3 (krijt): wit papier, paars met zes accentkleuren, krijtranden, en het hoofdbreintje als logo. De plaatjes van de vaste breintjes staan in `beeld/`.
 - Letters en de PDF-maker staan op de site zelf; er wordt niets bij Google of een ander bedrijf opgehaald.
 - Wat je op de Dit ben ik-kaart invult, blijft op het eigen apparaat.
 - Geen reclame, geen cookies, geen meetprogramma's. Een YouTube-filmpje laadt pas na een druk op afspelen, via `youtube-nocookie.com`.

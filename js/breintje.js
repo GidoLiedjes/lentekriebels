@@ -1,6 +1,7 @@
 /*
  * Breintje-tekenaar.
- * Maakt van een getal (het "zaadje") altijd hetzelfde breintje als SVG.
+ * Maakt van een getal (het "zaadje") altijd hetzelfde breintje als SVG,
+ * getekend in krijtstijl (huisstijl 3): wiebelige lijn, arcering, rode wangetjes, gele sokjes.
  * Een ander getal geeft een ander breintje. Zo zijn er geen twee gelijk.
  *
  * Werkt in de browser (window.Breintje) en in Node (module.exports).
@@ -36,6 +37,16 @@
   ];
 
   var INKT = "#1E2A5A";
+  var SOK = "#F6CF5A";   // gele sokjes: die heeft elk breintje
+  var WANG = "#E8556B";  // rode krijtwangetjes
+
+  // Krijt-filter: maakt de lijnen wiebelig en laat het papier door de kleur schijnen.
+  var KRIJT = '<filter id="bk-krijt" x="-8%" y="-8%" width="116%" height="116%">' +
+    '<feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="4" result="w"/>' +
+    '<feDisplacementMap in="SourceGraphic" in2="w" scale="5" xChannelSelector="R" yChannelSelector="G" result="d"/>' +
+    '<feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="9" result="k"/>' +
+    '<feColorMatrix in="k" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -11 7.7" result="g"/>' +
+    '<feComposite in="d" in2="g" operator="in"/></filter>';
 
   // Kleine, vaste toevalsmachine: hetzelfde zaadje geeft dezelfde reeks.
   function toeval(zaadje) {
@@ -115,15 +126,21 @@
     // Armen, benen en schoenen nemen de tekstkleur van de pagina over,
     // zodat je ze ook op een donkere achtergrond ziet.
     var lid = lijn ? "#111" : "currentColor";
-    var streep = ' fill="none" stroke="' + inkt + '" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"';
-    var lidStreep = ' fill="none" stroke="' + lid + '" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"';
+    var streep = ' fill="none" stroke="' + inkt + '" stroke-width="' + (lijn ? 5 : 4) + '" stroke-linecap="round" stroke-linejoin="round"';
+    var lidStreep = ' fill="none" stroke="' + lid + '" stroke-width="' + (lijn ? 5 : 3.5) + '" stroke-linecap="round" stroke-linejoin="round"';
 
-    if (!lijn) s.push('<ellipse cx="120" cy="236" rx="58" ry="7" fill="currentColor" opacity=".12"/>');
+    if (!lijn) {
+      s.push("<defs>" + KRIJT + '<clipPath id="bk-l' + zaadje + '"><path d="' + lijf + '"/></clipPath></defs>');
+      s.push('<g filter="url(#bk-krijt)">');
+      // Een krijtkrabbel als schaduw onder de voeten.
+      s.push('<path d="M70 236l20 -5l-12 7l26 -7l-14 7l28 -7l-12 7l26 -6l-10 6l24 -5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity=".22"/>');
+    }
 
-    // Benen en schoenen.
+    // Benen en gele sokjes.
+    var sokRand = ' stroke="' + lid + '" stroke-width="3" stroke-linejoin="round"';
     s.push('<path d="M100 ' + n(onder - 6) + 'V224M140 ' + n(onder - 6) + 'V224"' + lidStreep + "/>");
-    s.push('<ellipse cx="93" cy="226" rx="13" ry="7" fill="' + (lijn ? wit : lid) + '"' + (lijn ? rand : "") + "/>");
-    s.push('<ellipse cx="147" cy="226" rx="13" ry="7" fill="' + (lijn ? wit : lid) + '"' + (lijn ? rand : "") + "/>");
+    s.push('<ellipse cx="93" cy="226" rx="13" ry="7" fill="' + (lijn ? wit : SOK) + '"' + (lijn ? rand : sokRand) + "/>");
+    s.push('<ellipse cx="147" cy="226" rx="13" ry="7" fill="' + (lijn ? wit : SOK) + '"' + (lijn ? rand : sokRand) + "/>");
 
     // Armen.
     var lx = cx - b.breedte + 6, rx = cx + b.breedte - 6;
@@ -136,16 +153,28 @@
       s.push('<path d="M' + n(cx - b.breedte - 2) + " 112C" + n(cx - b.breedte) + " " + n(top - 34) + " " + n(cx + b.breedte) + " " + n(top - 34) + " " + n(cx + b.breedte + 2) + ' 112" fill="none" stroke="' + extraDonker + '" stroke-width="7" stroke-linecap="round"/>');
     }
 
-    s.push('<path d="' + lijf + '" fill="' + vul + '"' + rand + "/>");
+    if (lijn) {
+      s.push('<path d="' + lijf + '" fill="' + vul + '"' + rand + "/>");
+    } else {
+      s.push('<path d="' + lijf + '" fill="' + vul + '"/>');
+      // Arcering: schuine krijtstreken waar het papier doorheen komt.
+      var a = toeval(zaadje + 77), strepen = [];
+      for (var sx = -40; sx < 260; sx += 9) {
+        var j = (a() - 0.5) * 5;
+        strepen.push("M" + n(sx + j) + " 30L" + n(sx + j - 62 + (a() - 0.5) * 8) + " 215");
+      }
+      s.push('<path d="' + strepen.join("") + '" clip-path="url(#bk-l' + zaadje + ')" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" opacity=".34"/>');
+      s.push('<path d="' + lijf + '" fill="none" stroke="' + inkt + '" stroke-width="3.5" stroke-linejoin="round"/>');
+    }
 
     // Kronkels: het groefje in het midden en een paar krullen.
-    var kr = ' fill="none" stroke="' + detail + '" stroke-width="' + (lijn ? 3 : 4) + '" stroke-linecap="round"';
+    var kr = ' fill="none" stroke="' + detail + '" stroke-width="' + (lijn ? 3 : 3.2) + '" stroke-linecap="round"';
     s.push('<path d="M120 ' + n(top + 5) + "q-7 9 0 18t0 18" + '"' + kr + "/>");
     s.push('<path d="M' + n(cx - 46) + " " + n(top + 26) + "q10 -13 22 -2M" + n(cx + 24) + " " + n(top + 24) + "q12 -11 22 2M" + n(cx - 62) + " " + n(cy + 26) + "q4 12 16 10M" + n(cx + 46) + " " + n(cy + 36) + 'q12 2 16 -10"' + kr + "/>");
 
     // Wangen.
-    if (b.wangen && !lijn) {
-      s.push('<circle cx="80" cy="142" r="8" fill="' + b.kleur.donker + '" opacity=".35"/><circle cx="160" cy="142" r="8" fill="' + b.kleur.donker + '" opacity=".35"/>');
+    if (!lijn) {
+      s.push('<ellipse cx="78" cy="143" rx="10" ry="8" fill="' + WANG + '" opacity=".8"/><ellipse cx="162" cy="143" rx="10" ry="8" fill="' + WANG + '" opacity=".8"/>');
     }
 
     // Ogen.
@@ -194,6 +223,7 @@
       s.push('<path d="M118 ' + n(top + 4) + "c-8 -18 14 -30 20 -16c4 10 -10 14 -12 6" + '" fill="none" stroke="' + detail + '" stroke-width="5" stroke-linecap="round"/>');
     }
 
+    if (!lijn) s.push("</g>");
     return s.join("");
   }
 

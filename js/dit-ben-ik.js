@@ -178,7 +178,20 @@ function punten(d){
   (d.t||'').split(/\n+/).forEach(function(s){s=s.trim();if(s)uit.push(s);});
   return uit;
 }
+/* Krijtstijl (huisstijl 3): een stip die met krijt is ingekleurd. */
+function krijtStip(x,y,r,kleur,nr){
+  g.save();g.beginPath();
+  for(var i=0;i<=36;i++){var h=i/36*Math.PI*2,rr2=r*(1+.06*Math.sin(2*h+nr)+.04*Math.sin(3*h+nr*1.7));g.lineTo(x+Math.cos(h)*rr2,y+Math.sin(h)*rr2);}
+  g.closePath();g.fillStyle=kleur;g.fill();g.clip();
+  g.strokeStyle='rgba(255,255,255,.45)';g.lineWidth=Math.max(1.5,r/7);g.lineCap='round';g.beginPath();
+  for(var sx=-r*2;sx<r*2;sx+=Math.max(4,r/2.4)){g.moveTo(x+sx+r*.6,y-r*1.2);g.lineTo(x+sx-r*.6,y+r*1.2);}
+  g.stroke();g.restore();
+}
+/* Het hoofdbreintje onderaan de kaart. Tot het plaatje geladen is, tekenen we het eenvoudige breintje. */
+var hoofdImg=null;
+(function(){var im=new Image();im.onload=function(){hoofdImg=im;try{ververs();}catch(e){}};im.src='beeld/hoofdbreintje.webp';})();
 function breintje(cx,cy,s){
+  if(hoofdImg){var bh=178*s,bw2=bh*hoofdImg.width/hoofdImg.height;g.drawImage(hoofdImg,cx-bw2/2-22,cy-bh*.6,bw2,bh);return;}
   g.save();g.translate(cx,cy);g.scale(s,s);
   g.fillStyle=KLEUR.wang;g.strokeStyle=KLEUR.navy;g.lineWidth=5;g.lineJoin='round';g.lineCap='round';
   g.beginPath();
@@ -192,13 +205,13 @@ function breintje(cx,cy,s){
 }
 function teken(){
   var acc=KLEUR[S.kleur]||KLEUR.geel;
-  g.fillStyle=KLEUR.paarsZacht;g.fillRect(0,0,W,H);
+  g.fillStyle=KLEUR.wit;g.fillRect(0,0,W,H);
   /* stippenrand: groot = lievelingskleur, klein = paars */
   for(var i=0,y=40;y<H+30;i++,y+=64){
-    var groot=i%2===0;g.fillStyle=groot?acc[0]:KLEUR.paars;
-    [46,W-46].forEach(function(x){g.beginPath();g.arc(x,y,groot?20:9,0,Math.PI*2);g.fill();});
+    var groot=i%2===0;
+    [46,W-46].forEach(function(x,z){krijtStip(x,y,groot?21:10,groot?acc[0]:KLEUR.paars,i+z*5);});
   }
-  g.fillStyle=KLEUR.creme;rr(92,46,W-184,H-92,64);g.fill();
+  g.fillStyle=KLEUR.wit;rr(92,46,W-184,H-92,64);g.fill();
 
   /* kop */
   var L=150,fx=955,fy=250,fr=150;
@@ -220,8 +233,7 @@ function teken(){
     g.fillStyle=acc[2];g.save();g.beginPath();g.rect(L,352,pw-20,64);g.clip();g.fillText(ov,L+24,398);g.restore();
   }
   /* foto of tekenrondje */
-  g.fillStyle=acc[0];g.beginPath();g.arc(fx+12,fy+12,fr,0,Math.PI*2);g.fill();
-  g.fillStyle=KLEUR.wit;g.beginPath();g.arc(fx,fy,fr,0,Math.PI*2);g.fill();
+    g.fillStyle=KLEUR.wit;g.beginPath();g.arc(fx,fy,fr,0,Math.PI*2);g.fill();
   if(fotoImg){g.save();g.beginPath();g.arc(fx,fy,fr-6,0,Math.PI*2);g.clip();g.drawImage(fotoImg,fx-fr,fy-fr,fr*2,fr*2);g.restore();}
   else{g.fillStyle=KLEUR.paarsLicht;g.textAlign='center';font(700,46,"'Amatic SC', 'Comic Sans MS', cursive");g.fillText('teken jezelf',fx,fy+16,fr*1.5);g.textAlign='left';}
   g.strokeStyle=acc[0];g.lineWidth=12;g.beginPath();g.arc(fx,fy,fr-6,0,Math.PI*2);g.stroke();
@@ -231,7 +243,6 @@ function teken(){
   var gx=140,gy=468,bw=456,bh=band?286:352,kx=48,ky=band?32:38;
   BLOKKEN.forEach(function(blok,n){
     var c=KLEUR[blok.acc],x=gx+(n%2)*(bw+kx),y0=gy+Math.floor(n/2)*(bh+ky);
-    g.fillStyle=c[0];rr(x+12,y0+12,bw,bh,28);g.fill();
     g.fillStyle=KLEUR.wit;rr(x,y0,bw,bh,28);g.fill();
     g.strokeStyle=c[0];g.lineWidth=8;rr(x+4,y0+4,bw-8,bh-8,24);g.stroke();
     /* kwastlabel */
@@ -263,7 +274,6 @@ function teken(){
 
   if(band){
     var bx=gx,byy=1424,bbw=bw*2+kx,bbh=188;
-    g.fillStyle=KLEUR.paarsLicht;rr(bx+12,byy+12,bbw,bbh,28);g.fill();
     g.fillStyle=KLEUR.wit;rr(bx,byy,bbw,bbh,28);g.fill();
     g.strokeStyle=KLEUR.paars;g.lineWidth=8;rr(bx+4,byy+4,bbw-8,bbh-8,24);g.stroke();
     var bt='Als het te veel wordt, heb ik dit nodig';font(600,31);
