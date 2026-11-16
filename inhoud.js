@@ -125,6 +125,83 @@ window.INHOUD = {
   },
 
   /* ------------------------------------------------------------------
+   * SUPERKRACHTEN
+   * Jezelf leren kennen. Elke superkracht heeft twee kanten: iets wat je
+   * heel goed kunt, en iets wat daardoor soms lastig is. En wat dan helpt.
+   *  intro      : de uitleg bovenaan (wordt ook voorgelezen).
+   *  krachten   : de superkrachten, in de volgorde van de knoppen.
+   *    naam     : het woord op de knop.        beeld  : een breintje uit de map "beeld".
+   *    kleur    : geel, lila, blauw, groen, oranje of roze.
+   *    kop      : de titel als je hem kiest.   kracht : wat je goed kunt.
+   *    andereKant : wat daardoor soms lastig is.   helpt : wat dan kan helpen.
+   *    groteMensen : een tip voor ouders en juffen (staat achter een knopje).
+   *    liedje, audio : (mag leeg) een liedje dat erbij past.
+   *  groteMensen : het stukje voor ouders onderaan de pagina.
+   *  afsluiter  : het liedje aan het eind.
+   * ------------------------------------------------------------------ */
+  superkrachten: {
+    intro: "Elk breintje kan iets heel goed. Dat is jouw superkracht.\n\nEen superkracht heeft twee kanten. Waar je heel goed in bent, maakt sommige dingen ook lastig. Dat is niet erg. Als je weet hoe jouw breintje werkt, weet je ook wat jou helpt.",
+    krachten: [
+      {
+        naam: "Superoren", beeld: "breintje-koptelefoon", kleur: "lila",
+        kop: "Ik hoor heel goed",
+        kracht: "Jij hoort de vogel al voordat een ander hem ziet. Jij hoort het als iemand zachtjes iets zegt.",
+        andereKant: "Harde geluiden kunnen pijn doen. Een drukke klas klinkt dan als een storm in je oren.",
+        helpt: "Een koptelefoon, of je handen op je oren. Zeg: \"Het is me te hard.\"",
+        groteMensen: "Gevoeligheid voor geluid is echt, ook als het voor jou zacht klinkt. Een koptelefoon is geen verwennerij, maar een hulpmiddel. Spreek een teken af dat je kind kan geven als het te veel wordt.",
+        liedje: "Overprikkeling", audio: "liedjes/overprikkeling.mp3"
+      },
+      {
+        naam: "Raket", beeld: "breintje-vol-energie", kleur: "oranje",
+        kop: "Ik heb heel veel energie",
+        kracht: "Jij kunt rennen, springen en dansen. Met jou wordt alles een feestje.",
+        andereKant: "Stilzitten en wachten is soms heel moeilijk. Je lijf wil gewoon bewegen.",
+        helpt: "Eerst bewegen, dan zitten. Stamp als een olifant, of knijp in een balletje.",
+        groteMensen: "Bewegen helpt veel kinderen juist om op te letten. Een wiebelkussen, een balletje in de hand of een korte beweegpauze werkt vaak beter dan \"zit nou eens stil\"."
+      },
+      {
+        naam: "Diepduiker", beeld: "breintje-bril", kleur: "blauw",
+        kop: "Ik kan heel diep ergens in duiken",
+        kracht: "Als jij iets leuk vindt, weet je er alles van. Dino's, treinen, sterren: jij bent de expert.",
+        andereKant: "Stoppen is dan moeilijk. \"Nu opruimen!\" voelt als een plons koud water.",
+        helpt: "Vraag om een seintje vooraf: \"Nog vijf minuten.\" Dan kan je hoofd alvast klaarstaan.",
+        groteMensen: "Overgangen kosten deze kinderen veel energie. Waarschuw op tijd, gebruik een zandloper of timer, en vertel wat er hierna komt. Een groot eigen interesse is een kracht: gebruik het om nieuwe dingen te leren."
+      },
+      {
+        naam: "Groot hart", beeld: "breintje-iemand-missen", kleur: "roze",
+        kop: "Ik voel heel goed hoe het met anderen gaat",
+        kracht: "Jij merkt meteen als iemand verdrietig is. Jij bent een lieve vriend.",
+        andereKant: "Je voelt ook de boze en verdrietige gevoelens van anderen. Dat kan zwaar zijn.",
+        helpt: "Weet: dat gevoel is van de ander, niet van jou. Vertel het aan een grote mens.",
+        groteMensen: "Gevoelige kinderen nemen de stemming in huis snel over. Zeg hardop wat je ziet: \"Papa is moe, dat komt niet door jou.\" Dan hoeft je kind het niet zelf te dragen."
+      },
+      {
+        naam: "Dromer", beeld: "breintje-rustig", kleur: "groen",
+        kop: "Ik heb heel veel fantasie",
+        kracht: "In jouw hoofd kan alles. Draken, kastelen, een reis naar de maan.",
+        andereKant: "Soms droom je weg en hoor je niet wat de juf zei. Of je fantasie maakt iets enger dan het is.",
+        helpt: "Een tikje op je schouder om terug te komen. Teken je enge gedachte, en prop het blad dan weg.",
+        groteMensen: "Wegdromen is geen onwil. Kom dichtbij, zeg de naam van je kind of raak het zacht aan voordat je iets vraagt. En geef één opdracht tegelijk."
+      },
+      {
+        naam: "Eerlijk", beeld: "breintje-trots", kleur: "geel",
+        kop: "Ik vind eerlijk heel belangrijk",
+        kracht: "Jij zegt wat je denkt. En jij komt op voor een ander.",
+        andereKant: "Als iets niet eerlijk gaat, word je heel boos. En wat jij eerlijk zegt, kan een ander soms pijn doen.",
+        helpt: "Eerst drie keer ademen. Dan samen bedenken: hoe zeg ik het lief?",
+        groteMensen: "Een sterk gevoel voor eerlijkheid is een mooie eigenschap. Help je kind de boosheid te benoemen (\"Je vindt dit niet eerlijk, hè?\") en oefen samen hoe je iets eerlijk én vriendelijk zegt.",
+        liedje: "Boos", audio: "liedjes/boos.mp3"
+      }
+    ],
+    groteMensen: "Wat een kind lastig vindt, is vaak de andere kant van waar het goed in is. Als een kind dat leert zien, gaat het niet meer over \"wat er mis is met mij\", maar over \"zo werkt mijn breintje, en dit helpt mij\". Dat is waar psycho-educatie om draait. Praat er samen over, en laat je kind zelf zeggen welke superkrachten bij hem of haar passen.",
+    afsluiter: {
+      titel: "Ik ben ik en jij bent jij",
+      uitleg: "Iedereen heeft andere superkrachten. Dat maakt het juist leuk.",
+      audio: "liedjes/ik-ben-ik-en-jij-bent-jij.mp3"
+    }
+  },
+
+  /* ------------------------------------------------------------------
    * LIEDJES
    *  titel : de naam van het liedje
    *  audio : het geluidsbestand, bijvoorbeeld "liedjes/lentekriebels.mp3"

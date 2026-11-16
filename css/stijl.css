@@ -364,6 +364,19 @@ h1 { font-size: clamp(2.3rem, 6vw, 4rem); }
 .weer-helpt b { display: block; font-weight: 600; color: var(--donker); }
 .weer-kaart .lied { width: 100%; max-width: 34rem; margin-right: 0; border-width: 3px; --dik: 3px; }
 :root[data-rustig="aan"] .weer-beeld { filter: url(#krijt-fijn) saturate(.45); }
+/* ---------- Superkrachten ---------- */
+.sk-knop-beeld { display: block; width: 5.5rem; height: 5.5rem; object-fit: contain; }
+:root[data-rustig="aan"] .sk-knop-beeld { filter: saturate(.45); }
+.sk-intro { display: grid; gap: 1rem; justify-items: start; max-width: 44rem; }
+.sk-intro-tekst { display: grid; gap: .8rem; font-size: 1.3rem; line-height: 1.45; }
+.sk-andere { padding: .8rem 1.1rem; border-radius: 16px; border: 3px dashed var(--kleur); font-size: 1.15rem; max-width: 38ch; }
+.sk-andere b { display: block; font-weight: 600; color: var(--donker); }
+.sk-groot { width: 100%; max-width: 38rem; font-size: 1.05rem; }
+.sk-groot summary { cursor: pointer; font-weight: 600; color: var(--paars-diep); }
+.sk-groot p { margin-top: .5rem; line-height: 1.5; }
+.sk-kaart-tip { display: grid; gap: 1rem; justify-items: start; max-width: 44rem; font-size: 1.2rem; }
+.sk-voor-groot { display: grid; gap: .7rem; padding: 1.25rem 1.5rem; max-width: 44rem; border-radius: var(--r-md); background: var(--paars-zacht); font-size: 1.1rem; line-height: 1.5; }
+.sk-voor-groot h3 { font-size: 1.4rem; }
 @media (max-width: 40rem) {
   .weer-keuzes { grid-template-columns: repeat(2, 1fr); }
   .weer-kaart { grid-template-columns: 1fr; padding: 1.25rem 1.2rem; }

@@ -506,6 +506,115 @@
     ].forEach(function (deel) { if (deel) plek.appendChild(deel); });
   })();
 
+  /* ---------- Superkrachten ---------- */
+
+  (function () {
+    var sk = inhoud.superkrachten;
+    var plek = document.getElementById("superkrachten-plek");
+    if (!plek || !sk) return;
+
+    function lied(titel, audio, boven, uitleg) {
+      if (!titel) return null;
+      var links, onder;
+      if (audio) {
+        var s = speler(audio, titel);
+        links = s.knop;
+        onder = s.balk;
+      } else {
+        links = el("span", { class: "rondje" }, icoon("noot"));
+        onder = el("p", { class: "nog-niet", tekst: "De muziek komt nog." });
+      }
+      return el("article", { class: "lied" }, [links, el("div", { class: "lied-midden" }, [
+        boven ? el("p", { class: "klein", tekst: boven }) : null,
+        el("h3", { tekst: titel }),
+        onder,
+        uitleg ? el("p", { tekst: uitleg }) : null
+      ])]);
+    }
+
+    function stap(kop, kinderen) {
+      return el("div", { class: "weer-stap" }, [el("h3", { tekst: kop })].concat(kinderen));
+    }
+
+    // 1. Uitleg
+    var introId = "sk-intro";
+    var intro = el("div", { class: "sk-intro" }, [
+      el("div", { class: "sk-intro-tekst", id: introId }, alineas(sk.intro)),
+      voorleesKnop(introId)
+    ]);
+
+    // 2. Kies een superkracht
+    var krachten = sk.krachten || [];
+    var keuzes = el("div", { class: "weer-keuzes" });
+    var hint = el("p", { class: "weer-hint", tekst: "Tik op een superkracht. Bekijk ze gerust allemaal: misschien heb jij er wel meer!" });
+    var toon = el("div", { class: "weer-toon" }, hint);
+    var knoppen = [], kaarten = [];
+
+    function kies(nummer) {
+      knoppen.forEach(function (k, i) { k.setAttribute("aria-pressed", i === nummer ? "true" : "false"); });
+      kaarten.forEach(function (k, i) { k.hidden = i !== nummer; });
+      hint.hidden = true;
+      stopAnderen(null);
+      if (window.speechSynthesis) window.speechSynthesis.cancel();
+    }
+
+    krachten.forEach(function (k, i) {
+      var klein = plaatje(k.beeld);
+      klein.setAttribute("class", "sk-knop-beeld");
+      var knop = el("button", { class: "weer-keuze is-" + k.kleur, type: "button", "aria-pressed": "false" }, [
+        klein, el("span", { tekst: k.naam })
+      ]);
+      knop.addEventListener("click", function () { kies(i); });
+      knoppen.push(knop);
+      keuzes.appendChild(knop);
+
+      var id = "sktekst-" + i;
+      var groot = plaatje(k.beeld);
+      groot.setAttribute("class", "weer-beeld weer-breintje");
+      var kaart = el("article", { class: "weer-kaart is-" + k.kleur, hidden: "" }, [
+        groot,
+        el("div", { class: "weer-tekst" }, [
+          el("div", { class: "weer-woorden", id: id }, [
+            el("p", { class: "klein", tekst: "Superkracht: " + k.naam }),
+            el("h3", { tekst: k.kop }),
+            el("p", { class: "weer-gevoel", tekst: k.kracht }),
+            k.andereKant ? el("p", { class: "sk-andere" }, [el("b", { tekst: "De andere kant. " }), k.andereKant]) : null,
+            k.helpt ? el("p", { class: "weer-helpt" }, [el("b", { tekst: "Dit helpt. " }), k.helpt]) : null
+          ]),
+          voorleesKnop(id),
+          lied(k.liedje, k.audio, "Het liedje hierbij"),
+          k.groteMensen ? el("details", { class: "sk-groot" }, [
+            el("summary", { tekst: "Voor grote mensen" }),
+            el("p", { tekst: k.groteMensen })
+          ]) : null
+        ])
+      ]);
+      kaarten.push(kaart);
+      toon.appendChild(kaart);
+    });
+
+    // 3. Op je eigen kaart
+    var kaartStap = el("div", { class: "sk-kaart-tip" }, [
+      el("p", { tekst: "Weet je nu wat jouw superkrachten zijn? Zet ze op je Dit ben ik-kaart. Daar schrijf je ook wat je moeilijk vindt en wat jou helpt. Dan weet de juf het ook." }),
+      el("a", { class: "knop", href: "#dit-ben-ik", tekst: "Maak je kaart" })
+    ]);
+
+    var slot = sk.afsluiter || {};
+    var groot = sk.groteMensen ? el("div", { class: "sk-voor-groot" }, [
+      el("h3", { tekst: "Voor grote mensen" }),
+      el("p", { tekst: sk.groteMensen }),
+      el("p", {}, ["Meer advies van Nicky voor ouders vind je in ", el("a", { href: "#club-plus", tekst: "Breintjes-club Plus" }), "."])
+    ]) : null;
+
+    [
+      stap("1. Iedereen heeft superkrachten", [intro]),
+      stap("2. Welke superkracht heb jij?", [keuzes, toon]),
+      stap("3. Zet het op je kaart", [kaartStap]),
+      slot.titel ? stap("4. Tot slot", [lied(slot.titel, slot.audio, "", slot.uitleg)]) : null,
+      groot
+    ].forEach(function (deel) { if (deel) plek.appendChild(deel); });
+  })();
+
   /* ---------- Tabbladen ---------- */
 
   var paginas = [].slice.call(document.querySelectorAll(".pagina"));
