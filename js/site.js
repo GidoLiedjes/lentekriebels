@@ -78,7 +78,7 @@
   var BREINTJES = [
     { naam: "Billie", beeld: "hoofdbreintje", houdtVan: "knuffels" },
     { naam: "Lisa", beeld: "breintje-bril", houdtVan: "heel veel vragen" },
-    { naam: "Nicky", beeld: "breintje-lang", houdtVan: "torens bouwen" },
+    { naam: "Nicky", beeld: "breintje-lang", houdtVan: "zingen" },
     { naam: "Gido", beeld: "breintje-sportief", houdtVan: "springen" },
     { naam: "Juul", beeld: "breintje-nerveus", houdtVan: "alles op een rij zetten" },
     { naam: "Hetty", beeld: "breintje-koptelefoon", houdtVan: "stilte" },
