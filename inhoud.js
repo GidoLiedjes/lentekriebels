@@ -208,6 +208,7 @@ window.INHOUD = {
    *  meten    : het liedje vooraf.
    *  plekken  : de plekken op het lijf, in de volgorde van de knoppen.
    *    plek   : waar het stipje komt. Kies uit: hoofd, wangen, keel, hart, buik, handen.
+   *    stip   : (mag weg) eigen plek voor het stipje: [links, boven] in procenten.
    *    kleur  : geel, lila, blauw, groen, oranje of roze.
    *    naam   : het woord op de knop.       beeld : een breintje uit de map "beeld".
    *    kop    : de titel als je de plek kiest.
@@ -220,10 +221,15 @@ window.INHOUD = {
    * ------------------------------------------------------------------ */
   lijfkompas: {
     meten: {
-      titel: "Thermometer",
-      uitleg: "Sta even stil. Voel van je hoofd tot je tenen. Waar merk je iets?",
-      audio: "liedjes/thermometer.mp3"
+      titel: "Wat voel jij vandaag?",
+      uitleg: "Zing mee. En voel daarna van je hoofd tot je tenen: waar merk je iets?",
+      audio: "liedjes/wat-voel-jij-vandaag.mp3"
     },
+    /* figuur : (mag leeg) een plaatje van het poppetje, bijvoorbeeld
+                "beeld/lijf-poppetje.webp". Leeg = het getekende poppetje.
+       Past een stipje niet op het nieuwe poppetje? Zet dan bij die plek
+       stip: [links, boven] in procenten, bijvoorbeeld stip: [50, 8].     */
+    figuur: "",
     plekken: [
       {
         plek: "hoofd", kleur: "lila", naam: "Hoofd", beeld: "breintje-overprikkeld",

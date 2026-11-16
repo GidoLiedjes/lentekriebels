@@ -651,14 +651,19 @@
       return el("div", { class: "weer-stap" }, [el("h3", { tekst: kop })].concat(kinderen));
     }
 
-    var ns = "http://www.w3.org/2000/svg";
-    var svg = document.createElementNS(ns, "svg");
-    svg.setAttribute("viewBox", "0 0 200 320");
-    svg.setAttribute("aria-hidden", "true");
-    var use = document.createElementNS(ns, "use");
-    use.setAttribute("href", "#lijf-figuur");
-    svg.appendChild(use);
-    var figuur = el("div", { class: "lijf-figuur" }, svg);
+    var beeldFiguur;
+    if (lk.figuur) {
+      beeldFiguur = el("img", { src: lk.figuur, alt: "" });
+    } else {
+      var ns = "http://www.w3.org/2000/svg";
+      beeldFiguur = document.createElementNS(ns, "svg");
+      beeldFiguur.setAttribute("viewBox", "0 0 200 320");
+      beeldFiguur.setAttribute("aria-hidden", "true");
+      var use = document.createElementNS(ns, "use");
+      use.setAttribute("href", "#lijf-figuur");
+      beeldFiguur.appendChild(use);
+    }
+    var figuur = el("div", { class: "lijf-figuur" + (lk.figuur ? " is-plaatje" : "") }, beeldFiguur);
 
     var plekken = lk.plekken || [];
     var keuzes = el("div", { class: "lijf-keuzes" });
@@ -676,7 +681,7 @@
     }
 
     plekken.forEach(function (p, i) {
-      (STIPPEN[p.plek] || []).forEach(function (xy, n) {
+      (p.stip ? [p.stip] : (STIPPEN[p.plek] || [])).forEach(function (xy, n) {
         var stip = el("button", { class: "lijf-stip is-" + p.kleur, type: "button", "aria-pressed": "false",
           "aria-label": p.naam, style: "left:" + xy[0] + "%;top:" + xy[1] + "%" });
         if (n) { stip.setAttribute("aria-hidden", "true"); stip.setAttribute("tabindex", "-1"); }
