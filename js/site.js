@@ -783,6 +783,17 @@
   /* ---------- Tabbladen ---------- */
 
   var paginas = [].slice.call(document.querySelectorAll(".pagina"));
+
+  // Elk onderdeel krijgt bovenaan een knopje terug naar zijn groep.
+  paginas.forEach(function (p) {
+    var g = p.getAttribute("data-groep");
+    var doel = g && document.getElementById(g);
+    var binnen = p.querySelector(".binnen");
+    if (!doel || !binnen) return;
+    var kop = doel.querySelector("h2");
+    var terug = el("a", { class: "terug", href: "#" + g }, ["← " + (kop ? kop.textContent.trim() : "Terug")]);
+    binnen.insertBefore(terug, binnen.firstChild);
+  });
   var tabs = [].slice.call(document.querySelectorAll(".tab"));
   var basisTitel = document.title;
 
@@ -797,8 +808,10 @@
       naam = "thuis";
     }
     paginas.forEach(function (p) { p.hidden = p !== gekozen; });
+    // Een onderdeel hoort bij een groep; dan licht de knop van die groep op.
+    var groep = gekozen.getAttribute("data-groep") || naam;
     tabs.forEach(function (t) {
-      if (t.getAttribute("href") === "#" + naam) t.setAttribute("aria-current", "page");
+      if (t.getAttribute("href") === "#" + groep) t.setAttribute("aria-current", "page");
       else t.removeAttribute("aria-current");
     });
 
