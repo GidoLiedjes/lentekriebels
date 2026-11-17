@@ -18,9 +18,8 @@
 </script>
 <style>
 .thema-beeld { width: 72%; display: block; margin-inline: auto; }
-.rondje-groot { width: 6.5rem; height: 6.5rem; }
-.rondje-breintje { width: 4.4rem; height: 4.4rem; object-fit: contain; }
-@media (max-width: 640px) { .rondje-groot { width: 5.5rem; height: 5.5rem; } .rondje-breintje { width: 3.7rem; height: 3.7rem; } }
+.kop-breintje { flex: none; width: 6.5rem; height: 6.5rem; object-fit: contain; }
+@media (max-width: 640px) { .kop-breintje { width: 5rem; height: 5rem; } }
 .themavak { max-width: 52rem; }
 .nogleeg { font-size: 1.15rem; border: 3px dashed var(--paars-licht); border-radius: var(--r-sm); padding: .8rem 1rem; color: var(--paars-diep); background: var(--creme); display: inline-block; }
 .video-vak video { width: 100%; height: auto; border-radius: var(--r-sm); background: #fffefb; }
@@ -138,7 +137,7 @@
   <section class="pagina is-lila" id="weetje">
     <div class="binnen">
       <div class="blok-kop">
-        <span class="rondje rondje-groot"><img class="rondje-breintje" src="beeld/breintje-bril.webp" alt=""></span>
+        <img class="kop-breintje" src="beeld/breintje-bril.webp" alt="">
         <div><h2 id="weetje-kop">Weetje Watje</h2><p>Weet je wat?</p></div>
       </div>
       <div class="club-kaart themavak">
