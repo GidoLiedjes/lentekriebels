@@ -16,8 +16,20 @@
     if (localStorage.getItem("bb-rustig") === "aan") document.documentElement.setAttribute("data-rustig", "aan");
   } catch (e) {}
 </script>
+<style>
+.thema-beeld { width: 72%; display: block; margin-inline: auto; }
+.rondje-breintje { width: 2.6rem; height: 2.6rem; object-fit: contain; }
+.themavak { max-width: 52rem; }
+.nogleeg { font-size: 1.15rem; border: 3px dashed var(--paars-licht); border-radius: var(--r-sm); padding: .8rem 1rem; color: var(--paars-diep); background: var(--creme); display: inline-block; }
+.video-vak video { width: 100%; height: auto; border-radius: var(--r-sm); background: #fffefb; }
+.hoorspel-rij { display: grid; grid-template-columns: 11rem 1fr; gap: 1.4rem; align-items: center; }
+.hoorspel-rij h3 { font-weight: 700; font-size: clamp(1.5rem, 5vw, 2rem); }
+.hoorspel-beeld { width: 100%; }
+@media (max-width: 640px) { .hoorspel-rij { grid-template-columns: 1fr; } .hoorspel-beeld { width: 9rem; } }
+</style>
 </head>
-<body>
+<body id="top">
+<script>try{if(localStorage.getItem("bb-rustig")==="aan")document.documentElement.setAttribute("data-rustig","aan")}catch(e){}</script>
 
 <svg class="verstopt" aria-hidden="true" focusable="false">
   <!-- Krijtstijl (huisstijl 3): wiebelige lijn en papier dat door de kleur schijnt. -->
@@ -91,11 +103,10 @@
 
 <header class="kop" id="top">
   <div class="binnen kop-rij">
-    <a class="logo" href="#thuis" aria-label="Bijzondere Breintjes, naar het begin">
+    <a class="logo" href="#top" aria-label="Bijzondere Breintjes, naar het begin">
       <img class="logo-plaat" src="beeld/logo.webp" alt="" width="810" height="300">
     </a>
     <div class="kop-knoppen">
-      <a class="kop-link" href="#grote-mensen">Voor grote mensen</a>
       <button class="rustig" id="rustig-knop" type="button" aria-pressed="false" title="Minder kleur en geen beweging">
         <span class="schuif" aria-hidden="true"></span>Rustig
       </button>
@@ -103,358 +114,87 @@
   </div>
 </header>
 
-<nav class="tabs" id="tabs" aria-label="Kies wat je wilt doen">
-  <div class="binnen tabs-rij">
-    <a class="tab is-neutraal" href="#thuis"><svg aria-hidden="true"><use href="#i-thuis"/></svg>Thuis</a>
-    <a class="tab is-geel" href="#liedjes"><svg aria-hidden="true"><use href="#i-noot"/></svg>Liedjes</a>
-    <a class="tab is-oranje" href="#verhaaltjes"><svg aria-hidden="true"><use href="#i-boek"/></svg>Verhaaltjes</a>
-    <a class="tab is-lila" href="#rustmoment"><svg aria-hidden="true"><use href="#i-maan"/></svg>Rustmoment</a>
-    <a class="tab is-groen" href="#oefeningen"><svg aria-hidden="true"><use href="#i-sprong"/></svg>Oefeningen</a>
-    <a class="tab is-roze" href="#knutselen"><svg aria-hidden="true"><use href="#i-schaar"/></svg>Knutselen</a>
-    <a class="tab is-blauw" href="#filmpjes"><svg aria-hidden="true"><use href="#i-speel"/></svg>Filmpjes</a>
-    <a class="tab is-paars" href="#tekeningen"><svg aria-hidden="true"><use href="#i-potlood"/></svg>Tekeningen</a>
-    <span class="tabs-streep" aria-hidden="true"></span>
-    <a class="tab is-neutraal" href="#dit-ben-ik"><svg aria-hidden="true"><use href="#i-kaart"/></svg>Dit ben ik</a>
-    <a class="tab is-neutraal" href="#superkrachten"><svg aria-hidden="true"><use href="#i-bliksem"/></svg>Superkrachten</a>
-    <a class="tab is-neutraal" href="#lijfkompas"><svg aria-hidden="true"><use href="#i-kompas"/></svg>Lijfkompas</a>
-    <a class="tab is-neutraal" href="#weerbericht"><svg aria-hidden="true"><use href="#i-zon"/></svg>Weerbericht</a>
-    <a class="tab is-neutraal" href="#club-plus"><svg aria-hidden="true"><use href="#i-plus"/></svg>Club Plus</a>
-    <a class="tab is-neutraal" href="#wie-zijn-wij"><svg aria-hidden="true"><use href="#i-ster"/></svg>Wie zijn wij</a>
-  </div>
-</nav>
-
 <main id="inhoud">
 
-  <!-- ===== Thuis ===== -->
-  <section class="pagina" id="thuis" aria-labelledby="thuis-kop" tabindex="-1">
+  <!-- ===== Thema van de maand ===== -->
+  <section class="pagina" id="thema">
     <div class="binnen">
       <div class="held-rij">
         <div class="held-tekst">
-          <p class="soort">VOOR KINDEREN VAN 3 TOT 8 JAAR</p>
-          <h1 id="thuis-kop">Elk breintje is <span class="kronkel">bijzonder</span>.</h1>
-          <p class="intro" id="intro-tekst">Hier vind je liedjes, verhaaltjes, rustmomenten, oefeningen en knutsels. Voor kinderen met een bijzonder breintje. En voor hun grote mensen.</p>
-          <button class="leesvoor" type="button" data-leesvoor="intro-tekst" hidden><svg aria-hidden="true"><use href="#i-geluid"/></svg><span>Lees voor</span></button>
+          <p class="soort">THEMA VAN DE MAAND</p>
+          <h1 id="thema-kop">Achter je <span class="kronkel">masker</span></h1>
+          <p class="intro">Wie ben jij echt? Soms zet je een masker op. Dan lach je, terwijl je vanbinnen iets anders voelt. Deze maand kijken we samen achter het masker.</p>
         </div>
         <div class="podium">
-          <div class="podium-vlak"><div class="podium-breintje" id="podium-breintje"></div></div>
-          <p class="podium-tekst" id="podium-tekst" aria-live="polite"></p>
-          <button class="knop" id="nog-een" type="button">Nog een breintje</button>
-          <p class="klein">Elk breintje is anders.</p>
+          <div class="podium-vlak"><img class="thema-beeld" src="beeld/breintje-masker-af.webp" alt="Breintje dat zijn masker afzet"></div>
+          <p class="klein">Je mag laten zien hoe je je echt voelt.</p>
         </div>
-      </div>
-
-      <h2 class="kies-kop">Wat wil je doen?</h2>
-      <div class="wegwijzer">
-        <a class="wijzer is-geel" href="#liedjes"><span class="rondje"><svg aria-hidden="true"><use href="#i-noot"/></svg></span>Liedjes</a>
-        <a class="wijzer is-oranje" href="#verhaaltjes"><span class="rondje"><svg aria-hidden="true"><use href="#i-boek"/></svg></span>Verhaaltjes</a>
-        <a class="wijzer is-lila" href="#rustmoment"><span class="rondje"><svg aria-hidden="true"><use href="#i-maan"/></svg></span>Rustmoment</a>
-        <a class="wijzer is-groen" href="#oefeningen"><span class="rondje"><svg aria-hidden="true"><use href="#i-sprong"/></svg></span>Oefeningen</a>
-        <a class="wijzer is-roze" href="#knutselen"><span class="rondje"><svg aria-hidden="true"><use href="#i-schaar"/></svg></span>Knutselen</a>
-        <a class="wijzer is-blauw" href="#filmpjes"><span class="rondje"><svg aria-hidden="true"><use href="#i-speel"/></svg></span>Filmpjes</a>
-        <a class="wijzer is-paars" href="#tekeningen"><span class="rondje"><svg aria-hidden="true"><use href="#i-potlood"/></svg></span>Tekeningen</a>
-        <a class="wijzer is-neutraal" href="#dit-ben-ik"><span class="rondje"><svg aria-hidden="true"><use href="#i-kaart"/></svg></span>Dit ben ik-kaart</a>
-        <a class="wijzer is-neutraal" href="#superkrachten"><span class="rondje"><svg aria-hidden="true"><use href="#i-bliksem"/></svg></span>Superkrachten</a>
-        <a class="wijzer is-neutraal" href="#lijfkompas"><span class="rondje"><svg aria-hidden="true"><use href="#i-kompas"/></svg></span>Lijfkompas</a>
-        <a class="wijzer is-neutraal" href="#weerbericht"><span class="rondje"><svg aria-hidden="true"><use href="#i-zon"/></svg></span>Weerbericht</a>
-      </div>
-
-      <div class="club-strook">
-        <div>
-          <p class="soort">BREINTJES-CLUB PLUS</p>
-          <h2>Elke maand iets nieuws om samen te voelen</h2>
-          <p>Een liedje, een voorleesverhaaltje, een rustmoment, een printblad en een tip voor ouders.</p>
-        </div>
-        <a class="knop" href="#club-plus">Bekijk de club</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== Liedjes ===== -->
-  <section class="pagina is-geel" id="liedjes" aria-labelledby="liedjes-kop" tabindex="-1" hidden>
+  <!-- ===== Weetje Watje ===== -->
+  <section class="pagina is-lila" id="weetje">
+    <div class="binnen">
+      <div class="blok-kop">
+        <span class="rondje"><img class="rondje-breintje" src="beeld/breintje-bril.webp" alt=""></span>
+        <div><h2 id="weetje-kop">Weetje Watje</h2><p>Weet je wat?</p></div>
+      </div>
+      <div class="club-kaart themavak">
+        <p class="nogleeg">Hier komt het verhaaltje van Nicky.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Liedje ===== -->
+  <section class="pagina is-geel" id="liedje">
     <div class="binnen">
       <div class="blok-kop">
         <span class="rondje"><svg aria-hidden="true"><use href="#i-noot"/></svg></span>
-        <div><h2 id="liedjes-kop">Liedjes</h2><p>Luister en zing mee.</p></div>
+        <div><h2 id="liedje-kop">Liedje</h2><p>Ik hoef niet altijd blij te zijn.</p></div>
       </div>
-      <div class="liedjes" id="liedjes-lijst"></div>
+      <div class="club-kaart themavak video-vak">
+        <video controls preload="metadata" playsinline width="1920" height="1080">
+          <source src="thema/ik-hoef-niet-altijd-blij-te-zijn.mp4" type="video/mp4">
+        </video>
+        <p class="klein">Druk zelf op de startknop. Je mag zo vaak luisteren als je wilt.</p>
+      </div>
     </div>
   </section>
 
-  <!-- ===== Verhaaltjes ===== -->
-  <section class="pagina is-oranje" id="verhaaltjes" aria-labelledby="verhaaltjes-kop" tabindex="-1" hidden>
-    <div class="binnen">
-      <div class="blok-kop">
-        <span class="rondje"><svg aria-hidden="true"><use href="#i-boek"/></svg></span>
-        <div><h2 id="verhaaltjes-kop">Verhaaltjes</h2><p>Lees mee. Of laat het voorlezen.</p></div>
-      </div>
-      <div class="verhalen" id="verhaaltjes-lijst"></div>
-    </div>
-  </section>
-
-  <!-- ===== Rustmoment ===== -->
-  <section class="pagina is-lila" id="rustmoment" aria-labelledby="rust-kop" tabindex="-1" hidden>
-    <div class="binnen">
-      <div class="blok-kop">
-        <span class="rondje"><svg aria-hidden="true"><use href="#i-maan"/></svg></span>
-        <div><h2 id="rust-kop">Rustmoment</h2><p>Even stil worden. Het hoeft niet te lukken.</p></div>
-      </div>
-      <div class="stappen-lijst" id="rustmoment-lijst"></div>
-    </div>
-  </section>
-
-  <!-- ===== Oefeningen ===== -->
-  <section class="pagina is-groen" id="oefeningen" aria-labelledby="oefen-kop" tabindex="-1" hidden>
+  <!-- ===== Oefening ===== -->
+  <section class="pagina is-groen" id="oefening">
     <div class="binnen">
       <div class="blok-kop">
         <span class="rondje"><svg aria-hidden="true"><use href="#i-sprong"/></svg></span>
-        <div><h2 id="oefen-kop">Oefeningen</h2><p>Kom uit je stoel. Doe mee.</p></div>
+        <div><h2 id="oefening-kop">Oefening</h2><p>Maskers op, maskers af.</p></div>
       </div>
-      <div class="stappen-lijst" id="oefeningen-lijst"></div>
+      <div class="stappen-kaart themavak">
+        <ol>
+          <li>Ga samen voor de spiegel staan. Of kijk elkaar aan.</li>
+          <li>Zet je blije masker op: lach zo breed als je kunt!</li>
+          <li>Nu je boze masker. Frons maar flink.</li>
+          <li>Schud je gezicht los: brrr!</li>
+          <li>En nu&hellip; je echte gezicht. Hoe kijkt dat vandaag?</li>
+          <li>Zeg maar hardop: zo voel ik mij. En dat mag.</li>
+        </ol>
+      </div>
     </div>
   </section>
 
-  <!-- ===== Knutselen ===== -->
-  <section class="pagina is-roze" id="knutselen" aria-labelledby="knutsel-kop" tabindex="-1" hidden>
+  <!-- ===== Hoorspel ===== -->
+  <section class="pagina is-oranje" id="hoorspel">
     <div class="binnen">
       <div class="blok-kop">
-        <span class="rondje"><svg aria-hidden="true"><use href="#i-schaar"/></svg></span>
-        <div><h2 id="knutsel-kop">Knutselen</h2><p>Maak iets met je handen.</p></div>
+        <span class="rondje"><svg aria-hidden="true"><use href="#i-boek"/></svg></span>
+        <div><h2 id="hoorspel-kop">Hoorspel</h2><p>Het masker van Max.</p></div>
       </div>
-      <div class="stappen-lijst" id="knutselen-lijst"></div>
-    </div>
-  </section>
-
-  <!-- ===== Filmpjes ===== -->
-  <section class="pagina is-blauw" id="filmpjes" aria-labelledby="filmpjes-kop" tabindex="-1" hidden>
-    <div class="binnen">
-      <div class="blok-kop">
-        <span class="rondje"><svg aria-hidden="true"><use href="#i-speel"/></svg></span>
-        <div><h2 id="filmpjes-kop">Filmpjes</h2><p>Kijk maar. Je mag zo vaak kijken als je wilt.</p></div>
-      </div>
-      <div class="filmpjes" id="filmpjes-lijst"></div>
-    </div>
-  </section>
-
-  <!-- ===== Tekeningen ===== -->
-  <section class="pagina is-paars" id="tekeningen" aria-labelledby="tekeningen-kop" tabindex="-1" hidden>
-    <div class="binnen">
-      <div class="blok-kop">
-        <span class="rondje"><svg aria-hidden="true"><use href="#i-potlood"/></svg></span>
-        <div><h2 id="tekeningen-kop">Tekeningen</h2><p>Print een kleurplaat. Kleur het breintje zoals jij wilt.</p></div>
-      </div>
-      <div class="tekeningen" id="tekeningen-lijst"></div>
-    </div>
-  </section>
-
-  <!-- ===== Weerbericht ===== -->
-  <section class="pagina is-neutraal" id="weerbericht" aria-labelledby="weer-kop" tabindex="-1" hidden>
-    <div class="binnen">
-      <div class="blok-kop">
-        <span class="rondje"><svg aria-hidden="true"><use href="#i-zon"/></svg></span>
-        <div><h2 id="weer-kop">Weerbericht</h2><p>Hoe is het weer in jouw hoofd? Elk weer mag er zijn.</p></div>
-      </div>
-      <div class="weer" id="weer-plek"></div>
-    </div>
-  </section>
-
-  <!-- ===== Superkrachten ===== -->
-  <section class="pagina is-neutraal" id="superkrachten" aria-labelledby="sk-kop" tabindex="-1" hidden>
-    <div class="binnen">
-      <div class="blok-kop">
-        <span class="rondje"><svg aria-hidden="true"><use href="#i-bliksem"/></svg></span>
-        <div><h2 id="sk-kop">Superkrachten</h2><p>Leer je eigen breintje kennen. Wat kun jij heel goed, en wat vind je lastig?</p></div>
-      </div>
-      <div class="weer" id="superkrachten-plek"></div>
-    </div>
-  </section>
-
-  <!-- ===== Lijfkompas ===== -->
-  <section class="pagina is-neutraal" id="lijfkompas" aria-labelledby="lk-kop" tabindex="-1" hidden>
-    <div class="binnen">
-      <div class="blok-kop">
-        <span class="rondje"><svg aria-hidden="true"><use href="#i-kompas"/></svg></span>
-        <div><h2 id="lk-kop">Lijfkompas</h2><p>Een gevoel zit ook in je lijf. Waar voel jij het?</p></div>
-      </div>
-      <div class="weer" id="lijfkompas-plek"></div>
-    </div>
-  </section>
-
-  <!-- ===== Dit ben ik-kaart ===== -->
-  <section class="pagina is-neutraal" id="dit-ben-ik" aria-labelledby="dbi-kop" tabindex="-1" hidden>
-    <div class="binnen">
-      <div class="blok-kop">
-        <span class="rondje"><svg aria-hidden="true"><use href="#i-kaart"/></svg></span>
-        <div><h2 id="dbi-kop">Dit ben ik</h2><p>Maak samen een kaart voor de juf, de opvang of opa en oma.</p></div>
-      </div>
-<div class="dbi-tabs" role="tablist" aria-label="Invullen of kaart bekijken">
-  <button id="tab-invullen" role="tab" aria-selected="true" aria-controls="paneel-invullen">Invullen</button>
-  <button id="tab-kaart" role="tab" aria-selected="false" aria-controls="paneel-kaart">Bekijk de kaart</button>
-</div>
-<div class="werk">
-  <section class="paneel" id="paneel-invullen" role="tabpanel" aria-labelledby="tab-invullen">
-    <div class="dbi-voorbeeld" id="voorbeeld" hidden>
-      <p>Dit is een voorbeeld met Sam. Vul hem samen met je kind in, dan wordt het jullie eigen kaart.</p>
-      <button class="knop" id="begin-leeg" type="button">Begin met een lege kaart</button>
-    </div>
-
-    <div class="blok">
-      <h2>Wie ben jij?</h2>
-      <div class="rij">
-        <div><label class="veld" for="naam">Mijn naam</label><input type="text" id="naam" maxlength="24" autocomplete="off"></div>
-        <div><label class="veld" for="over">Over mij</label><input type="text" id="over" maxlength="40" placeholder="5 jaar, groep 2" autocomplete="off"></div>
-      </div>
-      <span class="veld" id="kleur-label" style="display:block;font-weight:600;margin:12px 0 4px">Mijn lievelingskleur</span>
-      <div class="kleuren" id="kleuren" role="group" aria-labelledby="kleur-label"></div>
-      <span class="veld" style="display:block;font-weight:600;margin:14px 0 4px">Mijn foto</span>
-      <div class="foto">
-        <input type="file" id="foto" accept="image/*">
-        <label class="knop licht" for="foto" id="foto-knop">Kies een foto</label>
-        <button class="knop licht" type="button" id="foto-weg" hidden>Haal foto weg</button>
-      </div>
-      <p class="tip" id="foto-tip">Geen foto? Dan blijft er een rondje leeg waarin je kind zichzelf kan tekenen.</p>
-    </div>
-
-    <div id="blokken"></div>
-
-    <button class="knop" type="button" id="naar-kaart" style="width:calc(100% - 8px)">Bekijk de kaart</button>
-  </section>
-
-  <section class="paneel" id="paneel-kaart" role="tabpanel" aria-labelledby="tab-kaart" hidden>
-    <div class="kaartwrap"><img id="kaartbeeld" alt="Voorbeeld van de Dit ben ik-kaart op A4"></div>
-    <div class="acties">
-      <button class="knop" type="button" id="bewaar-pdf" hidden>Bewaar als PDF om te printen</button>
-      <button class="knop licht" type="button" id="bewaar-png" hidden>Bewaar als plaatje</button>
-    </div>
-    <p class="melding" id="melding" role="status"></p>
-    <p class="tip" id="bewaar-tip">Je kunt de kaart ook ingedrukt houden (of rechts aanklikken) en als plaatje bewaren.</p>
-    <p class="tip">Print hem op A4 en geef hem aan de juf, de opvang of opa en oma. Wat je invult blijft alleen op dit apparaat staan.</p>
-    <button class="wis" type="button" id="wis">Alles wissen en opnieuw beginnen</button>
-  </section>
-</div>
-    </div>
-  </section>
-
-  <!-- ===== Breintjes-club Plus ===== -->
-  <section class="pagina is-neutraal" id="club-plus" aria-labelledby="club-kop" tabindex="-1" hidden>
-    <div class="binnen">
-      <div class="club">
-        <header class="club-kop">
-          <img class="vast-breintje" src="beeld/hoofdbreintje.webp" alt="" loading="lazy">
-          <p class="soort">BREINTJES-CLUB PLUS</p>
-          <h2 id="club-kop">Elke maand iets nieuws om samen te voelen</h2>
-          <p class="club-helpt">Voor kinderen van 3 tot 8 jaar met een bijzonder breintje, en voor hun ouders.</p>
-        </header>
-
-        <section class="club-kaart is-paars" aria-labelledby="k-krijg">
-          <h3 id="k-krijg">Dit krijg je elke maand</h3>
-          <p>Eén gevoel per maand, met alles wat je nodig hebt om er samen mee bezig te zijn.</p>
-          <ul class="club-lijst">
-            <li><svg aria-hidden="true"><use href="#i-noot"/></svg><div><b>Een liedje</b><span>Kort, om samen te zingen en te herhalen.</span></div></li>
-            <li><svg aria-hidden="true"><use href="#i-boek"/></svg><div><b>Een voorleesverhaaltje</b><span>Drie minuten, met vragen om over te praten.</span></div></li>
-            <li><svg aria-hidden="true"><use href="#i-maan"/></svg><div><b>Een rustmoment</b><span>Een meditatie om te landen, overdag of voor het slapen.</span></div></li>
-            <li><svg aria-hidden="true"><use href="#i-ster"/></svg><div><b>Een printblad</b><span>Om te kleuren, in te vullen en op te hangen.</span></div></li>
-            <li><svg aria-hidden="true"><use href="#i-hart"/></svg><div><b>Advies voor ouders</b><span>Van Nicky, die psycho-educatie gaf aan kinderen met autisme en ADHD. Wat speelt er bij je kind, en wat kun je thuis proberen?</span></div></li>
-          </ul>
-        </section>
-
-        <section class="club-kaart is-geel" id="club-maand" aria-labelledby="k-maand" hidden>
-          <span class="club-label" id="club-maand-label"></span>
-          <h3 id="k-maand"></h3>
-          <p id="club-maand-tekst"></p>
-        </section>
-
-        <section class="club-kaart" aria-labelledby="k-werkt">
-          <h3 id="k-werkt">Zo werkt het</h3>
-          <ol class="club-stappen">
-            <li><p>Je meldt je aan en krijgt de link naar de Breintjes-club Plus.</p></li>
-            <li><p>Je zet de club op het beginscherm van je telefoon of tablet.</p></li>
-            <li><p>Elke maand staat er een nieuw pakket klaar. Alles van eerder blijft erin staan.</p></li>
-          </ol>
-        </section>
-
-        <section class="club-kaart" aria-labelledby="k-beloof">
-          <h3 id="k-beloof">Wat we beloven</h3>
-          <ul class="club-beloftes">
-            <li>Geen punten, geen reeksen en geen meldingen.</li>
-            <li>Niets speelt automatisch door. Rust gaat voor schermtijd.</li>
-            <li>Nooit reclame, en we verzamelen niets over je kind.</li>
-          </ul>
-        </section>
-
-        <section class="club-kaart club-prijs is-paars" aria-labelledby="k-prijs">
-          <h3 id="k-prijs">Doe je mee?</h3>
-          <p class="club-bedrag" id="club-bedrag" hidden></p>
-          <a class="knop" id="club-aanmeld" role="link" aria-disabled="true">Aanmelden kan binnenkort</a>
-          <p id="club-uitleg">We zetten de laatste puntjes op de i.</p>
-          <p id="club-leden" hidden><a id="club-ledenlink" href="#">Ben je al lid? Ga naar de club</a></p>
-        </section>
-
-        <section class="club-kaart" aria-labelledby="k-vragen">
-          <h3 id="k-vragen">Vragen</h3>
-          <details><summary>Voor welke leeftijd is het?</summary><p>Voor kinderen van 3 tot 8 jaar. Jonge kinderen doen het samen met jou, oudere kinderen kiezen vaak zelf.</p></details>
-          <details><summary>Heeft mijn kind een diagnose nodig?</summary><p>Nee. De club is er voor elk kind dat veel voelt, snel vol zit of zijn gevoel nog moeilijk kan zeggen.</p></details>
-          <details><summary>Waarop werkt het?</summary><p>Op een telefoon, tablet en computer, in de browser. Je hoeft niets te installeren.</p></details>
-          <details><summary>Wie maken het?</summary><p>Nicky en Gert van Bijzondere Breintjes. We schrijven, zingen en bedenken alles zelf.</p></details>
-        </section>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Wie zijn wij ===== -->
-  <section class="pagina is-paars" id="wie-zijn-wij" aria-labelledby="wie-kop" tabindex="-1" hidden>
-    <div class="binnen">
-      <div class="blok-kop">
-        <span class="rondje"><svg aria-hidden="true"><use href="#i-ster"/></svg></span>
-        <div><h2 id="wie-kop">Wie zijn wij</h2><p>De mensen achter Bijzondere Breintjes.</p></div>
-      </div>
-      <div class="wie-rij">
-        <div class="wie-tekst" id="wie-tekst"></div>
-        <div class="wie-beeld">
-          <span class="wie-breintje"><img src="beeld/breintje-bril.webp" alt="" loading="lazy"></span>
-          <span class="wie-breintje"><img src="beeld/hoofdbreintje.webp" alt="" loading="lazy"></span>
-          <span class="wie-breintje"><img src="beeld/breintje-koptelefoon.webp" alt="" loading="lazy"></span>
-        </div>
-      </div>
-      <div class="mensen" id="wie-mensen"></div>
-    </div>
-  </section>
-
-  <!-- ===== Voor grote mensen ===== -->
-  <section class="pagina is-neutraal" id="grote-mensen" aria-labelledby="groot-kop" tabindex="-1" hidden>
-    <div class="binnen">
-      <div class="blok-kop">
-        <span class="rondje"><svg aria-hidden="true"><use href="#i-hart"/></svg></span>
-        <div><h2 id="groot-kop">Voor grote mensen</h2><p>Hoe deze website werkt.</p></div>
-      </div>
-      <div class="groot-rij">
-        <div class="groot-tekst">
-          <p>Bijzondere Breintjes maakt liedjes, verhaaltjes, rustmomenten, oefeningen, knutsels, filmpjes en tekeningen voor kinderen van 3 tot 8 jaar. Voor ieder kind, en zeker ook voor kinderen bij wie het in hun hoofd net even anders gaat.</p>
-          <p>Sommige kinderen horen en zien snel te veel. Andere willen graag weten wat er komt, of luisteren het liefst tien keer naar hetzelfde liedje. Dat mag hier allemaal.</p>
-          <p>De rustmomenten en oefeningen zijn spelletjes, geen behandeling. Lukt iets niet, dan is dat goed. Stoppen mag altijd.</p>
-        </div>
-        <div class="groot-lijst">
-          <h3>Zo is deze website gemaakt</h3>
-          <dl>
-            <dt>Niets begint vanzelf</dt>
-            <dd>Muziek en filmpjes starten pas als je kind zelf op de knop drukt.</dd>
-            <dt>De knop Rustig</dt>
-            <dd>Staat bovenaan. Zet beweging uit en maakt de kleuren zachter. Dit apparaat onthoudt de keuze.</dd>
-            <dt>Eén ding tegelijk</dt>
-            <dd>Elk onderdeel heeft een eigen tabblad, een vaste kleur en een vast plaatje. Er staat nooit meer op het scherm dan nodig.</dd>
-            <dt>Geen punten, geen reeksen, geen meldingen</dt>
-            <dd>Niets speelt automatisch door. Rust gaat voor schermtijd.</dd>
-            <dt>Geen reclame, geen cookies</dt>
-            <dd>We volgen niemand en verzamelen niets over je kind. Een filmpje van YouTube laadt pas na een druk op de knop.</dd>
-          </dl>
-        </div>
-      </div>
-
-      <div class="idee-vlak">
-        <span class="idee-beeld"><img src="beeld/breintje-vol-energie.webp" alt="" loading="lazy"></span>
-        <div class="idee-tekst">
-          <h3>Heb jij een idee?</h3>
-          <p>Waar moet het volgende liedje of verhaaltje over gaan? Laat het ons weten.</p>
-          <div id="idee-contact"></div>
+      <div class="club-kaart themavak hoorspel-rij">
+        <img class="hoorspel-beeld" src="beeld/breintje-masker-op.webp" alt="Breintje met een masker in zijn hand" loading="lazy">
+        <div>
+          <h3>Het masker van Max</h3>
+          <p>Max heeft een masker dat altijd lacht. Maar wat gebeurt er als het masker een dagje kwijt is?</p>
+          <p class="nogleeg">We zijn het nog aan het maken. Kom gauw nog eens luisteren!</p>
         </div>
       </div>
     </div>
@@ -465,19 +205,25 @@
 <footer class="voet">
   <div class="binnen voet-rij">
     <span class="voet-groet">Liefs, Nicky en Gert</span>
-    <span>© <span id="jaar">2026</span> Bijzondere Breintjes</span>
-    <span class="voet-links">
-      <a href="#wie-zijn-wij">Wie zijn wij</a>
-      <a href="#grote-mensen">Voor grote mensen</a>
-      <a href="#thuis">Naar boven</a>
-    </span>
+    <span>&copy; <span id="jaar">2026</span> Bijzondere Breintjes</span>
   </div>
 </footer>
 
-<noscript><p class="binnen">Zet JavaScript aan om de liedjes, verhaaltjes, filmpjes en tekeningen te zien.</p></noscript>
+<script>
+(function () {
+  document.getElementById("jaar").textContent = new Date().getFullYear();
+  var stam = document.documentElement;
+  var knop = document.getElementById("rustig-knop");
+  function zet(aan, bewaar) {
+    if (aan) stam.setAttribute("data-rustig", "aan");
+    else stam.removeAttribute("data-rustig");
+    knop.setAttribute("aria-pressed", aan ? "true" : "false");
+    if (bewaar) { try { localStorage.setItem("bb-rustig", aan ? "aan" : "uit"); } catch (e) {} }
+  }
+  zet(stam.getAttribute("data-rustig") === "aan", false);
+  knop.addEventListener("click", function () { zet(stam.getAttribute("data-rustig") !== "aan", true); });
+})();
+</script>
 
-<script src="inhoud.js?v=7"></script>
-<script src="js/site.js?v=7"></script>
-<script src="js/dit-ben-ik.js?v=7"></script>
 </body>
 </html>
