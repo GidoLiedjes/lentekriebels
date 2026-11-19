@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Maskerkompas – Bijzondere Breintjes</title>
+<meta name="description" content="Wat laat jij zien, en wat voel je vanbinnen? Met het Maskerkompas ontdekken kinderen van 5 tot 9 jaar welke maskers ze opzetten en wat erachter zit.">
+<link rel="canonical" href="https://www.bijzonderebreintjes.nl/maskerkompas.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bijzondere Breintjes">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:url" content="https://www.bijzonderebreintjes.nl/maskerkompas.html">
+<meta property="og:title" content="Maskerkompas – wat zit er achter jouw masker?">
+<meta property="og:description" content="Kies het masker dat je opzet, kies wat je vanbinnen voelt en til je masker op.">
+<meta property="og:image" content="https://www.bijzonderebreintjes.nl/beeld/deelplaatje.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#7c3fc0">
+<link rel="icon" href="beeld/icoon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="beeld/icoon-180.png">
+<link rel="preload" href="fonts/fredoka.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: "Fredoka"; src: url("fonts/fredoka.woff2") format("woff2"); font-weight: 300 700; font-display: swap; }
+@font-face { font-family: "Amatic SC"; src: url("fonts/amatic-sc-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+img { max-width: 100%; }
+.terug { padding-top: 1rem; }
+.terug a, .voet a { color: var(--paars); font-weight: 500; }
+.voet { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; justify-content: space-between; }
+
+/* Opzet: één lange pagina in de krijtstijl van de site. Bovenaan het podium met breintje en masker, daaronder de stappen. */
+:root {
+  color-scheme: light;
+  --paars: #7c3fc0; --paars-diep: #3b2570; --paars-licht: #c9b7eb; --paars-zacht: #efe3f7;
+  --wit: #ffffff; --papier: #fffefb;
+  --lila: #9a6bc9; --lila-licht: #ebe1f7;
+  --blauw: #5b9bd5; --blauw-licht: #dcebf8;
+  --groen: #5bb85d; --groen-licht: #d5f0df;
+  --oranje: #e9622a; --oranje-licht: #fbdccb;
+  --geel: #f6cf5a; --geel-licht: #fcf1cd;
+  --roze: #d63384; --roze-licht: #fbe3ee;
+  --font-titel: "Fredoka", Nunito, system-ui, sans-serif;
+  --font-soort: "Amatic SC", "Comic Sans MS", cursive;
+  --r-md: 28px;
+}
+body { background: var(--papier); color: var(--paars-diep); font: 400 1.1rem/1.5 var(--font-titel); }
+* { box-sizing: border-box; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { font-weight: 600; line-height: 1.15; text-wrap: balance; }
+[hidden] { display: none !important; }
+.verstopt { position: absolute; width: 0; height: 0; overflow: hidden; }
+:focus-visible { outline: 3px solid var(--paars-diep); outline-offset: 3px; border-radius: 8px; }
+
+.binnen {
+  max-width: 60rem; margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* Krijtlaagje, zoals op de site */
+.kaart, .keuze, .knop, .rondje, .podium, .ontwerp, .vlak {
+  position: relative; isolation: isolate; border: var(--dik, 0px) solid transparent;
+}
+.kaart::before, .keuze::before, .knop::before, .rondje::before, .podium::before, .ontwerp::before, .vlak::before {
+  content: ""; position: absolute; inset: calc(-1 * var(--dik, 0px)); z-index: -1;
+  border: var(--dik, 0px) var(--streep, solid) var(--lijn, transparent);
+  border-radius: inherit; background: var(--bg, transparent);
+  background-image: repeating-linear-gradient(112deg, rgba(255,255,255,var(--arcering,.26)) 0 2px, transparent 2px 8px);
+  filter: var(--krijt, url(#krijt)); pointer-events: none;
+}
+
+.ontwerp {
+  --bg: var(--geel-licht); --lijn: var(--geel); --dik: 3px; --streep: dashed;
+  border-radius: 18px; padding: .6rem 1rem; margin-block: 1rem 0;
+  font-size: 1rem; display: flex; gap: .6rem; align-items: center; flex-wrap: wrap;
+}
+.ontwerp b { font-weight: 600; }
+
+.kop { display: flex; align-items: center; gap: 1rem; padding-block: 1.75rem 1.25rem; }
+.rondje {
+  flex: none; display: grid; place-items: center; width: 4.2rem; height: 4.2rem; border-radius: 50%;
+  --bg: var(--paars-zacht); --lijn: var(--paars); --dik: 4px;
+}
+.rondje svg { width: 2.4rem; height: 2.4rem; filter: url(#krijt-fijn); }
+.soort { font-family: var(--font-soort); font-weight: 700; letter-spacing: .04em; color: var(--paars); font-size: 1.9rem; line-height: 1; }
+h1 { font-size: clamp(2.2rem, 7vw, 3.2rem); color: var(--paars-diep); }
+.intro { font-size: 1.25rem; max-width: 34ch; margin-top: .35rem; }
+
+/* Podium: het breintje met het masker ervoor */
+.podium-rij { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem; align-items: center; padding-bottom: 1rem; }
+@media (max-width: 720px) { .podium-rij { grid-template-columns: 1fr; gap: 1.25rem; } }
+.podium {
+  --bg: var(--lila-licht); --lijn: var(--lila); --dik: 5px; border-radius: var(--r-md);
+  aspect-ratio: 1 / 1; max-width: 100%; display: grid; place-items: center; overflow: visible;
+}
+.toneel { position: relative; width: 74%; aspect-ratio: 1 / 1; }
+.toneel .hoofd { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity .35s ease; }
+.toneel .vraag {
+  position: absolute; right: -6%; top: -4%; width: 26%; aspect-ratio: 1; display: grid; place-items: center;
+  font: 600 2.2rem/1 var(--font-titel); color: var(--paars); opacity: 0; transition: opacity .3s ease;
+}
+.toneel.heeft-masker:not(.op) .vraag { opacity: 1; }
+.masker {
+  position: absolute; left: 12%; top: 6%; width: 76%; z-index: 2;
+  transform-origin: 20% 110%;
+  transition: transform .7s cubic-bezier(.34,1.45,.55,1), opacity .3s ease;
+  aspect-ratio: 200 / 230; height: auto; filter: url(#krijt-fijn);
+}
+.masker[hidden] { display: none !important; }
+.toneel.op .masker { transform: translate(-40%, -4%) rotate(-22deg) scale(.58); }
+@media (prefers-reduced-motion: reduce) { .masker, .toneel .hoofd { transition: none; } }
+
+.podium-tekst { display: grid; gap: 1rem; justify-items: start; min-width: 0; }
+.zeg { font-size: clamp(1.45rem, 3.6vw, 1.9rem); font-weight: 600; line-height: 1.25; }
+.zeg .buiten { color: var(--paars); }
+.zeg small { display: block; font-size: 1.1rem; font-weight: 400; color: var(--paars-diep); margin-top: .4rem; }
+
+.knop {
+  display: inline-flex; align-items: center; gap: .55rem; min-height: 3.3rem; padding: .7rem 1.5rem;
+  border-radius: 999px; --bg: var(--paars); --krijt: url(#krijt-vol); --arcering: .1;
+  background: none; color: var(--wit); font: 600 1.15rem/1.1 var(--font-titel); cursor: pointer;
+  transition: transform .12s ease;
+}
+.knop:hover { transform: translateY(-2px); }
+.knop.licht { --bg: var(--wit); --lijn: var(--paars); --dik: 3px; --krijt: url(#krijt); --arcering: .26; color: var(--paars-diep); }
+.knop:disabled { opacity: .45; cursor: default; transform: none; }
+
+/* Stappen */
+.stap { display: grid; gap: 1rem; padding-block: 1.6rem; }
+.stap > h2 { font-size: clamp(1.5rem, 4vw, 1.9rem); }
+.stap > h2 .nr { font-family: var(--font-soort); color: var(--paars); font-size: 1.15em; margin-right: .35rem; }
+.stap > p { max-width: 46ch; }
+.keuzes { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: 1rem .9rem; }
+.keuze {
+  --bg: var(--wit); --lijn: var(--k, var(--paars-licht)); --dik: 4px; border-radius: 22px;
+  display: grid; justify-items: center; gap: .35rem; padding: .8rem .6rem 1rem; text-align: center;
+  background: none; color: var(--paars-diep); font: 500 1.05rem/1.2 var(--font-titel); cursor: pointer;
+  transition: transform .12s ease;
+}
+.keuze:hover { transform: translateY(-3px); }
+.keuze[aria-pressed="true"] { --bg: var(--kl, var(--paars-zacht)); transform: translate(2px, 2px); }
+.keuze b { font-weight: 600; font-size: 1.12rem; }
+.keuze span { font-size: .95rem; }
+.keuze .mini { width: 5.6rem; height: 5.6rem; object-fit: contain; display: block; }
+.keuze svg.mini { filter: url(#krijt-fijn); }
+.keuze:disabled { opacity: .45; cursor: default; transform: none; }
+
+/* Uitkomst */
+.uitkomst { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.25rem; }
+@media (max-width: 640px) { .uitkomst { grid-template-columns: 1fr; } }
+.kaart { --bg: var(--wit); --lijn: var(--k, var(--paars-licht)); --dik: 5px; border-radius: var(--r-md); padding: 1.25rem 1.4rem; display: grid; gap: .6rem; align-content: start; min-width: 0; }
+.kaart .label { font-family: var(--font-soort); font-size: 1.7rem; line-height: 1; color: var(--paars); letter-spacing: .03em; }
+.kaart h3 { font-size: 1.45rem; }
+.vlak { --bg: var(--groen-licht); --dik: 0px; border-radius: 16px; padding: .8rem 1.1rem; }
+.vlak.zin { --bg: var(--geel-licht); font-weight: 500; }
+.leeg-hint { --bg: transparent; --lijn: var(--paars-licht); --dik: 4px; --streep: dashed; border-radius: var(--r-md); padding: 1.25rem 1.4rem; position: relative; isolation: isolate; border: 4px solid transparent; }
+.leeg-hint::before { content: ""; position: absolute; inset: -4px; z-index: -1; border: 4px dashed var(--paars-licht); border-radius: inherit; filter: url(#krijt); }
+
+.groot { --k: var(--paars-licht); }
+.groot h3 { font-size: 1.25rem; }
+.groot p { font-size: 1.02rem; max-width: 62ch; }
+
+.slot { display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap; }
+.slot img { width: 8rem; height: auto; }
+.slot div { display: grid; gap: .8rem; justify-items: start; flex: 1 1 18rem; min-width: 0; }
+
+
+/* Wegwijzer en delen: eerst uitleg, dan opdracht */
+.wegwijzer { display: flex; flex-wrap: wrap; gap: .6rem 1rem; padding-bottom: .5rem; }
+.wegwijzer a { color: var(--paars-diep); text-decoration: none; font-weight: 500; padding: .35rem .9rem; border-radius: 999px; background: var(--paars-zacht); }
+.wegwijzer a b { font-family: var(--font-soort); font-size: 1.35rem; color: var(--paars); margin-right: .3rem; }
+.deel { margin-top: 1.5rem; padding-top: 1rem; border-top: 3px dashed var(--paars-licht); }
+.deel-label { font-family: var(--font-soort); font-weight: 700; font-size: 2.3rem; line-height: 1; color: var(--paars); letter-spacing: .03em; }
+.stap > h2 + .slot, .stap .slot p + p { margin-top: 0; }
+.slot div p + p { margin-top: .6rem; }
+.verhaal { --k: var(--lila); max-width: 44rem; }
+.buiten-binnen { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+@media (max-width: 520px) { .buiten-binnen { grid-template-columns: 1fr; } }
+.buiten-binnen b { display: block; font-family: var(--font-soort); font-size: 1.5rem; color: var(--paars); line-height: 1; }
+.b-buiten { --bg: var(--geel-licht); } .b-binnen { --bg: var(--blauw-licht); }
+.uitleg-maskers { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1.1rem; }
+.uitleg-masker { grid-template-columns: 5rem minmax(0, 1fr); align-items: start; gap: .9rem; padding: 1rem 1.1rem; }
+.uitleg-masker svg.mini { width: 5rem; height: auto; filter: url(#krijt-fijn); }
+.uitleg-masker h3 { font-size: 1.15rem; }
+.uitleg-masker .zegt { color: var(--paars); font-weight: 500; }
+.uitleg-masker .vb { font-size: 1rem; margin-top: .3rem; }
+.chips { display: flex; flex-wrap: wrap; gap: .6rem; }
+.chip { font: 500 1.05rem/1 var(--font-titel); color: var(--paars-diep); background: var(--wit); border: 3px solid var(--paars-licht); border-radius: 999px; padding: .65rem 1.1rem; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--paars); border-color: var(--paars); color: var(--wit); }
+.hulp { font-size: 1rem; color: var(--paars); max-width: 52ch; }
+.zeg .waar { font-size: 1.05rem; font-weight: 500; color: var(--paars); }
+.klein-label { font-size: .95rem; color: var(--paars); font-weight: 500; }
+.groot h4 { font-size: 1.1rem; font-weight: 600; margin: .4rem 0 0; }
+.groot ul { margin: 0; padding-left: 1.2rem; display: grid; gap: .5rem; max-width: 62ch; font-size: 1.02rem; }
+
+footer { padding-block: 2rem 3rem; font-size: .95rem; color: var(--paars); }
+</style>
+</head>
+<body>
+
+<svg class="verstopt" aria-hidden="true" focusable="false">
+  <filter id="krijt" x="-3%" y="-8%" width="106%" height="116%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="5" result="w"/>
+    <feDisplacementMap in="SourceGraphic" in2="w" scale="5" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="11" result="k"/>
+    <feColorMatrix in="k" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -11 7.9" result="g"/>
+    <feComposite in="d" in2="g" operator="in"/>
+  </filter>
+  <filter id="krijt-vol" x="-3%" y="-8%" width="106%" height="116%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="5" result="w"/>
+    <feDisplacementMap in="SourceGraphic" in2="w" scale="5" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="11" result="k"/>
+    <feColorMatrix in="k" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -11 9.4" result="g"/>
+    <feComposite in="d" in2="g" operator="in"/>
+  </filter>
+  <filter id="krijt-fijn" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="2" seed="2" result="w"/>
+    <feDisplacementMap in="SourceGraphic" in2="w" scale="2" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="k"/>
+    <feColorMatrix in="k" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -11 8.2" result="g"/>
+    <feComposite in="d" in2="g" operator="in"/>
+  </filter>
+</svg>
+
+<main class="binnen">
+  <p class="terug"><a href="./">&larr; Terug naar Bijzondere Breintjes</a></p>
+
+  <header class="kop">
+    <span class="rondje" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M4 7c3-1.5 13-1.5 16 0 .5 5-2.5 10-8 10S3.5 12 4 7z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><circle cx="9" cy="10.5" r="1.3" fill="currentColor"/><circle cx="15" cy="10.5" r="1.3" fill="currentColor"/><path d="M9.5 13.5q2.5 2 5 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </span>
+    <div>
+      <p class="soort">ACHTER JE MASKER</p>
+      <h1>Maskerkompas</h1>
+      <p class="intro">Wat laat jij zien? En wat zit er in je hoofd?</p>
+    </div>
+  </header>
+
+  <nav class="wegwijzer" aria-label="Zo werkt het">
+    <a href="#deel-uitleg"><b>Eerst</b> Wat is een masker?</a>
+    <a href="#deel-opdracht"><b>Dan</b> Nu jij!</a>
+  </nav>
+
+  <!-- ===== DEEL 1: UITLEG ===== -->
+  <div class="deel" id="deel-uitleg">
+    <p class="deel-label">Eerst: de uitleg</p>
+
+    <section class="stap" aria-labelledby="u1">
+      <h2 id="u1">Wat is een masker?</h2>
+      <div class="slot">
+        <img src="beeld/breintje-masker-voor.webp" alt="Breintje dat een lachend masker voor zijn gezicht houdt">
+        <div>
+          <p>Een masker is wat je aan de <b>buitenkant</b> laat zien. Soms past dat niet bij wat je <b>vanbinnen</b> voelt. Je lacht, maar eigenlijk ben je verdrietig. Je doet stoer, maar eigenlijk ben je bang.</p>
+          <p>Iedereen doet dat weleens. Kinderen, juffen, papa's en mama's. Het is niet stout en niet raar.</p>
+        </div>
+      </div>
+      <div class="kaart verhaal">
+        <p class="label">Weet je wat Max deed?</p>
+        <p>Max had slecht geslapen. En vandaag was er een rekentoets. Spannend! Op school vroeg de juf: "Gaat het, Max?" Max lachte en zei: "Ja hoor!"</p>
+        <div class="buiten-binnen">
+          <p class="vlak b-buiten"><b>Buiten</b> Max lacht.</p>
+          <p class="vlak b-binnen"><b>Binnen</b> Max is moe en zenuwachtig.</p>
+        </div>
+        <p>Max had een masker op. Het lachmasker.</p>
+      </div>
+    </section>
+
+    <section class="stap" aria-labelledby="u2">
+      <h2 id="u2">Ken je deze maskers?</h2>
+      <p>Lees ze samen. Welke heb je weleens gezien? Bij jezelf, of bij iemand anders?</p>
+      <div class="uitleg-maskers" id="masker-uitleg"></div>
+    </section>
+  </div>
+
+  <!-- ===== DEEL 2: OPDRACHT ===== -->
+  <div class="deel" id="deel-opdracht">
+    <p class="deel-label">Dan: nu jij!</p>
+
+    <section class="stap" aria-labelledby="s1">
+      <h2 id="s1"><span class="nr">1</span>Denk aan een moment</h2>
+      <p>Denk aan een keer dat je buiten iets anders liet zien dan je vanbinnen voelde. Het mag vandaag zijn, of al langer geleden. Waar was je?</p>
+      <div class="chips" id="momenten"></div>
+      <p class="hulp">Weet je even niks? Kijk nog eens naar de maskers hierboven. Kies er een die je kent en denk: wanneer deed ik dat?</p>
+    </section>
+
+    <section class="stap" aria-labelledby="s2">
+      <h2 id="s2"><span class="nr">2</span>Welk masker had je op?</h2>
+      <div class="keuzes" id="maskers"></div>
+    </section>
+
+    <section class="stap" aria-labelledby="s3">
+      <h2 id="s3"><span class="nr">3</span>Wat voelde je vanbinnen?</h2>
+      <div class="keuzes" id="gevoelens"></div>
+    </section>
+
+    <section class="stap" aria-labelledby="s4">
+      <h2 id="s4"><span class="nr">4</span>Til je masker op</h2>
+      <div class="podium-rij">
+        <div class="podium">
+          <div class="toneel" id="toneel">
+            <img class="hoofd" id="hoofd" src="beeld/hoofdbreintje.webp" alt="Een breintje">
+            <svg class="masker" id="masker" viewBox="0 0 200 230" hidden aria-hidden="true"></svg>
+            <span class="vraag" aria-hidden="true">?</span>
+          </div>
+        </div>
+        <div class="podium-tekst">
+          <p class="zeg" id="zeg" aria-live="polite"></p>
+          <div style="display:flex;gap:.7rem;flex-wrap:wrap">
+            <button class="knop" id="til" type="button" disabled>Til je masker op</button>
+            <button class="knop licht" id="opnieuw" type="button" hidden>Nog een keer</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stap" aria-labelledby="s5">
+      <h2 id="s5"><span class="nr">5</span>Buiten en binnen</h2>
+      <div id="uitkomst"></div>
+    </section>
+  </div>
+
+  <section class="stap" aria-labelledby="slot">
+    <h2 id="slot">Tot slot</h2>
+    <div class="slot">
+      <img src="beeld/breintje-masker-op.webp" alt="Breintje dat zijn masker opzij houdt" loading="lazy">
+      <div>
+        <p>Soms is een masker fijn. Het beschermt je even. Maar de hele dag een masker ophouden is zwaar. Bij mensen die je vertrouwt, mag hij af. Jouw echte gezicht is welkom.</p>
+        <a class="knop licht" href="./#liedje">Zing mee: Ik hoef niet altijd blij te zijn</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="stap" aria-labelledby="groot">
+    <div class="kaart groot">
+      <h3 id="groot">Voor grote mensen</h3>
+      <p>Veel kinderen houden overdag een masker op. Ze passen zich aan, lachen mee en vallen niet op. Kinderen met een bijzonder breintje doen dat vaak extra hard. Thuis, waar het veilig is, valt het masker af en komt alles eruit. Dat is geen slecht gedrag. Het is moe zijn van de hele dag volhouden.</p>
+      <h4>Zo vindt je kind een eigen voorbeeld</h4>
+      <ul>
+        <li><b>Kijk terug, niet in het moment.</b> Midden in een lastig moment lukt nadenken niet. Doe het later: na school met iets lekkers, of bij het naar bed gaan. "Was er vandaag een moment dat je anders deed dan je je voelde?"</li>
+        <li><b>Begin bij jezelf.</b> "Vandaag lachte ik op mijn werk, maar eigenlijk was ik moe." Een voorbeeld van jou laat zien waar het om gaat, en dat het mag.</li>
+        <li><b>Eerst bij een ander.</b> Bij de maskers hierboven staat steeds een voorbeeld. Vraag: "Heb je dit weleens bij iemand gezien?" Dat is makkelijker dan bij jezelf. Daarna: "En bij jou?"</li>
+        <li><b>Geen voorbeeld? Ook goed.</b> Vaak komt het later vanzelf, als het kind de woorden kent. Probeer het een andere dag nog eens.</li>
+      </ul>
+      <p><b>Leeftijd.</b> Bedoeld voor ongeveer 5 tot 9 jaar. Jongere kinderen doen het samen met jou. Een kind van 8 kan het meestal zelf lezen en kiezen, en kan vaak al een eigen moment noemen.</p>
+      <p>Wat hier staat is bedoeld om samen te praten, niet om iets vast te stellen.</p>
+      <p id="groot-extra" hidden></p>
+    </div>
+  </section>
+
+  <footer class="voet"><span>Liefs, Nicky en Gert</span><span><a href="./">Bijzondere Breintjes</a> · <a href="https://www.youtube.com/@BijzondereBreintjes" target="_blank" rel="noopener">YouTube</a> · <a href="https://www.instagram.com/bijzonderebreintjes/" target="_blank" rel="noopener">Instagram</a></span></footer>
+</main>
+
+<script>
+(function () {
+  /* De maskers: wat je aan de buitenkant laat zien, met een voorbeeld dat kinderen herkennen. */
+  var MASKERS = [
+    { id: "lach", naam: "Het lachmasker", zegt: "Ik lach maar.", k: "--geel", kl: "--geel-licht",
+      voorbeeld: "Je valt en je knie doet pijn. Iedereen kijkt. Je lacht maar.",
+      waarom: "Je lacht, ook als je je vanbinnen anders voelt. Dan hoeft niemand te vragen wat er is.",
+      groot: "Een kind dat altijd lacht, lijkt het makkelijk te hebben. Vraag af en toe op een rustig moment: \"En hoe voelt het vanbinnen?\"" },
+    { id: "stoer", naam: "Het stoere masker", zegt: "Niks aan de hand, hoor!", k: "--blauw", kl: "--blauw-licht",
+      voorbeeld: "Er komt een grote hond aan. Je bent bang, maar je zegt: ik ben niet bang!",
+      waarom: "Je doet alsof je nergens last van hebt. Dan lijk je sterk.",
+      groot: "Stoer doen is vaak een schild tegen schrik of verdriet. Prik er niet doorheen, maar laat merken dat jij ook weleens bang bent." },
+    { id: "stil", naam: "Het stille masker", zegt: "Ik zeg maar niks.", k: "--lila", kl: "--lila-licht",
+      voorbeeld: "In de klas weet je het antwoord. Maar je steekt je vinger niet op.",
+      waarom: "Je bent heel stil. Dan val je niet op en gaat het vanzelf voorbij.",
+      groot: "Een stil kind wordt makkelijk gemist. Geef een manier om iets te laten weten zonder te praten: aanwijzen, tekenen of een duim." },
+    { id: "grap", naam: "Het grapjesmasker", zegt: "Haha, kijk mij eens!", k: "--oranje", kl: "--oranje-licht",
+      voorbeeld: "Je moet voor de klas iets vertellen. Spannend! Dus je doet heel gek.",
+      waarom: "Je maakt grapjes en doet gek. Dan lacht iedereen, en zien ze niet wat jij voelt.",
+      groot: "Clownen kan een manier zijn om spanning weg te lachen. Lach gerust mee, en vraag later even hoe het echt ging." },
+    { id: "braaf", naam: "Het brave masker", zegt: "Oké, wat jij wilt.", k: "--groen", kl: "--groen-licht",
+      voorbeeld: "Je wilt eigenlijk iets anders spelen. Maar je zegt: oké, wat jij wilt.",
+      waarom: "Je doet wat de anderen willen. Dan wordt niemand boos.",
+      groot: "Kinderen die zich de hele dag netjes aanpassen, raken vaak thuis op. Geef thuis ruimte om niet braaf te hoeven zijn." },
+    { id: "boos", naam: "Het boze masker", zegt: "Laat me met rust!", k: "--roze", kl: "--roze-licht",
+      voorbeeld: "Niemand wil met je spelen. Je bent verdrietig. Maar je roept: laat me met rust!",
+      waarom: "Je doet boos. Dan ziet niemand dat je eigenlijk verdrietig of bang bent.",
+      groot: "Achter boosheid zit vaak verdriet, schrik of schaamte. Reageer op het gevoel eronder: \"Volgens mij vond je dat heel naar.\"" },
+    { id: "snap", naam: "Het snap-ik-wel-masker", zegt: "Ja ja, ik snap het.", k: "--blauw", kl: "--blauw-licht",
+      voorbeeld: "De juf legt iets uit. Je snapt het niet. Toch knik je ja.",
+      waarom: "Je doet alsof je het snapt. Dan hoef je het niet te vragen.",
+      groot: "Knikken zonder het te snappen voorkomt dat je opvalt. Maak vragen stellen gewoon: \"Wat snap je al, en wat nog niet?\"" },
+    { id: "mee", naam: "Het meedoe-masker", zegt: "Ik vind het ook leuk!", k: "--groen", kl: "--groen-licht",
+      voorbeeld: "Iedereen wil tikkertje doen. Jij eigenlijk niet. Toch doe je mee.",
+      waarom: "Je doet mee met de rest. Dan hoor je erbij.",
+      groot: "Erbij willen horen is heel normaal. Help je kind oefenen met een zinnetje als: \"Ik doe even niet mee, misschien straks.\"" }
+  ];
+
+  /* Waar was je? Helpt het kind een eigen moment te vinden. */
+  var MOMENTEN = ["Op school", "Thuis", "Op een feestje", "Bij het sporten", "Bij opa en oma", "Met vriendjes", "Ergens anders"];
+
+  /* De gevoelens: wat er in je hoofd zit. */
+  var GEVOELENS = [
+    { id: "vol", naam: "Mijn hoofd was vol", beeld: "breintje-overprikkeld", k: "--lila", kl: "--lila-licht",
+      voelt: "Het zoemt en bonkt in je hoofd. Er is te veel geluid en te veel gedoe.",
+      helpt: "Zoek een stil plekje. Doe je ogen even dicht. Je hoofd mag leeglopen.",
+      zin: "Mijn hoofd is vol. Mag ik even naar een stil plekje?" },
+    { id: "bang", naam: "Ik was bang", beeld: "breintje-bang", k: "--oranje", kl: "--oranje-licht",
+      voelt: "Je hart bonkt. Je denkt steeds: wat gaat er gebeuren?",
+      helpt: "Leg je hand op je hart. Adem langzaam in door je neus en blaas zacht uit.",
+      zin: "Ik vind dit spannend. Wil je bij me blijven?" },
+    { id: "verdrietig", naam: "Ik was verdrietig", beeld: "breintje-verdrietig", k: "--blauw", kl: "--blauw-licht",
+      voelt: "Er zit een brok in je keel. Je wilt eigenlijk huilen.",
+      helpt: "Huilen mag. Kruip even tegen iemand aan, of knuffel je knuffel.",
+      zin: "Ik ben verdrietig. Mag ik even bij je zitten?" },
+    { id: "boos", naam: "Ik was boos", beeld: "breintje-boos", k: "--roze", kl: "--roze-licht",
+      voelt: "Er zit een donderwolk in je hoofd. Je wangen worden warm.",
+      helpt: "Stamp als een olifant. Knijp hard in een kussen. Dan zakt de wolk.",
+      zin: "Ik ben boos. Ik heb even tijd nodig." },
+    { id: "moe", naam: "Ik was moe", beeld: "breintje-slaperig", k: "--blauw", kl: "--blauw-licht",
+      voelt: "Je hoofd is zwaar. Je hebt de hele dag je best gedaan.",
+      helpt: "Ga even liggen of zitten met een dekentje. Je hoeft nu niks.",
+      zin: "Ik ben moe van de dag. Mag ik even niks?" },
+    { id: "missen", naam: "Ik miste iemand", beeld: "breintje-iemand-missen", k: "--roze", kl: "--roze-licht",
+      voelt: "Je denkt steeds aan iemand die er niet is.",
+      helpt: "Maak een tekening voor die persoon. Of vertel iets over hem of haar.",
+      zin: "Ik mis iemand. Mag ik over diegene vertellen?" },
+    { id: "blij", naam: "Ik was echt blij", beeld: "breintje-blij", k: "--geel", kl: "--geel-licht",
+      voelt: "Je voelde je vanbinnen ook zonnig. Je hoefde niks te doen alsof.",
+      helpt: "Geniet ervan! Vertel iemand waar je blij van wordt.",
+      zin: "Ik ben blij, en dat is echt!" }
+  ];
+
+  /* Een getekend masker op een stokje. Elk masker heeft een eigen gezichtje. */
+  var INKT = "#2a2540";
+  function maskerSvg(id) {
+    var mond = {
+      lach: '<path d="M62 120q38 40 76 0q-38 14-76 0z" fill="#e85a6a" stroke="' + INKT + '" stroke-width="5" stroke-linejoin="round"/>',
+      stoer: '<path d="M66 128h68" stroke="' + INKT + '" stroke-width="6" stroke-linecap="round"/><path d="M56 74l26 6M144 74l-26 6" stroke="' + INKT + '" stroke-width="5" stroke-linecap="round"/>',
+      stil: '<path d="M80 126h40" stroke="' + INKT + '" stroke-width="5" stroke-linecap="round"/><path d="M86 118v16M96 118v16M106 118v16M116 118v16" stroke="' + INKT + '" stroke-width="3.5" stroke-linecap="round"/>',
+      grap: '<path d="M64 116q36 34 72 0z" fill="#fff" stroke="' + INKT + '" stroke-width="5" stroke-linejoin="round"/><path d="M90 128q10 22 22 2" fill="#f08aa0" stroke="' + INKT + '" stroke-width="4" stroke-linejoin="round"/>',
+      braaf: '<path d="M74 122q26 18 52 0" fill="none" stroke="' + INKT + '" stroke-width="5" stroke-linecap="round"/>',
+      boos: '<path d="M70 136q30-22 60 0" fill="none" stroke="' + INKT + '" stroke-width="6" stroke-linecap="round"/><path d="M56 70l28 14M144 70l-28 14" stroke="' + INKT + '" stroke-width="6" stroke-linecap="round"/>',
+      snap: '<path d="M78 126q14 8 28 0t20-4" fill="none" stroke="' + INKT + '" stroke-width="5" stroke-linecap="round"/><path d="M152 70q-7 12 0 16 7-4 0-16z" fill="#8fc3ec" stroke="' + INKT + '" stroke-width="3" stroke-linejoin="round"/>',
+      mee: '<path d="M60 116q40 36 80 0z" fill="#e85a6a" stroke="' + INKT + '" stroke-width="5" stroke-linejoin="round"/><path d="M66 118h68" stroke="#fff" stroke-width="6"/>'
+    }[id];
+    var ogen = {
+      lach: '<ellipse cx="74" cy="92" rx="8" ry="11" fill="' + INKT + '"/><ellipse cx="126" cy="92" rx="8" ry="11" fill="' + INKT + '"/>',
+      stoer: '<path d="M62 94h22M116 94h22" stroke="' + INKT + '" stroke-width="7" stroke-linecap="round"/>',
+      stil: '<circle cx="74" cy="94" r="6.5" fill="' + INKT + '"/><circle cx="126" cy="94" r="6.5" fill="' + INKT + '"/>',
+      grap: '<ellipse cx="74" cy="90" rx="8" ry="11" fill="' + INKT + '"/><path d="M114 92q12-12 24 0" fill="none" stroke="' + INKT + '" stroke-width="6" stroke-linecap="round"/>',
+      braaf: '<path d="M64 94q10-10 20 0M116 94q10-10 20 0" fill="none" stroke="' + INKT + '" stroke-width="6" stroke-linecap="round"/>',
+      boos: '<circle cx="74" cy="98" r="7" fill="' + INKT + '"/><circle cx="126" cy="98" r="7" fill="' + INKT + '"/>',
+      snap: '<circle cx="74" cy="94" r="12" fill="#fff" stroke="' + INKT + '" stroke-width="4"/><circle cx="126" cy="94" r="12" fill="#fff" stroke="' + INKT + '" stroke-width="4"/><circle cx="80" cy="92" r="5" fill="' + INKT + '"/><circle cx="132" cy="92" r="5" fill="' + INKT + '"/>',
+      mee: '<ellipse cx="74" cy="90" rx="9" ry="12" fill="' + INKT + '"/><ellipse cx="126" cy="90" rx="9" ry="12" fill="' + INKT + '"/><circle cx="77" cy="86" r="3" fill="#fff"/><circle cx="129" cy="86" r="3" fill="#fff"/>'
+    }[id];
+    return '<path d="M44 168l-14 58" stroke="#c99a5b" stroke-width="7" stroke-linecap="round"/>' +
+      '<path d="M30 52c0-22 36-34 70-34s70 12 70 34v62c0 36-34 64-70 64s-70-28-70-64z" fill="#fff" stroke="' + INKT + '" stroke-width="5" stroke-linejoin="round"/>' +
+      '<circle cx="58" cy="124" r="11" fill="#f2a2a8" opacity=".75"/><circle cx="142" cy="124" r="11" fill="#f2a2a8" opacity=".75"/>' +
+      ogen + mond;
+  }
+
+  var toneel = document.getElementById("toneel");
+  var hoofd = document.getElementById("hoofd");
+  var masker = document.getElementById("masker");
+  var zeg = document.getElementById("zeg");
+  var til = document.getElementById("til");
+  var opnieuw = document.getElementById("opnieuw");
+  var uitkomst = document.getElementById("uitkomst");
+  var grootExtra = document.getElementById("groot-extra");
+  var gekozenMoment = null, gekozenM = null, gekozenG = null;
+
+  function el(t, a, kids) {
+    var e = document.createElement(t);
+    for (var k in a || {}) { if (k === "tekst") e.textContent = a[k]; else if (k === "html") e.innerHTML = a[k]; else e.setAttribute(k, a[k]); }
+    (kids || []).forEach(function (c) { if (c) e.appendChild(c); });
+    return e;
+  }
+  function kleur(e, d) { e.style.setProperty("--k", "var(" + d.k + ")"); e.style.setProperty("--kl", "var(" + d.kl + ")"); }
+  function mini(id) { return '<svg class="mini" viewBox="0 0 200 230" aria-hidden="true">' + maskerSvg(id) + "</svg>"; }
+  function aanhaling(t) { return "“" + t + "”"; }
+
+  /* Deel 1: de maskers als uitleg, met een herkenbaar voorbeeld. */
+  MASKERS.forEach(function (m) {
+    var kaart = el("article", { class: "kaart uitleg-masker", html: mini(m.id) + "<div><h3></h3><p class=\"zegt\"></p><p class=\"vb\"></p></div>" });
+    kaart.querySelector("h3").textContent = m.naam;
+    kaart.querySelector(".zegt").textContent = aanhaling(m.zegt);
+    kaart.querySelector(".vb").textContent = m.voorbeeld;
+    kleur(kaart, m);
+    document.getElementById("masker-uitleg").appendChild(kaart);
+  });
+
+  /* Deel 2: de opdracht. */
+  var momentKnoppen = MOMENTEN.map(function (m) {
+    var b = el("button", { type: "button", class: "chip", "aria-pressed": "false", tekst: m });
+    b.addEventListener("click", function () { gekozenMoment = m; druk(momentKnoppen, MOMENTEN, m); werkBij(); });
+    document.getElementById("momenten").appendChild(b);
+    return b;
+  });
+
+  var mKnoppen = MASKERS.map(function (m) {
+    var b = el("button", { type: "button", class: "keuze", "aria-pressed": "false", html: mini(m.id) + "<b></b><span></span>" });
+    b.querySelector("b").textContent = m.naam; b.querySelector("span").textContent = aanhaling(m.zegt);
+    kleur(b, m);
+    b.addEventListener("click", function () { gekozenM = m; druk(mKnoppen, MASKERS, m); werkBij(true); });
+    document.getElementById("maskers").appendChild(b);
+    return b;
+  });
+
+  var gKnoppen = GEVOELENS.map(function (g) {
+    var b = el("button", { type: "button", class: "keuze", "aria-pressed": "false" }, [
+      el("img", { class: "mini", src: "beeld/" + g.beeld + ".webp", alt: "" }), el("b", { tekst: g.naam })
+    ]);
+    kleur(b, g);
+    b.addEventListener("click", function () { gekozenG = g; druk(gKnoppen, GEVOELENS, g); werkBij(); });
+    document.getElementById("gevoelens").appendChild(b);
+    return b;
+  });
+
+  function druk(lijst, data, gekozen) { lijst.forEach(function (b, i) { b.setAttribute("aria-pressed", data[i] === gekozen ? "true" : "false"); }); }
+
+  function zegtekst(regels, klein) {
+    zeg.innerHTML = "";
+    regels.forEach(function (r, i) { if (i) zeg.appendChild(el("br")); zeg.appendChild(el("span", { class: r[0], tekst: r[1] })); });
+    if (klein) zeg.appendChild(el("small", { tekst: klein }));
+  }
+
+  /* Werk het podium en de uitkomst bij. nieuwMasker: het masker gaat weer voor het gezicht. */
+  function werkBij(nieuwMasker) {
+    if (gekozenM) {
+      masker.innerHTML = maskerSvg(gekozenM.id); masker.removeAttribute("hidden");
+      toneel.classList.add("heeft-masker");
+    }
+    if (nieuwMasker) { toneel.classList.remove("op"); }
+    hoofd.src = "beeld/" + (gekozenG ? gekozenG.beeld : "hoofdbreintje") + ".webp";
+    hoofd.alt = gekozenG ? "Breintje: " + gekozenG.naam.toLowerCase() : "Een breintje";
+    var op = toneel.classList.contains("op");
+    til.hidden = op; opnieuw.hidden = !op;
+    til.disabled = !(gekozenM && gekozenG);
+
+    var waar = gekozenMoment ? gekozenMoment + "." : "";
+    if (op) {
+      zegtekst([["buiten", "Buiten: " + aanhaling(gekozenM.zegt)], ["binnen-zin", "Binnen: " + gekozenG.naam.toLowerCase() + "."]],
+        gekozenG.id === "blij" ? "Je masker en je gezicht waren hetzelfde. Fijn!" : "Allebei mag er zijn.");
+    } else if (gekozenM && gekozenG) {
+      zegtekst([["waar", waar], ["buiten", aanhaling(gekozenM.zegt)]], "Til je masker op. Wat zat erachter?");
+    } else if (gekozenM) {
+      zegtekst([["waar", waar], ["buiten", aanhaling(gekozenM.zegt)]], "Kies bij stap 3 wat je vanbinnen voelde.");
+    } else {
+      zegtekst([["waar", waar]], "Kies bij stap 2 welk masker je ophad.");
+    }
+    toonUitkomst();
+  }
+
+  til.addEventListener("click", function () { if (gekozenM && gekozenG) { toneel.classList.add("op"); werkBij(); } });
+  opnieuw.addEventListener("click", function () { toneel.classList.remove("op"); werkBij(); });
+
+  function toonUitkomst() {
+    uitkomst.innerHTML = "";
+    if (!toneel.classList.contains("op")) {
+      uitkomst.appendChild(el("p", { class: "leeg-hint", tekst: "Til eerst je masker op bij stap 4. Dan zie je hier wat je liet zien, wat je voelde en wat je kunt doen." }));
+      grootExtra.hidden = true; return;
+    }
+    var rij = el("div", { class: "uitkomst" });
+    var a = el("div", { class: "kaart" }, [
+      el("p", { class: "label", tekst: "Buiten" }),
+      gekozenMoment ? el("p", { class: "klein-label", tekst: gekozenMoment }) : null,
+      el("h3", { tekst: gekozenM.naam }), el("p", { tekst: gekozenM.waarom })
+    ]); kleur(a, gekozenM); rij.appendChild(a);
+    var b = el("div", { class: "kaart" }, [
+      el("p", { class: "label", tekst: "Binnen" }), el("h3", { tekst: gekozenG.naam }), el("p", { tekst: gekozenG.voelt }),
+      el("p", { class: "vlak", tekst: "Wat helpt: " + gekozenG.helpt }),
+      el("p", { class: "vlak zin", tekst: "Je kunt zeggen: " + aanhaling(gekozenG.zin) })
+    ]); kleur(b, gekozenG); rij.appendChild(b);
+    uitkomst.appendChild(rij);
+    grootExtra.hidden = false;
+    grootExtra.textContent = "Bij " + gekozenM.naam.toLowerCase() + ": " + gekozenM.groot;
+  }
+
+  /* Begin met een voorbeeld, zodat je meteen ziet hoe het werkt. */
+  gekozenMoment = MOMENTEN[0]; druk(momentKnoppen, MOMENTEN, gekozenMoment);
+  gekozenM = MASKERS[0]; druk(mKnoppen, MASKERS, gekozenM);
+  werkBij(true);
+})();
+</script>
+
+</body>
+</html>
