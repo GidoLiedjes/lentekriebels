@@ -52,24 +52,25 @@
 .slotje { display: inline-flex; align-items: center; gap: .35rem; font-size: .95rem; color: var(--paars-diep); }
 .slotje svg { width: 1.1rem; height: 1.1rem; }
 .club-onder { display: grid; gap: .8rem; justify-items: start; margin-top: .5rem; }
-.welkom { padding-block: 1.5rem 2rem; }
-.welkom-rij { display: grid; grid-template-columns: 9rem 1fr; gap: 1.5rem; align-items: center; }
+.welkom { padding-block: 1.25rem 1.5rem; }
+.welkom-rij { display: grid; grid-template-columns: 6.5rem 1fr; gap: 1.25rem; align-items: center; }
 .welkom-breintje { width: 100%; height: auto; }
-.welkom-tekst { display: grid; gap: .8rem; }
-.welkom-tekst h1 { font-size: clamp(1.9rem, 5.5vw, 3rem); line-height: 1.1; }
-.voor-ouders { font-size: 1.05rem; color: var(--paars-diep); max-width: 46ch; }
-.thema-titel { font-size: clamp(2.4rem, 8vw, 4rem); line-height: 1; }
-.gratis-vak { margin-top: 2rem; }
-.gratis-vak .week-label { justify-self: start; }
-.teaser-lijst { list-style: none; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); max-width: 60rem; }
-.teaser-lijst li { display: grid; gap: .5rem; align-content: start; padding: 1.1rem 1.2rem; border: 3px dashed var(--paars-licht); border-radius: var(--r-sm); background: var(--wit); }
-.teaser-lijst .week { font: 700 1.7rem/1 var(--font-soort); color: var(--hoofd); }
-.teaser-lijst b { font-weight: 600; font-size: 1.25rem; line-height: 1.25; color: var(--paars-diep); }
-.soorten { display: flex; flex-wrap: wrap; gap: .4rem; }
-.soorten span { font-size: .9rem; padding: .15rem .6rem; border-radius: var(--r-rond); background: var(--paars-zacht); color: var(--paars-diep); }
-.ouder-teaser { display: flex; gap: .6rem; align-items: center; margin-block: 1.5rem 1rem; font-size: 1.05rem; color: var(--paars-diep); max-width: 52rem; }
-.ouder-teaser svg { flex: none; width: 1.6rem; height: 1.6rem; color: var(--hoofd); }
-@media (max-width: 640px) { .welkom-rij { grid-template-columns: 6rem 1fr; gap: 1rem; } }
+.welkom-tekst { display: grid; gap: .5rem; }
+.welkom-tekst h1 { font-size: clamp(1.7rem, 5vw, 2.6rem); line-height: 1.1; }
+.welkom-zin { font-size: 1.15rem; max-width: 52ch; }
+.thema-blok { background: var(--licht); padding-block: 1.75rem; }
+.thema-rij { display: grid; grid-template-columns: 1fr 1.1fr; gap: 2rem; align-items: center; }
+.thema-tekst { display: grid; gap: .7rem; }
+.thema-titel { font-size: clamp(2.2rem, 7vw, 3.4rem); line-height: 1; }
+.thema-blok .intro { max-width: 36ch; }
+.teaser-blok { padding-block: 1.75rem 2.5rem; }
+.teaser-kop { font-size: clamp(1.5rem, 4vw, 2rem); margin-bottom: 1rem; }
+.teaser-lijst { list-style: none; padding: 0; display: grid; gap: .75rem; grid-template-columns: repeat(4, 1fr); }
+.teaser-lijst li { display: grid; gap: .3rem; align-content: start; padding: .9rem 1rem; border: 3px dashed var(--paars-licht); border-radius: var(--r-sm); background: var(--wit); }
+.teaser-lijst .week { font: 700 1.5rem/1 var(--font-soort); color: var(--hoofd); }
+.teaser-lijst b { font-weight: 600; font-size: 1.1rem; line-height: 1.25; color: var(--paars-diep); }
+.teaser-onder { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; align-items: center; margin-top: 1rem; color: var(--paars-diep); }
+@media (max-width: 760px) { .thema-rij { grid-template-columns: 1fr; gap: 1.25rem; } .teaser-lijst { grid-template-columns: 1fr 1fr; } .welkom-rij { grid-template-columns: 4.5rem 1fr; gap: .9rem; } }
 @media (max-width: 640px) { .hoorspel-rij { grid-template-columns: 1fr; } .hoorspel-beeld { width: 9rem; } }
 </style>
 </head>
@@ -162,72 +163,45 @@
 <main id="inhoud">
 
   <!-- ===== Welkom: wie zijn wij ===== -->
-  <section class="pagina welkom" id="welkom">
+  <section class="welkom" id="welkom">
     <div class="binnen welkom-rij">
-      <img class="welkom-breintje" src="beeld/hoofdbreintje.webp" alt="Billie, het breintje van Bijzondere Breintjes, zwaait">
+      <img class="welkom-breintje" src="beeld/hoofdbreintje.webp" alt="Billie, het breintje van Bijzondere Breintjes">
       <div class="welkom-tekst">
-        <h1 id="welkom-kop">Elk breintje is <span class="kronkel">bijzonder</span>.<br>Kom, we ontdekken het jouwe!</h1>
-        <p class="voor-ouders">Met liedjes, verhalen en spelletjes helpen we je kind zichzelf en de wereld beter te begrijpen. Elke maand een nieuw thema.</p>
+        <h1 id="welkom-kop">Welkom bij de Bijzondere <span class="kronkel">Breintjes</span>!</h1>
+        <p class="welkom-zin">Wij praten met kinderen over dingen die moeilijk zijn, en maken ze makkelijk en leuk. Met liedjes, hoorspelen en spelletjes. Elke maand een nieuw thema.</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== Thema van de maand: de gratis intro ===== -->
-  <section class="pagina is-geel" id="thema">
-    <div class="binnen">
-      <div class="held-rij">
-        <div class="held-tekst">
-          <p class="soort">THEMA VAN DE MAAND</p>
-          <h2 id="thema-kop" class="thema-titel">Achter je <span class="kronkel">masker</span></h2>
-          <p class="intro">Heb jij weleens gelachen terwijl je vanbinnen verdrietig was? Dan had je een masker op. Iedereen doet dat weleens. Deze maand kijken we samen wat er achter jouw masker zit.</p>
-        </div>
-        <div class="podium">
-          <div class="podium-vlak"><img class="thema-beeld" src="beeld/breintje-masker-af.webp" alt="Breintje dat zijn masker afzet"></div>
-        </div>
+  <!-- ===== Thema van de maand ===== -->
+  <section class="thema-blok is-geel" id="thema">
+    <div class="binnen thema-rij">
+      <div class="thema-tekst">
+        <p class="soort">THEMA VAN DE MAAND</p>
+        <h2 id="thema-kop" class="thema-titel">Achter je <span class="kronkel">masker</span></h2>
+        <p class="intro">Heb jij weleens gelachen terwijl je vanbinnen verdrietig was? Dan had je een masker op. Deze maand kijken we samen wat erachter zit.</p>
+        <p class="klein">Voor grote mensen: kinderen die veel voelen, houden vaak de hele dag een masker op. Dit thema helpt ze dat te herkennen.</p>
       </div>
-
-      <div class="club-kaart themavak video-vak gratis-vak">
-        <p class="week-label">Gratis &middot; luister en zing mee</p>
+      <div class="video-vak">
         <video controls preload="none" playsinline poster="thema/cover-liedje.webp" width="1920" height="1080">
           <source src="thema/ik-hoef-niet-altijd-blij-te-zijn.mp4?v=2" type="video/mp4">
         </video>
-        <p class="vraag-groot">En jij? Wanneer zet jij een masker op?</p>
-        <p class="klein">Voor grote mensen: kinderen die veel voelen, zetten vaak de hele dag een masker op. Thuis komt het er dan uit. Dit thema helpt ze herkennen wat ze doen, en laat zien dat al hun gevoelens er mogen zijn.</p>
+        <p class="klein">Gratis liedje: Ik hoef niet altijd blij te zijn.</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== Teasers: wat komt er in de Club ===== -->
-  <section class="pagina is-lila" id="club">
+  <!-- ===== Teasers ===== -->
+  <section class="teaser-blok" id="club">
     <div class="binnen">
-      <div class="blok-kop">
-        <span class="rondje"><svg aria-hidden="true"><use href="#i-slot"/></svg></span>
-        <div><h2 id="club-kop">Deze maand in de Club</h2><p>Elke week een nieuw stukje achter het masker.</p></div>
-      </div>
+      <h2 id="club-kop" class="teaser-kop">Deze maand in de Club</h2>
       <ol class="teaser-lijst">
-        <li>
-          <span class="week">Week 1</span>
-          <b>Waarom lacht het masker van Max altijd?</b>
-          <span class="soorten"><span>Hoorspel</span><span>Doe-opdracht</span></span>
-        </li>
-        <li>
-          <span class="week">Week 2</span>
-          <b>Welk masker zet jij op?</b>
-          <span class="soorten"><span>Hoorspel</span><span>Maskerkompas</span></span>
-        </li>
-        <li>
-          <span class="week">Week 3</span>
-          <b>Wat gebeurt er als je masker kwijt is?</b>
-          <span class="soorten"><span>Hoorspel</span><span>Knutsel</span></span>
-        </li>
-        <li>
-          <span class="week">Week 4</span>
-          <b>Durft Max zijn masker af te zetten?</b>
-          <span class="soorten"><span>Hoorspel</span><span>Liedje</span></span>
-        </li>
+        <li><span class="week">Week 1</span><b>Waarom lacht het masker van Max altijd?</b></li>
+        <li><span class="week">Week 2</span><b>Welk masker zet jij op?</b></li>
+        <li><span class="week">Week 3</span><b>Wat als je masker kwijt is?</b></li>
+        <li><span class="week">Week 4</span><b>Durft Max zijn masker af te zetten?</b></li>
       </ol>
-      <p class="ouder-teaser"><svg aria-hidden="true"><use href="#i-hart"/></svg>Voor grote mensen: elke week een werkblad. Welk masker zet jij zelf op, en wat ziet je kind daarvan?</p>
-      <p><span class="knop" aria-disabled="true">De Club komt binnenkort</span></p>
+      <p class="teaser-onder"><span>Elke week een nieuw deel van het hoorspel en een opdracht. Met een werkblad voor ouders.</span> <span class="knop" aria-disabled="true">De Club komt binnenkort</span></p>
     </div>
   </section>
 
