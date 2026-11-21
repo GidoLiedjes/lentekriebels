@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bijzondere Breintjes – liedjes en oefeningen over gevoelens voor kinderen (3-8 jaar)</title>
-<meta name="description" content="Thema van de maand: Achter je masker. Wie ben jij echt? Met een liedje, een weetje en het Maskerkompas voor kinderen van 3 tot 8 jaar.">
+<meta name="description" content="Thema van de maand: Achter je masker. Wie ben jij echt? Week 1 gratis: een liedje en het begin van een hoorspel voor kinderen van 3 tot 8 jaar.">
 <link rel="canonical" href="https://www.bijzonderebreintjes.nl/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Bijzondere Breintjes">
@@ -41,6 +41,17 @@
 .hoorspel-rij { display: grid; grid-template-columns: 11rem 1fr; gap: 1.4rem; align-items: center; }
 .hoorspel-rij h3 { font-weight: 700; font-size: clamp(1.5rem, 5vw, 2rem); }
 .hoorspel-beeld { width: 100%; }
+.week-label { display: inline-block; font: 700 1.05rem/1 var(--font-tekst); letter-spacing: .03em; color: var(--paars-diep); background: var(--k-geel-licht); border: 3px solid var(--k-geel); border-radius: var(--r-rond); padding: .4rem .9rem; }
+.verder-tekst { font-size: 1.1rem; color: var(--paars-diep); }
+.vraag-groot { font: 700 clamp(1.5rem, 5vw, 2rem)/1.2 var(--font-titel); color: var(--paars-diep); }
+.slot-lijst { list-style: none; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+.slot-lijst li { display: grid; gap: .35rem; padding: 1.1rem 1.2rem; border: 3px dashed var(--paars-licht); border-radius: var(--r-sm); background: var(--creme); }
+.slot-lijst .week { font: 700 1.6rem/1 var(--font-soort); color: var(--hoofd); }
+.slot-lijst b { font-weight: 600; font-size: 1.15rem; color: var(--paars-diep); }
+.slot-lijst span { font-size: 1rem; }
+.slotje { display: inline-flex; align-items: center; gap: .35rem; font-size: .95rem; color: var(--paars-diep); }
+.slotje svg { width: 1.1rem; height: 1.1rem; }
+.club-onder { display: grid; gap: .8rem; justify-items: start; margin-top: .5rem; }
 @media (max-width: 640px) { .hoorspel-rij { grid-template-columns: 1fr; } .hoorspel-beeld { width: 9rem; } }
 </style>
 </head>
@@ -111,6 +122,7 @@
     <circle cx="100" cy="54" r="40" fill="#fbe3ee" stroke="#3b2570" stroke-width="5"/>
     <path d="M82 50q4-5 8 0M110 50q4-5 8 0M88 68q12 10 24 0" fill="none" stroke="#3b2570" stroke-width="4" stroke-linecap="round"/>
   </symbol>
+  <symbol id="i-slot" viewBox="0 0 24 24"><rect x="5" y="10.500" width="14" height="10" rx="2.500" fill="none" stroke="currentColor" stroke-width="2.300"/><path d="M8.500 10.500V7.500a3.500 3.500 0 0 1 7 0v3" fill="none" stroke="currentColor" stroke-width="2.300" stroke-linecap="round"/></symbol>
   <symbol id="i-thuis" viewBox="0 0 24 24"><path d="M4 11L12 4l8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"/></symbol>
 </svg>
 
@@ -137,6 +149,7 @@
       <div class="held-rij">
         <div class="held-tekst">
           <p class="soort">THEMA VAN DE MAAND</p>
+          <p class="week-label">Week 1 &middot; gratis</p>
           <h1 id="thema-kop">Achter je <span class="kronkel">masker</span></h1>
           <p class="intro">Wie ben jij echt? Soms zet je een masker op. Dan lach je, terwijl je vanbinnen iets anders voelt. Deze maand kijken we samen achter het masker.</p>
         </div>
@@ -148,15 +161,32 @@
     </div>
   </section>
 
-  <!-- ===== Weetje Watje ===== -->
-  <section class="pagina is-lila" id="weetje">
+  <!-- ===== Voor grote mensen: waarom dit thema ===== -->
+  <section class="pagina is-neutraal" id="grote-mensen">
     <div class="binnen">
       <div class="blok-kop">
-        <img class="kop-breintje" src="beeld/breintje-bril.webp" alt="">
-        <div><h2 id="weetje-kop">Weetje Watje</h2><p>Weet je wat?</p></div>
+        <span class="rondje"><svg aria-hidden="true"><use href="#i-hart"/></svg></span>
+        <div><h2 id="groot-kop">Voor grote mensen</h2><p>Waarom dit thema belangrijk is.</p></div>
       </div>
-      <div class="club-kaart themavak">
-        <p class="nogleeg">Hier komt het verhaaltje van Nicky.</p>
+      <div class="groot-rij">
+        <div class="groot-tekst">
+          <p>Veel kinderen zetten een masker op. Ze lachen terwijl ze verdrietig zijn, doen stoer als ze bang zijn, of zijn op school heel braaf en stil. Dat is geen liegen. Ze willen erbij horen, het goed doen, of gewoon geen gedoe.</p>
+          <p>Een masker kan even helpen. Maar het kost veel energie om het de hele dag op te houden. Vaak zie je dat pas thuis: dan komt alles eruit, met tranen, boosheid of heel erg moe zijn. Kinderen die veel voelen of snel vol zitten, doen dit vaak.</p>
+          <p>In dit thema ontdekken kinderen wanneer zij een masker opzetten, en dat al hun gevoelens er mogen zijn. Ook de gevoelens die niet blij zijn.</p>
+        </div>
+        <div class="groot-lijst">
+          <h3>Zo kun je helpen</h3>
+          <dl>
+            <dt>Zeg wat je ziet</dt>
+            <dd>"Je lacht, maar je ogen kijken een beetje verdrietig. Klopt dat?"</dd>
+            <dt>Eerst rust, dan praten</dt>
+            <dd>Na een dag met een masker op is je kind vaak leeg. Geef eerst rust, praat later.</dd>
+            <dt>Doe het zelf voor</dt>
+            <dd>Vertel wanneer jij weleens een masker opzet. Dan weet je kind: dat doen grote mensen ook.</dd>
+            <dt>Een masker is niet fout</dt>
+            <dd>Het is een manier om je veilig te voelen. Je hoeft het niet af te pakken, alleen te snappen.</dd>
+          </dl>
+        </div>
       </div>
     </div>
   </section>
@@ -178,33 +208,58 @@
     </div>
   </section>
 
-  <!-- ===== Maskerkompas ===== -->
-  <section class="pagina is-roze" id="maskerkompas">
-    <div class="binnen">
-      <div class="blok-kop">
-        <img class="kop-breintje" src="beeld/breintje-masker-voor.webp" alt="">
-        <div><h2 id="maskerkompas-kop">Maskerkompas</h2><p>Wat zit er achter jouw masker?</p></div>
-      </div>
-      <div class="club-kaart themavak">
-        <p>Soms laat je aan de buitenkant iets anders zien dan je vanbinnen voelt. Ontdek welke maskers jij weleens opzet, en til je masker op.</p>
-        <p><a class="knop" href="maskerkompas.html">Naar het Maskerkompas</a></p>
-      </div>
-    </div>
-  </section>
-
   <!-- ===== Hoorspel ===== -->
   <section class="pagina is-oranje" id="hoorspel">
     <div class="binnen">
       <div class="blok-kop">
         <span class="rondje"><svg aria-hidden="true"><use href="#i-boek"/></svg></span>
-        <div><h2 id="hoorspel-kop">Hoorspel</h2><p>Het masker van Max.</p></div>
+        <div><h2 id="hoorspel-kop">Hoorspel</h2><p>Het masker van Max: luister naar het begin.</p></div>
       </div>
       <div class="club-kaart themavak hoorspel-rij">
         <img class="hoorspel-beeld" src="beeld/breintje-masker-op.webp" alt="Breintje met een masker in zijn hand" loading="lazy">
         <div>
           <h3>Het masker van Max</h3>
           <p>Max heeft een masker dat altijd lacht. Maar wat gebeurt er als het masker een dagje kwijt is?</p>
-          <p class="nogleeg">We zijn het nog aan het maken. Kom gauw nog eens luisteren!</p>
+          <!-- Gratis: alleen het begin van deel 1, tot een spannend moment. Als het klaar is: zet het mp3-bestand in de map verhaaltjes/ en vervang de regel "nogleeg" hieronder door:
+               <audio controls preload="none" src="verhaaltjes/het-masker-van-max-begin.mp3"></audio> -->
+          <p class="nogleeg">Het begin van het verhaal komt hier. Kom gauw nog eens luisteren!</p>
+          <p class="slotje"><svg aria-hidden="true"><use href="#i-slot"/></svg>Hoe het verder gaat met Max, hoor je in de Club</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Verwerking: Maskerkompas ===== -->
+  <section class="pagina is-roze" id="maskerkompas">
+    <div class="binnen">
+      <div class="blok-kop">
+        <img class="kop-breintje" src="beeld/breintje-masker-voor.webp" alt="">
+        <div><h2 id="maskerkompas-kop">Wanneer heb jij een masker op?</h2><p>Ontdek het met het Maskerkompas.</p></div>
+      </div>
+      <div class="club-kaart themavak">
+        <p>Max zet een lach-masker op. En jij? Soms laat je aan de buitenkant iets anders zien dan je vanbinnen voelt. Ontdek welke maskers jij weleens opzet, en til je masker op.</p>
+        <p class="slotje"><svg aria-hidden="true"><use href="#i-slot"/></svg>Het Maskerkompas is voor de Club</p>
+        <p class="klein">Praat er samen over: wanneer had jij vandaag een masker op? En hoe voelde je je eronder?</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Zo gaat het verder (Club) ===== -->
+  <section class="pagina is-lila" id="verder">
+    <div class="binnen">
+      <div class="blok-kop">
+        <span class="rondje"><svg aria-hidden="true"><use href="#i-slot"/></svg></span>
+        <div><h2 id="verder-kop">Zo gaat het verder</h2><p>Elke week een nieuw stukje achter het masker.</p></div>
+      </div>
+      <div class="club-kaart themavak">
+        <ul class="slot-lijst">
+          <li><span class="week">Week 2</span><b>Het masker van Max, deel 2</b><span>Wat gebeurt er als het masker kwijt is?</span><span class="slotje"><svg aria-hidden="true"><use href="#i-slot"/></svg>Voor de Club</span></li>
+          <li><span class="week">Week 3</span><b>Weetje Watje van Nicky</b><span>Waarom zet je eigenlijk een masker op?</span><span class="slotje"><svg aria-hidden="true"><use href="#i-slot"/></svg>Voor de Club</span></li>
+          <li><span class="week">Week 4</span><b>Het slot van het hoorspel en een printblad</b><span>Maak je eigen masker, met de voorkant en de binnenkant.</span><span class="slotje"><svg aria-hidden="true"><use href="#i-slot"/></svg>Voor de Club</span></li>
+        </ul>
+        <div class="club-onder">
+          <p>Plus elke week tips voor grote mensen, van Nicky.</p>
+          <span class="knop" aria-disabled="true">De Club komt binnenkort</span>
         </div>
       </div>
     </div>
