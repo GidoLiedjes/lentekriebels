@@ -1,3 +1,5 @@
+# Iedereen is welkom, ook zoekmachines en AI-assistenten
+# (zoals ChatGPT, Claude, Perplexity en Google).
 User-agent: *
 Allow: /
 
