@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bijzondere Breintjes – liedjes en oefeningen over gevoelens voor kinderen (3-8 jaar)</title>
-<meta name="description" content="Liedjes, hoorspelen en spelletjes over gevoelens voor kinderen van 3 tot 8 jaar. Elke maand een thema, zonder reclame. Nu: Achter je masker, met het liedje Ik hoef niet altijd blij te zijn.">
+<meta name="description" content="Liedjes, hoorspelen en spelletjes over gevoelens voor kinderen van 3 tot 8 jaar. Elke maand een thema, zonder reclame. Nu: Als alles te veel is, met het liedje O, o, o, o overprikkeling.">
 <link rel="canonical" href="https://www.bijzonderebreintjes.nl/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Bijzondere Breintjes">
 <meta property="og:locale" content="nl_NL">
 <meta property="og:url" content="https://www.bijzonderebreintjes.nl/">
-<meta property="og:title" content="Bijzondere Breintjes – Achter je masker: wie ben jij echt?">
+<meta property="og:title" content="Bijzondere Breintjes – Als alles te veel is: over overprikkeling">
 <meta property="og:description" content="Liedjes, weetjes en oefeningen die kinderen van 3 tot 8 jaar helpen zichzelf beter te begrijpen.">
 <meta property="og:image" content="https://www.bijzonderebreintjes.nl/beeld/deelplaatje.jpg">
 <meta property="og:image:width" content="1200">
@@ -63,12 +63,13 @@
    ]
   },
   {
-   "@type": "VideoObject",
-   "name": "Ik hoef niet altijd blij te zijn",
-   "description": "Liedje voor kinderen van 3 tot 8 jaar over het thema Achter je masker: je hoeft niet altijd te lachen als je vanbinnen iets anders voelt.",
-   "thumbnailUrl": "https://www.bijzonderebreintjes.nl/thema/cover-liedje.webp",
-   "uploadDate": "2026-11-19T09:00:00+01:00",
-   "contentUrl": "https://www.bijzonderebreintjes.nl/thema/ik-hoef-niet-altijd-blij-te-zijn.mp4",
+   "@type": "AudioObject",
+   "name": "O, o, o, o overprikkeling",
+   "description": "Liedje voor kinderen van 3 tot 8 jaar over het thema Als alles te veel is: wat je kunt doen als je hoofd te vol zit.",
+   "contentUrl": "https://www.bijzonderebreintjes.nl/liedjes/overprikkeling.mp3",
+   "encodingFormat": "audio/mpeg",
+   "duration": "PT2M26S",
+   "uploadDate": "2026-11-28T09:00:00+01:00",
    "inLanguage": "nl",
    "isFamilyFriendly": true,
    "genre": "Kinderliedje",
@@ -101,6 +102,10 @@
 @media (max-width: 640px) { .kop-breintje { width: 5rem; height: 5rem; } }
 .themavak { max-width: 52rem; }
 .nogleeg { font-size: 1.15rem; border: 3px dashed var(--paars-licht); border-radius: var(--r-sm); padding: .8rem 1rem; color: var(--paars-diep); background: var(--creme); display: inline-block; }
+.liedje-vak { display: grid; gap: .75rem; justify-items: center; }
+.liedje-breintje { width: min(100%, 17rem); height: auto; }
+.liedje-vak audio { width: 100%; }
+.vraag-thema { font-size: 1.2rem; color: var(--paars-diep); }
 .video-vak video { width: 100%; height: auto; border-radius: var(--r-sm); background: #fffefb; }
 .hoorspel-rij { display: grid; grid-template-columns: 11rem 1fr; gap: 1.4rem; align-items: center; }
 .hoorspel-rij h3 { font-weight: 700; font-size: clamp(1.5rem, 5vw, 2rem); }
@@ -242,15 +247,16 @@
     <div class="binnen thema-rij">
       <div class="thema-tekst">
         <p class="soort">THEMA VAN DE MAAND</p>
-        <h2 id="thema-kop" class="thema-titel">Achter je <span class="kronkel">masker</span></h2>
-        <p class="intro">Heb jij weleens gelachen terwijl je vanbinnen verdrietig was? Dan had je een masker op. Deze maand kijken we samen wat erachter zit.</p>
-        <p class="klein">Voor grote mensen: kinderen die veel voelen, houden vaak de hele dag een masker op. Dit thema helpt ze dat te herkennen.</p>
+        <h2 id="thema-kop" class="thema-titel">Als alles te <span class="kronkel">veel</span> is</h2>
+        <p class="intro">Soms is alles te veel. Te hard, te druk, te fel. Dan zit je hoofd zo vol dat je wilt huilen, schreeuwen of wegkruipen. Deze maand ontdekken we samen wat jouw hoofd weer rustig maakt.</p>
+        <p class="vraag-thema"><b>Praat samen:</b> wat helpt jou als het te veel is?</p>
+        <p class="klein">Voor grote mensen: in december komt er extra veel binnen. Sinterklaas, kerst, visite en drukte. Een kind dat ontploft of stilvalt is niet stout, het hoofd is vol.</p>
+        <p class="klein">Is het hier te druk? Druk bovenaan op <b>Rustig</b>.</p>
       </div>
-      <div class="video-vak">
-        <video controls preload="none" playsinline poster="thema/cover-liedje.webp" width="1920" height="1080">
-          <source src="thema/ik-hoef-niet-altijd-blij-te-zijn.mp4?v=2" type="video/mp4">
-        </video>
-        <p class="klein">Gratis liedje: Ik hoef niet altijd blij te zijn.</p>
+      <div class="liedje-vak">
+        <img class="liedje-breintje" src="beeld/breintje-overprikkeld.webp" alt="Een breintje met een heel vol hoofd" width="600" height="600">
+        <audio controls preload="none" src="liedjes/overprikkeling.mp3"></audio>
+        <p class="klein">Gratis liedje: O, o, o, o overprikkeling.</p>
       </div>
     </div>
   </section>
@@ -260,10 +266,10 @@
     <div class="binnen">
       <h2 id="club-kop" class="teaser-kop">Deze maand in de Club</h2>
       <ol class="teaser-lijst">
-        <li><span class="week">Week 1</span><b>Waarom lacht het masker van Max altijd?</b></li>
-        <li><span class="week">Week 2</span><b>Welk masker zet jij op?</b></li>
-        <li><span class="week">Week 3</span><b>Wat als je masker kwijt is?</b></li>
-        <li><span class="week">Week 4</span><b>Durft Max zijn masker af te zetten?</b></li>
+        <li><span class="week">Week 1</span><b>Waarom is alles ineens zo hard?</b></li>
+        <li><span class="week">Week 2</span><b>Waarom ontplof ik pas als ik thuis ben?</b></li>
+        <li><span class="week">Week 3</span><b>Waar is jouw stille plekje?</b></li>
+        <li><span class="week">Week 4</span><b>Hoe zeg je dat het te veel is?</b></li>
       </ol>
       <p class="teaser-onder"><span>Elke week een nieuw deel van het hoorspel en een opdracht. Met een werkblad voor ouders.</span> <span class="knop" aria-disabled="true">De Club komt binnenkort</span></p>
     </div>
