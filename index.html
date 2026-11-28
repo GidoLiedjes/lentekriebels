@@ -63,12 +63,12 @@
    ]
   },
   {
-   "@type": "AudioObject",
+   "@type": "VideoObject",
    "name": "O, o, o, o overprikkeling",
-   "description": "Liedje voor kinderen van 3 tot 8 jaar over het thema Als alles te veel is: wat je kunt doen als je hoofd te vol zit.",
-   "contentUrl": "https://www.bijzonderebreintjes.nl/liedjes/overprikkeling.mp3",
-   "encodingFormat": "audio/mpeg",
-   "duration": "PT2M26S",
+   "description": "Liedje voor kinderen van 3 tot 8 jaar over het thema Als alles te veel is: te veel glitter, te veel schittering. Wat doe je als je hoofd te vol zit?",
+   "thumbnailUrl": "https://www.bijzonderebreintjes.nl/thema/cover-overprikkeling.webp",
+   "contentUrl": "https://www.bijzonderebreintjes.nl/thema/overprikkeling-refrein.mp4",
+   "duration": "PT33S",
    "uploadDate": "2026-11-28T09:00:00+01:00",
    "inLanguage": "nl",
    "isFamilyFriendly": true,
@@ -103,8 +103,7 @@
 .themavak { max-width: 52rem; }
 .nogleeg { font-size: 1.15rem; border: 3px dashed var(--paars-licht); border-radius: var(--r-sm); padding: .8rem 1rem; color: var(--paars-diep); background: var(--creme); display: inline-block; }
 .liedje-vak { display: grid; gap: .75rem; justify-items: center; }
-.liedje-breintje { width: min(100%, 17rem); height: auto; }
-.liedje-vak audio { width: 100%; }
+.liedje-vak video { width: min(100%, 20rem); height: auto; border-radius: var(--r-sm); background: #fffefb; }
 .vraag-thema { font-size: 1.2rem; color: var(--paars-diep); }
 .video-vak video { width: 100%; height: auto; border-radius: var(--r-sm); background: #fffefb; }
 .hoorspel-rij { display: grid; grid-template-columns: 11rem 1fr; gap: 1.4rem; align-items: center; }
@@ -254,8 +253,9 @@
         <p class="klein">Is het hier te druk? Druk bovenaan op <b>Rustig</b>.</p>
       </div>
       <div class="liedje-vak">
-        <img class="liedje-breintje" src="beeld/breintje-overprikkeld.webp" alt="Een breintje met een heel vol hoofd" width="600" height="600">
-        <audio controls preload="none" src="liedjes/overprikkeling.mp3"></audio>
+        <video controls preload="none" playsinline poster="thema/cover-overprikkeling.webp" width="1080" height="1920">
+          <source src="thema/overprikkeling-refrein.mp4" type="video/mp4">
+        </video>
         <p class="klein">Gratis liedje: O, o, o, o overprikkeling.</p>
       </div>
     </div>
